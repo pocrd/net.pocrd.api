@@ -1,2 +1,11 @@
-.class
+*.class
+*.o
+*.a
+*.so
+*.exe
+*.log
 .metadata
+/build/
+/bin/
+/debug/
+
