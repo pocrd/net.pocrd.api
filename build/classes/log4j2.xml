@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <RollingFile name="Access" fileName="../logs/access/access.log" filePattern="../logs/access/access-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%t]: %logger - %msg%xEx%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="Error" fileName="../logs/error/error.log" filePattern="../logs/error/error-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%t]: %class %L %M - %msg%xEx%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="Info" fileName="../logs/info/info.log" filePattern="../logs/info/info-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+            <ThresholdFilter level="error" onMatch="DENY" onMismatch="ACCEPT" />
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%t]: %logger - %msg%xEx%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB" />
+            </Policies>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <root level="trace">
+            <appender-ref ref="Error" />
+            <appender-ref ref="Info" />
+        </root>
+        <logger name="net.pocrd.api.access" level="info" additivity="false">
+            <appender-ref ref="Access" />
+        </logger>
+    </loggers>
+</configuration>  
