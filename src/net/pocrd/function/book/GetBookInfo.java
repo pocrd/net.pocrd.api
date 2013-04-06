@@ -2,7 +2,7 @@ package net.pocrd.function.book;
 
 import net.pocrd.annotation.ApiGroup;
 import net.pocrd.annotation.HttpApi;
-import net.pocrd.api.entity.ApiBookInfo.Api_BookInfo;
+import net.pocrd.api.resp.ApiBookInfo.Api_BookInfo;
 import net.pocrd.define.SecurityType;
 
 import org.apache.logging.log4j.LogManager;

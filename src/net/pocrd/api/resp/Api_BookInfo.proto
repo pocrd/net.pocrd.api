@@ -1,0 +1,21 @@
+package net.pocrd.api.resp;
+
+message Api_BookInfo {
+    // 书籍所属版权方id
+    optional int32 crid = 1;
+    
+    // 书籍id
+    optional int32 bookid = 2;
+    
+    // 书籍名称
+    optional string bookName = 3;
+    
+    // 作者名
+    optional string author = 4;
+    
+    // 作者id
+    optional int32 authorid = 5;
+    
+    // 书籍下载地址
+    optional string url = 6;
+}

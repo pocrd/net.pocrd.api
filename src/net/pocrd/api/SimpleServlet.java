@@ -16,9 +16,10 @@ import org.apache.logging.log4j.Logger;
 public class SimpleServlet extends BaseServlet {
     private static final long   serialVersionUID = 1L;
     private static final Logger logger           = LogManager.getLogger(SimpleServlet.class);
-    
+
     @Override
-    public void ParseMethodInfo(ApiContext context, HttpServletRequest request) {
-        
+    public boolean parseMethodInfo(ApiContext context, HttpServletRequest request) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }
