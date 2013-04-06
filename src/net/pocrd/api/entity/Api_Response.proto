@@ -1,7 +1,0 @@
-import "net/pocrd/api/entity/Api_CallStatus.proto";
-package net.pocrd.api.entity;
-
-message Api_Response {
-    required int64 systime = 1;
-    repeated Api_CallStatus status = 2;
-}

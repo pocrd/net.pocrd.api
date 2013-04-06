@@ -1,8 +1,0 @@
-package net.pocrd.api.entity;
-
-message Api_CallStatus {
-    required int32 code = 1;
-    required string msg = 2;
-    required int32 start = 3;
-    required int32 length = 4;
-}
