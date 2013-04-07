@@ -3,6 +3,9 @@
     <wb-module deploy-name="net.pocrd.api">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="net.pocrd.core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/net.pocrd.core/net.pocrd.core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="net.pocrd.api"/>
         <property name="java-output-path" value="/net.pocrd.api/build/classes"/>
     </wb-module>

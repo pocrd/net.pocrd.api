@@ -13,6 +13,7 @@ import net.pocrd.define.SecurityType;
 import net.pocrd.entity.ApiContext;
 import net.pocrd.entity.ApiMethodCall;
 import net.pocrd.entity.ApiMethodInfo;
+import net.pocrd.util.Base64Util;
 import net.pocrd.util.RsaHelper;
 
 public class MultiServlet extends BaseServlet {
@@ -92,9 +93,9 @@ public class MultiServlet extends BaseServlet {
         String sig = request.getParameter(CommonParameter.si.toString());
         if (sig != null && sig.length() > 0) {
             if (securityLevel == 0) {
-                return HMAC.verify(sig, sb.toString());
+                return hmac.verify(Base64Util.decode(sig), sb.toString().getBytes());
             } else if (context.caller != null) {
-                return RsaHelper.verify(sig, sb.toString(), context.caller.key);
+                return RsaHelper.verify(Base64Util.decode(sig), sb.toString().getBytes(), Base64Util.decode(context.caller.key));
             } else {
                 return false;
             }

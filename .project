@@ -3,6 +3,7 @@
 	<name>net.pocrd.api</name>
 	<comment></comment>
 	<projects>
+		<project>net.pocrd.core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

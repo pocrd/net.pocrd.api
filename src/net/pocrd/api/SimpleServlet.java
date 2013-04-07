@@ -19,7 +19,6 @@ public class SimpleServlet extends BaseServlet {
 
     @Override
     public boolean parseMethodInfo(ApiContext context, HttpServletRequest request) {
-        // TODO Auto-generated method stub
         return false;
     }
 }
