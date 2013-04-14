@@ -1,12 +1,8 @@
 package net.pocrd.api.util;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-import net.pocrd.util.FileConfig;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.pocrd.util.ConfigUtil;
 
 @XmlRootElement
 public class ApiConfig {
@@ -15,14 +11,9 @@ public class ApiConfig {
     private ApiConfig() {}
 
     static {
-        Instance = FileConfig.load("Api.config", ApiConfig.class);
-
-        Instance.accessLogger = LogManager.getLogger(Instance.accessLoggerName);
+        Instance = ConfigUtil.load("Api.config", ApiConfig.class);
     }
-
-    public String      accessLoggerName;
-    public String      staticSignPwd;
-
-    @XmlTransient
-    public Logger      accessLogger;
+    
+    // token存活的时间，单位为秒
+    public int tokenLiveTime = 86400;
 }

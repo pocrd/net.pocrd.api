@@ -15,14 +15,24 @@ public final class ApiResponse {
     boolean hasSystime();
     long getSystime();
     
-    // repeated .net.pocrd.api.resp.Api_CallStatus status = 2;
+    // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
     java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> 
-        getStatusList();
-    net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getStatus(int index);
-    int getStatusCount();
+        getStateList();
+    net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index);
+    int getStateCount();
     java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
-        getStatusOrBuilderList();
-    net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStatusOrBuilder(
+        getStateOrBuilderList();
+    net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
+        int index);
+    
+    // repeated .net.pocrd.api.resp.Api_Notification notification = 3;
+    java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> 
+        getNotificationList();
+    net.pocrd.api.resp.ApiNotification.Api_Notification getNotification(int index);
+    int getNotificationCount();
+    java.util.List<? extends net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> 
+        getNotificationOrBuilderList();
+    net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder getNotificationOrBuilder(
         int index);
   }
   public static final class Api_Response extends
@@ -64,30 +74,52 @@ public final class ApiResponse {
       return systime_;
     }
     
-    // repeated .net.pocrd.api.resp.Api_CallStatus status = 2;
-    public static final int STATUS_FIELD_NUMBER = 2;
-    private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> status_;
-    public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStatusList() {
-      return status_;
+    // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
+    public static final int STATE_FIELD_NUMBER = 2;
+    private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> state_;
+    public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStateList() {
+      return state_;
     }
     public java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
-        getStatusOrBuilderList() {
-      return status_;
+        getStateOrBuilderList() {
+      return state_;
     }
-    public int getStatusCount() {
-      return status_.size();
+    public int getStateCount() {
+      return state_.size();
     }
-    public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getStatus(int index) {
-      return status_.get(index);
+    public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index) {
+      return state_.get(index);
     }
-    public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStatusOrBuilder(
+    public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
         int index) {
-      return status_.get(index);
+      return state_.get(index);
+    }
+    
+    // repeated .net.pocrd.api.resp.Api_Notification notification = 3;
+    public static final int NOTIFICATION_FIELD_NUMBER = 3;
+    private java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> notification_;
+    public java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> getNotificationList() {
+      return notification_;
+    }
+    public java.util.List<? extends net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> 
+        getNotificationOrBuilderList() {
+      return notification_;
+    }
+    public int getNotificationCount() {
+      return notification_.size();
+    }
+    public net.pocrd.api.resp.ApiNotification.Api_Notification getNotification(int index) {
+      return notification_.get(index);
+    }
+    public net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder getNotificationOrBuilder(
+        int index) {
+      return notification_.get(index);
     }
     
     private void initFields() {
       systime_ = 0L;
-      status_ = java.util.Collections.emptyList();
+      state_ = java.util.Collections.emptyList();
+      notification_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -98,8 +130,8 @@ public final class ApiResponse {
         memoizedIsInitialized = 0;
         return false;
       }
-      for (int i = 0; i < getStatusCount(); i++) {
-        if (!getStatus(i).isInitialized()) {
+      for (int i = 0; i < getStateCount(); i++) {
+        if (!getState(i).isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -114,8 +146,11 @@ public final class ApiResponse {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeInt64(1, systime_);
       }
-      for (int i = 0; i < status_.size(); i++) {
-        output.writeMessage(2, status_.get(i));
+      for (int i = 0; i < state_.size(); i++) {
+        output.writeMessage(2, state_.get(i));
+      }
+      for (int i = 0; i < notification_.size(); i++) {
+        output.writeMessage(3, notification_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -130,9 +165,13 @@ public final class ApiResponse {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, systime_);
       }
-      for (int i = 0; i < status_.size(); i++) {
+      for (int i = 0; i < state_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, status_.get(i));
+          .computeMessageSize(2, state_.get(i));
+      }
+      for (int i = 0; i < notification_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, notification_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -250,7 +289,8 @@ public final class ApiResponse {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getStatusFieldBuilder();
+          getStateFieldBuilder();
+          getNotificationFieldBuilder();
         }
       }
       private static Builder create() {
@@ -261,11 +301,17 @@ public final class ApiResponse {
         super.clear();
         systime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (statusBuilder_ == null) {
-          status_ = java.util.Collections.emptyList();
+        if (stateBuilder_ == null) {
+          state_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000002);
         } else {
-          statusBuilder_.clear();
+          stateBuilder_.clear();
+        }
+        if (notificationBuilder_ == null) {
+          notification_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          notificationBuilder_.clear();
         }
         return this;
       }
@@ -309,14 +355,23 @@ public final class ApiResponse {
           to_bitField0_ |= 0x00000001;
         }
         result.systime_ = systime_;
-        if (statusBuilder_ == null) {
+        if (stateBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            status_ = java.util.Collections.unmodifiableList(status_);
+            state_ = java.util.Collections.unmodifiableList(state_);
             bitField0_ = (bitField0_ & ~0x00000002);
           }
-          result.status_ = status_;
+          result.state_ = state_;
         } else {
-          result.status_ = statusBuilder_.build();
+          result.state_ = stateBuilder_.build();
+        }
+        if (notificationBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            notification_ = java.util.Collections.unmodifiableList(notification_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.notification_ = notification_;
+        } else {
+          result.notification_ = notificationBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -337,29 +392,55 @@ public final class ApiResponse {
         if (other.hasSystime()) {
           setSystime(other.getSystime());
         }
-        if (statusBuilder_ == null) {
-          if (!other.status_.isEmpty()) {
-            if (status_.isEmpty()) {
-              status_ = other.status_;
+        if (stateBuilder_ == null) {
+          if (!other.state_.isEmpty()) {
+            if (state_.isEmpty()) {
+              state_ = other.state_;
               bitField0_ = (bitField0_ & ~0x00000002);
             } else {
-              ensureStatusIsMutable();
-              status_.addAll(other.status_);
+              ensureStateIsMutable();
+              state_.addAll(other.state_);
             }
             onChanged();
           }
         } else {
-          if (!other.status_.isEmpty()) {
-            if (statusBuilder_.isEmpty()) {
-              statusBuilder_.dispose();
-              statusBuilder_ = null;
-              status_ = other.status_;
+          if (!other.state_.isEmpty()) {
+            if (stateBuilder_.isEmpty()) {
+              stateBuilder_.dispose();
+              stateBuilder_ = null;
+              state_ = other.state_;
               bitField0_ = (bitField0_ & ~0x00000002);
-              statusBuilder_ = 
+              stateBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getStatusFieldBuilder() : null;
+                   getStateFieldBuilder() : null;
             } else {
-              statusBuilder_.addAllMessages(other.status_);
+              stateBuilder_.addAllMessages(other.state_);
+            }
+          }
+        }
+        if (notificationBuilder_ == null) {
+          if (!other.notification_.isEmpty()) {
+            if (notification_.isEmpty()) {
+              notification_ = other.notification_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureNotificationIsMutable();
+              notification_.addAll(other.notification_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.notification_.isEmpty()) {
+            if (notificationBuilder_.isEmpty()) {
+              notificationBuilder_.dispose();
+              notificationBuilder_ = null;
+              notification_ = other.notification_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              notificationBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getNotificationFieldBuilder() : null;
+            } else {
+              notificationBuilder_.addAllMessages(other.notification_);
             }
           }
         }
@@ -372,8 +453,8 @@ public final class ApiResponse {
           
           return false;
         }
-        for (int i = 0; i < getStatusCount(); i++) {
-          if (!getStatus(i).isInitialized()) {
+        for (int i = 0; i < getStateCount(); i++) {
+          if (!getState(i).isInitialized()) {
             
             return false;
           }
@@ -412,7 +493,13 @@ public final class ApiResponse {
             case 18: {
               net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder subBuilder = net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.newBuilder();
               input.readMessage(subBuilder, extensionRegistry);
-              addStatus(subBuilder.buildPartial());
+              addState(subBuilder.buildPartial());
+              break;
+            }
+            case 26: {
+              net.pocrd.api.resp.ApiNotification.Api_Notification.Builder subBuilder = net.pocrd.api.resp.ApiNotification.Api_Notification.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addNotification(subBuilder.buildPartial());
               break;
             }
           }
@@ -442,190 +529,376 @@ public final class ApiResponse {
         return this;
       }
       
-      // repeated .net.pocrd.api.resp.Api_CallStatus status = 2;
-      private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> status_ =
+      // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
+      private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> state_ =
         java.util.Collections.emptyList();
-      private void ensureStatusIsMutable() {
+      private void ensureStateIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          status_ = new java.util.ArrayList<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus>(status_);
+          state_ = new java.util.ArrayList<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus>(state_);
           bitField0_ |= 0x00000002;
          }
       }
       
       private com.google.protobuf.RepeatedFieldBuilder<
-          net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> statusBuilder_;
+          net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> stateBuilder_;
       
-      public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStatusList() {
-        if (statusBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(status_);
+      public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStateList() {
+        if (stateBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(state_);
         } else {
-          return statusBuilder_.getMessageList();
+          return stateBuilder_.getMessageList();
         }
       }
-      public int getStatusCount() {
-        if (statusBuilder_ == null) {
-          return status_.size();
+      public int getStateCount() {
+        if (stateBuilder_ == null) {
+          return state_.size();
         } else {
-          return statusBuilder_.getCount();
+          return stateBuilder_.getCount();
         }
       }
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getStatus(int index) {
-        if (statusBuilder_ == null) {
-          return status_.get(index);
+      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index) {
+        if (stateBuilder_ == null) {
+          return state_.get(index);
         } else {
-          return statusBuilder_.getMessage(index);
+          return stateBuilder_.getMessage(index);
         }
       }
-      public Builder setStatus(
+      public Builder setState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
-        if (statusBuilder_ == null) {
+        if (stateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureStatusIsMutable();
-          status_.set(index, value);
+          ensureStateIsMutable();
+          state_.set(index, value);
           onChanged();
         } else {
-          statusBuilder_.setMessage(index, value);
+          stateBuilder_.setMessage(index, value);
         }
         return this;
       }
-      public Builder setStatus(
+      public Builder setState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
-        if (statusBuilder_ == null) {
-          ensureStatusIsMutable();
-          status_.set(index, builderForValue.build());
+        if (stateBuilder_ == null) {
+          ensureStateIsMutable();
+          state_.set(index, builderForValue.build());
           onChanged();
         } else {
-          statusBuilder_.setMessage(index, builderForValue.build());
+          stateBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addStatus(net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
-        if (statusBuilder_ == null) {
+      public Builder addState(net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
+        if (stateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureStatusIsMutable();
-          status_.add(value);
+          ensureStateIsMutable();
+          state_.add(value);
           onChanged();
         } else {
-          statusBuilder_.addMessage(value);
+          stateBuilder_.addMessage(value);
         }
         return this;
       }
-      public Builder addStatus(
+      public Builder addState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
-        if (statusBuilder_ == null) {
+        if (stateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureStatusIsMutable();
-          status_.add(index, value);
+          ensureStateIsMutable();
+          state_.add(index, value);
           onChanged();
         } else {
-          statusBuilder_.addMessage(index, value);
+          stateBuilder_.addMessage(index, value);
         }
         return this;
       }
-      public Builder addStatus(
+      public Builder addState(
           net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
-        if (statusBuilder_ == null) {
-          ensureStatusIsMutable();
-          status_.add(builderForValue.build());
+        if (stateBuilder_ == null) {
+          ensureStateIsMutable();
+          state_.add(builderForValue.build());
           onChanged();
         } else {
-          statusBuilder_.addMessage(builderForValue.build());
+          stateBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
-      public Builder addStatus(
+      public Builder addState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
-        if (statusBuilder_ == null) {
-          ensureStatusIsMutable();
-          status_.add(index, builderForValue.build());
+        if (stateBuilder_ == null) {
+          ensureStateIsMutable();
+          state_.add(index, builderForValue.build());
           onChanged();
         } else {
-          statusBuilder_.addMessage(index, builderForValue.build());
+          stateBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
-      public Builder addAllStatus(
+      public Builder addAllState(
           java.lang.Iterable<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> values) {
-        if (statusBuilder_ == null) {
-          ensureStatusIsMutable();
-          super.addAll(values, status_);
+        if (stateBuilder_ == null) {
+          ensureStateIsMutable();
+          super.addAll(values, state_);
           onChanged();
         } else {
-          statusBuilder_.addAllMessages(values);
+          stateBuilder_.addAllMessages(values);
         }
         return this;
       }
-      public Builder clearStatus() {
-        if (statusBuilder_ == null) {
-          status_ = java.util.Collections.emptyList();
+      public Builder clearState() {
+        if (stateBuilder_ == null) {
+          state_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
-          statusBuilder_.clear();
+          stateBuilder_.clear();
         }
         return this;
       }
-      public Builder removeStatus(int index) {
-        if (statusBuilder_ == null) {
-          ensureStatusIsMutable();
-          status_.remove(index);
+      public Builder removeState(int index) {
+        if (stateBuilder_ == null) {
+          ensureStateIsMutable();
+          state_.remove(index);
           onChanged();
         } else {
-          statusBuilder_.remove(index);
+          stateBuilder_.remove(index);
         }
         return this;
       }
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder getStatusBuilder(
+      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder getStateBuilder(
           int index) {
-        return getStatusFieldBuilder().getBuilder(index);
+        return getStateFieldBuilder().getBuilder(index);
       }
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStatusOrBuilder(
+      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
           int index) {
-        if (statusBuilder_ == null) {
-          return status_.get(index);  } else {
-          return statusBuilder_.getMessageOrBuilder(index);
+        if (stateBuilder_ == null) {
+          return state_.get(index);  } else {
+          return stateBuilder_.getMessageOrBuilder(index);
         }
       }
       public java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
-           getStatusOrBuilderList() {
-        if (statusBuilder_ != null) {
-          return statusBuilder_.getMessageOrBuilderList();
+           getStateOrBuilderList() {
+        if (stateBuilder_ != null) {
+          return stateBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(status_);
+          return java.util.Collections.unmodifiableList(state_);
         }
       }
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStatusBuilder() {
-        return getStatusFieldBuilder().addBuilder(
+      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStateBuilder() {
+        return getStateFieldBuilder().addBuilder(
             net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.getDefaultInstance());
       }
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStatusBuilder(
+      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStateBuilder(
           int index) {
-        return getStatusFieldBuilder().addBuilder(
+        return getStateFieldBuilder().addBuilder(
             index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.getDefaultInstance());
       }
       public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder> 
-           getStatusBuilderList() {
-        return getStatusFieldBuilder().getBuilderList();
+           getStateBuilderList() {
+        return getStateFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
           net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
-          getStatusFieldBuilder() {
-        if (statusBuilder_ == null) {
-          statusBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+          getStateFieldBuilder() {
+        if (stateBuilder_ == null) {
+          stateBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder>(
-                  status_,
+                  state_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
                   isClean());
-          status_ = null;
+          state_ = null;
         }
-        return statusBuilder_;
+        return stateBuilder_;
+      }
+      
+      // repeated .net.pocrd.api.resp.Api_Notification notification = 3;
+      private java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> notification_ =
+        java.util.Collections.emptyList();
+      private void ensureNotificationIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          notification_ = new java.util.ArrayList<net.pocrd.api.resp.ApiNotification.Api_Notification>(notification_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          net.pocrd.api.resp.ApiNotification.Api_Notification, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder, net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> notificationBuilder_;
+      
+      public java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> getNotificationList() {
+        if (notificationBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(notification_);
+        } else {
+          return notificationBuilder_.getMessageList();
+        }
+      }
+      public int getNotificationCount() {
+        if (notificationBuilder_ == null) {
+          return notification_.size();
+        } else {
+          return notificationBuilder_.getCount();
+        }
+      }
+      public net.pocrd.api.resp.ApiNotification.Api_Notification getNotification(int index) {
+        if (notificationBuilder_ == null) {
+          return notification_.get(index);
+        } else {
+          return notificationBuilder_.getMessage(index);
+        }
+      }
+      public Builder setNotification(
+          int index, net.pocrd.api.resp.ApiNotification.Api_Notification value) {
+        if (notificationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNotificationIsMutable();
+          notification_.set(index, value);
+          onChanged();
+        } else {
+          notificationBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setNotification(
+          int index, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder builderForValue) {
+        if (notificationBuilder_ == null) {
+          ensureNotificationIsMutable();
+          notification_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          notificationBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addNotification(net.pocrd.api.resp.ApiNotification.Api_Notification value) {
+        if (notificationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNotificationIsMutable();
+          notification_.add(value);
+          onChanged();
+        } else {
+          notificationBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addNotification(
+          int index, net.pocrd.api.resp.ApiNotification.Api_Notification value) {
+        if (notificationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNotificationIsMutable();
+          notification_.add(index, value);
+          onChanged();
+        } else {
+          notificationBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addNotification(
+          net.pocrd.api.resp.ApiNotification.Api_Notification.Builder builderForValue) {
+        if (notificationBuilder_ == null) {
+          ensureNotificationIsMutable();
+          notification_.add(builderForValue.build());
+          onChanged();
+        } else {
+          notificationBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addNotification(
+          int index, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder builderForValue) {
+        if (notificationBuilder_ == null) {
+          ensureNotificationIsMutable();
+          notification_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          notificationBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllNotification(
+          java.lang.Iterable<? extends net.pocrd.api.resp.ApiNotification.Api_Notification> values) {
+        if (notificationBuilder_ == null) {
+          ensureNotificationIsMutable();
+          super.addAll(values, notification_);
+          onChanged();
+        } else {
+          notificationBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearNotification() {
+        if (notificationBuilder_ == null) {
+          notification_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          notificationBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeNotification(int index) {
+        if (notificationBuilder_ == null) {
+          ensureNotificationIsMutable();
+          notification_.remove(index);
+          onChanged();
+        } else {
+          notificationBuilder_.remove(index);
+        }
+        return this;
+      }
+      public net.pocrd.api.resp.ApiNotification.Api_Notification.Builder getNotificationBuilder(
+          int index) {
+        return getNotificationFieldBuilder().getBuilder(index);
+      }
+      public net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder getNotificationOrBuilder(
+          int index) {
+        if (notificationBuilder_ == null) {
+          return notification_.get(index);  } else {
+          return notificationBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> 
+           getNotificationOrBuilderList() {
+        if (notificationBuilder_ != null) {
+          return notificationBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(notification_);
+        }
+      }
+      public net.pocrd.api.resp.ApiNotification.Api_Notification.Builder addNotificationBuilder() {
+        return getNotificationFieldBuilder().addBuilder(
+            net.pocrd.api.resp.ApiNotification.Api_Notification.getDefaultInstance());
+      }
+      public net.pocrd.api.resp.ApiNotification.Api_Notification.Builder addNotificationBuilder(
+          int index) {
+        return getNotificationFieldBuilder().addBuilder(
+            index, net.pocrd.api.resp.ApiNotification.Api_Notification.getDefaultInstance());
+      }
+      public java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification.Builder> 
+           getNotificationBuilderList() {
+        return getNotificationFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          net.pocrd.api.resp.ApiNotification.Api_Notification, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder, net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> 
+          getNotificationFieldBuilder() {
+        if (notificationBuilder_ == null) {
+          notificationBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              net.pocrd.api.resp.ApiNotification.Api_Notification, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder, net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder>(
+                  notification_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          notification_ = null;
+        }
+        return notificationBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:net.pocrd.api.resp.Api_Response)
@@ -655,9 +928,12 @@ public final class ApiResponse {
     java.lang.String[] descriptorData = {
       "\n%net/pocrd/api/resp/Api_Response.proto\022" +
       "\022net.pocrd.api.resp\032\'net/pocrd/api/resp/" +
-      "Api_CallStatus.proto\"S\n\014Api_Response\022\017\n\007" +
-      "systime\030\001 \002(\003\0222\n\006status\030\002 \003(\0132\".net.pocr" +
-      "d.api.resp.Api_CallStatus"
+      "Api_CallStatus.proto\032)net/pocrd/api/resp" +
+      "/Api_Notification.proto\"\216\001\n\014Api_Response" +
+      "\022\017\n\007systime\030\001 \002(\003\0221\n\005state\030\002 \003(\0132\".net.p" +
+      "ocrd.api.resp.Api_CallStatus\022:\n\014notifica" +
+      "tion\030\003 \003(\0132$.net.pocrd.api.resp.Api_Noti" +
+      "fication"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -669,7 +945,7 @@ public final class ApiResponse {
           internal_static_net_pocrd_api_resp_Api_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_net_pocrd_api_resp_Api_Response_descriptor,
-              new java.lang.String[] { "Systime", "Status", },
+              new java.lang.String[] { "Systime", "State", "Notification", },
               net.pocrd.api.resp.ApiResponse.Api_Response.class,
               net.pocrd.api.resp.ApiResponse.Api_Response.Builder.class);
           return null;
@@ -679,6 +955,7 @@ public final class ApiResponse {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           net.pocrd.api.resp.ApiCallStatus.getDescriptor(),
+          net.pocrd.api.resp.ApiNotification.getDescriptor(),
         }, assigner);
   }
   

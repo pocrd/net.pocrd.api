@@ -1,0 +1,5 @@
+package net.pocrd.api.resp;
+
+message Api_String {
+    optional string value = 1;
+}

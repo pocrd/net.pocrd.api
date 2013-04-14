@@ -1,6 +1,7 @@
-package net.pocrd.function.book;
+package net.pocrd.webapi.book;
 
 import net.pocrd.annotation.ApiGroup;
+import net.pocrd.annotation.ApiParameter;
 import net.pocrd.annotation.HttpApi;
 import net.pocrd.api.resp.ApiBookInfo.Api_BookInfo;
 import net.pocrd.define.SecurityType;
@@ -12,8 +13,8 @@ import org.apache.logging.log4j.Logger;
 public class GetBookInfo {
     private final static Logger logger = LogManager.getLogger(GetBookInfo.class);
 
-    @HttpApi(name = "book.GetBookInfo", desc = "获取书籍信息", security = SecurityType.None)
-    public Api_BookInfo execute() {
+    @HttpApi(name = "book.getBookInfo", desc = "获取书籍信息", security = SecurityType.None)
+    public Api_BookInfo execute(@ApiParameter(required = true, name="bookid", desc = "书籍id") int bookid) {
         Api_BookInfo.Builder resp = Api_BookInfo.newBuilder();
         try {
             resp.setCrid(1);

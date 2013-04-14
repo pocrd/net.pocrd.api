@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import net.pocrd.core.BaseServlet;
@@ -13,14 +14,23 @@ import net.pocrd.define.SecurityType;
 import net.pocrd.entity.ApiContext;
 import net.pocrd.entity.ApiMethodCall;
 import net.pocrd.entity.ApiMethodInfo;
+import net.pocrd.entity.ReturnCode;
 import net.pocrd.util.Base64Util;
+import net.pocrd.util.CommonConfig;
+import net.pocrd.util.HMacHelper;
 import net.pocrd.util.RsaHelper;
 
+/**
+ * 复合接口调用
+ * @author rendong
+ *
+ */
+@WebServlet("/m.api")
 public class MultiServlet extends BaseServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public boolean parseMethodInfo(ApiContext context, HttpServletRequest request) {
+    public ReturnCode parseMethodInfo(ApiContext context, HttpServletRequest request) {
         String nameString = request.getParameter(CommonParameter.mt.toString());
         int securityLevel = 0;
         if (nameString != null && nameString.length() > 0) {
@@ -33,11 +43,10 @@ public class MultiServlet extends BaseServlet {
                     ApiMethodCall call = new ApiMethodCall(method);
                     // TODO:下发token中securityLevel要包含复合授权
                     securityLevel |= method.securityLevel.getValue();
-                    if (context.caller == null && securityLevel > SecurityType.None.getValue()) {
-                        // 拒绝访问，返回HTTP STATUS 400
-                        return true;
-                    } else if (context.caller != null && (securityLevel & (int)context.caller.securityLevel) != securityLevel) {
-                        return true;
+                    if (context.caller == null && securityLevel != SecurityType.None.getValue()) {
+                        return ReturnCode.ACCESS_DENIED_MISSING_TOKEN;
+                    } else if (context.caller != null && (securityLevel & context.caller.securityLevel) != securityLevel) {
+                        return ReturnCode.ACCESS_DENIED_UNMATCH_SECURITY;
                     } else {
                         String[] parameters = new String[method.parameterInfos.length];
 
@@ -55,14 +64,14 @@ public class MultiServlet extends BaseServlet {
             }
 
             if (!checkSignature(context, securityLevel, request)) {
-                return true;
+                return ReturnCode.SIGNATURE_ERROR;
             }
-            return false;
+            return ReturnCode.SUCCESS;
         }
-        return true;
+        return ReturnCode.REQUEST_PARSE_ERROR;
     }
 
-    private boolean checkSignature(ApiContext context, int securityLevel, HttpServletRequest request) {
+    protected boolean checkSignature(ApiContext context, int securityLevel, HttpServletRequest request) {
         if (context.agent != null && context.agent.contains(DEBUG_AGENT)) {
             return true;
         }
@@ -93,7 +102,8 @@ public class MultiServlet extends BaseServlet {
         String sig = request.getParameter(CommonParameter.si.toString());
         if (sig != null && sig.length() > 0) {
             if (securityLevel == 0) {
-                return hmac.verify(Base64Util.decode(sig), sb.toString().getBytes());
+                return HMacHelper.getThreadLocalInstance(CommonConfig.Instance.staticSignPwd)
+                        .verify(Base64Util.decode(sig), sb.toString().getBytes());
             } else if (context.caller != null) {
                 return RsaHelper.verify(Base64Util.decode(sig), sb.toString().getBytes(), Base64Util.decode(context.caller.key));
             } else {
