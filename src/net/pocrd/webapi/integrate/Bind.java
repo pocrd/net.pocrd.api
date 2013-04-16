@@ -6,7 +6,7 @@ import net.pocrd.annotation.HttpApi;
 import net.pocrd.api.resp.ApiLoginResp.Api_LoginResp;
 import net.pocrd.define.SecurityType;
 
-@ApiGroup(name = "device")
+@ApiGroup("device")
 public class Bind {
     @HttpApi(name = "device.bind", desc = "设备登录", security = SecurityType.Integrated)
     public Api_LoginResp execute(

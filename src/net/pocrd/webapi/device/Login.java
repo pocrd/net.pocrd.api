@@ -17,7 +17,7 @@ import net.pocrd.facade.entity.UserInfo;
 import net.pocrd.util.CommonConfig;
 import net.pocrd.util.SingletonProvider;
 
-@ApiGroup(name = "device")
+@ApiGroup("device")
 public class Login {
     private DeviceDAO           deviceDAO = SingletonProvider.getSingleton(DeviceDAO.class);
     private UserDAO             userDAO   = SingletonProvider.getSingleton(UserDAO.class);

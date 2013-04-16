@@ -11,9 +11,15 @@ public class ApiConfig {
     private ApiConfig() {}
 
     static {
-        Instance = ConfigUtil.load("Api.config", ApiConfig.class);
+        ApiConfig tmp = ConfigUtil.load("Api.config", ApiConfig.class);
+        // 默认值设置
+        if (tmp == null) {
+            tmp = new ApiConfig();
+            tmp.tokenLiveTime = 86400;
+        }
+        Instance = tmp;
     }
-    
+
     // token存活的时间，单位为秒
-    public int tokenLiveTime = 86400;
+    public int tokenLiveTime;
 }

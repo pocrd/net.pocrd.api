@@ -9,7 +9,7 @@ import net.pocrd.define.SecurityType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@ApiGroup(name = "book")
+@ApiGroup("book")
 public class GetBookInfo {
     private final static Logger logger = LogManager.getLogger(GetBookInfo.class);
 

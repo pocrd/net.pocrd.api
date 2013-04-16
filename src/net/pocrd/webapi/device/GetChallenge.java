@@ -6,7 +6,7 @@ import net.pocrd.annotation.HttpApi;
 import net.pocrd.api.resp.ApiString.Api_String;
 import net.pocrd.define.SecurityType;
 
-@ApiGroup(name = "device")
+@ApiGroup("device")
 public class GetChallenge {
     @HttpApi(name = "device.getChallenge", desc = "获取挑战码", security = SecurityType.None)
     public Api_String execute(
