@@ -15,12 +15,12 @@ import net.pocrd.facade.entity.BindingInfo;
 import net.pocrd.facade.entity.DeviceInfo;
 import net.pocrd.facade.entity.UserInfo;
 import net.pocrd.util.CommonConfig;
-import net.pocrd.util.SingletonProvider;
+import net.pocrd.util.SingletonUtil;
 
 @ApiGroup("device")
 public class Login {
-    private DeviceDAO           deviceDAO = SingletonProvider.getSingleton(DeviceDAO.class);
-    private UserDAO             userDAO   = SingletonProvider.getSingleton(UserDAO.class);
+    private DeviceDAO           deviceDAO = SingletonUtil.getSingleton(DeviceDAO.class);
+    private UserDAO             userDAO   = SingletonUtil.getSingleton(UserDAO.class);
 
     @HttpApi(name = "device.login", desc = "设备登录", security = SecurityType.None)
     public Api_LoginResp execute(
@@ -28,7 +28,7 @@ public class Login {
             @ApiParameter(required = true, name="appid", desc = "应用编号") int appid,
             @ApiParameter(required = true, name="challenge", desc = "挑战码") String challenge,
             @ApiParameter(required = true, name="pwd", desc = "挑战码密码") String pwd,
-            @ApiParameter(required = false, name="uid", desc = "用户id") long uid) {
+            @ApiParameter(required = false, name="uid", defaultValue="-1", desc = "用户id") long uid) {
 
         DeviceInfo info = deviceDAO.getDeviceInfo(sn);
         if (info == null) {

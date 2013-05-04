@@ -16,12 +16,16 @@ import org.apache.logging.log4j.Logger;
 public class StartupListener implements ServletContextListener {
     private static final Logger logger = LogManager.getLogger(StartupListener.class.getName());
 
-    public void contextInitialized(ServletContextEvent arg0) {
+    static{
         try {
             BaseServlet.registerAll("net.pocrd.webapi");
         } catch (Exception e) {
             logger.fatal("application init failed. ====================================================================================", e);
         }
+    }
+    
+    public void contextInitialized(ServletContextEvent arg0) {
+
     }
 
     public void contextDestroyed(ServletContextEvent arg0) {

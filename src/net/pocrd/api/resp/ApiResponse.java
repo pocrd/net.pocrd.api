@@ -10,112 +10,369 @@ public final class ApiResponse {
   }
   public interface Api_ResponseOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // required int64 systime = 1;
+    /**
+     * <code>required int64 systime = 1;</code>
+     *
+     * <pre>
+     * 当前服务端时间
+     * </pre>
+     */
     boolean hasSystime();
+    /**
+     * <code>required int64 systime = 1;</code>
+     *
+     * <pre>
+     * 当前服务端时间
+     * </pre>
+     */
     long getSystime();
-    
+
     // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> 
         getStateList();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index);
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     int getStateCount();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
         getStateOrBuilderList();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
         int index);
-    
+
     // repeated .net.pocrd.api.resp.Api_Notification notification = 3;
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> 
         getNotificationList();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     net.pocrd.api.resp.ApiNotification.Api_Notification getNotification(int index);
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     int getNotificationCount();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     java.util.List<? extends net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> 
         getNotificationOrBuilderList();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder getNotificationOrBuilder(
         int index);
   }
+  /**
+   * Protobuf type {@code net.pocrd.api.resp.Api_Response}
+   */
   public static final class Api_Response extends
       com.google.protobuf.GeneratedMessage
       implements Api_ResponseOrBuilder {
     // Use Api_Response.newBuilder() to construct.
-    private Api_Response(Builder builder) {
+    private Api_Response(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Api_Response(boolean noInit) {}
-    
+    private Api_Response(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final Api_Response defaultInstance;
     public static Api_Response getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public Api_Response getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Api_Response(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              systime_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                state_ = new java.util.ArrayList<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              state_.add(input.readMessage(net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.PARSER, extensionRegistry));
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                notification_ = new java.util.ArrayList<net.pocrd.api.resp.ApiNotification.Api_Notification>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              notification_.add(input.readMessage(net.pocrd.api.resp.ApiNotification.Api_Notification.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          state_ = java.util.Collections.unmodifiableList(state_);
+        }
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          notification_ = java.util.Collections.unmodifiableList(notification_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return net.pocrd.api.resp.ApiResponse.internal_static_net_pocrd_api_resp_Api_Response_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return net.pocrd.api.resp.ApiResponse.internal_static_net_pocrd_api_resp_Api_Response_fieldAccessorTable;
+      return net.pocrd.api.resp.ApiResponse.internal_static_net_pocrd_api_resp_Api_Response_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              net.pocrd.api.resp.ApiResponse.Api_Response.class, net.pocrd.api.resp.ApiResponse.Api_Response.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<Api_Response> PARSER =
+        new com.google.protobuf.AbstractParser<Api_Response>() {
+      public Api_Response parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Api_Response(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Api_Response> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // required int64 systime = 1;
     public static final int SYSTIME_FIELD_NUMBER = 1;
     private long systime_;
+    /**
+     * <code>required int64 systime = 1;</code>
+     *
+     * <pre>
+     * 当前服务端时间
+     * </pre>
+     */
     public boolean hasSystime() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
+    /**
+     * <code>required int64 systime = 1;</code>
+     *
+     * <pre>
+     * 当前服务端时间
+     * </pre>
+     */
     public long getSystime() {
       return systime_;
     }
-    
+
     // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
     public static final int STATE_FIELD_NUMBER = 2;
     private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> state_;
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStateList() {
       return state_;
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     public java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
         getStateOrBuilderList() {
       return state_;
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     public int getStateCount() {
       return state_.size();
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index) {
       return state_.get(index);
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     *
+     * <pre>
+     * API调用状态，code的信息请参考ApiCode.java
+     * </pre>
+     */
     public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
         int index) {
       return state_.get(index);
     }
-    
+
     // repeated .net.pocrd.api.resp.Api_Notification notification = 3;
     public static final int NOTIFICATION_FIELD_NUMBER = 3;
     private java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> notification_;
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     public java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> getNotificationList() {
       return notification_;
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     public java.util.List<? extends net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> 
         getNotificationOrBuilderList() {
       return notification_;
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     public int getNotificationCount() {
       return notification_.size();
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     public net.pocrd.api.resp.ApiNotification.Api_Notification getNotification(int index) {
       return notification_.get(index);
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+     *
+     * <pre>
+     * 服务端返回的通知事件集合
+     * </pre>
+     */
     public net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder getNotificationOrBuilder(
         int index) {
       return notification_.get(index);
     }
-    
+
     private void initFields() {
       systime_ = 0L;
       state_ = java.util.Collections.emptyList();
@@ -125,7 +382,7 @@ public final class ApiResponse {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       if (!hasSystime()) {
         memoizedIsInitialized = 0;
         return false;
@@ -139,7 +396,7 @@ public final class ApiResponse {
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -154,12 +411,12 @@ public final class ApiResponse {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -177,94 +434,83 @@ public final class ApiResponse {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiResponse.Api_Response parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(net.pocrd.api.resp.ApiResponse.Api_Response prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code net.pocrd.api.resp.Api_Response}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements net.pocrd.api.resp.ApiResponse.Api_ResponseOrBuilder {
@@ -272,18 +518,21 @@ public final class ApiResponse {
           getDescriptor() {
         return net.pocrd.api.resp.ApiResponse.internal_static_net_pocrd_api_resp_Api_Response_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return net.pocrd.api.resp.ApiResponse.internal_static_net_pocrd_api_resp_Api_Response_fieldAccessorTable;
+        return net.pocrd.api.resp.ApiResponse.internal_static_net_pocrd_api_resp_Api_Response_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                net.pocrd.api.resp.ApiResponse.Api_Response.class, net.pocrd.api.resp.ApiResponse.Api_Response.Builder.class);
       }
-      
+
       // Construct using net.pocrd.api.resp.ApiResponse.Api_Response.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -296,7 +545,7 @@ public final class ApiResponse {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         systime_ = 0L;
@@ -315,20 +564,20 @@ public final class ApiResponse {
         }
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return net.pocrd.api.resp.ApiResponse.Api_Response.getDescriptor();
+        return net.pocrd.api.resp.ApiResponse.internal_static_net_pocrd_api_resp_Api_Response_descriptor;
       }
-      
+
       public net.pocrd.api.resp.ApiResponse.Api_Response getDefaultInstanceForType() {
         return net.pocrd.api.resp.ApiResponse.Api_Response.getDefaultInstance();
       }
-      
+
       public net.pocrd.api.resp.ApiResponse.Api_Response build() {
         net.pocrd.api.resp.ApiResponse.Api_Response result = buildPartial();
         if (!result.isInitialized()) {
@@ -336,17 +585,7 @@ public final class ApiResponse {
         }
         return result;
       }
-      
-      private net.pocrd.api.resp.ApiResponse.Api_Response buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        net.pocrd.api.resp.ApiResponse.Api_Response result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public net.pocrd.api.resp.ApiResponse.Api_Response buildPartial() {
         net.pocrd.api.resp.ApiResponse.Api_Response result = new net.pocrd.api.resp.ApiResponse.Api_Response(this);
         int from_bitField0_ = bitField0_;
@@ -377,7 +616,7 @@ public final class ApiResponse {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.pocrd.api.resp.ApiResponse.Api_Response) {
           return mergeFrom((net.pocrd.api.resp.ApiResponse.Api_Response)other);
@@ -386,7 +625,7 @@ public final class ApiResponse {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(net.pocrd.api.resp.ApiResponse.Api_Response other) {
         if (other == net.pocrd.api.resp.ApiResponse.Api_Response.getDefaultInstance()) return this;
         if (other.hasSystime()) {
@@ -447,7 +686,7 @@ public final class ApiResponse {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         if (!hasSystime()) {
           
@@ -461,74 +700,75 @@ public final class ApiResponse {
         }
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              systime_ = input.readInt64();
-              break;
-            }
-            case 18: {
-              net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder subBuilder = net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addState(subBuilder.buildPartial());
-              break;
-            }
-            case 26: {
-              net.pocrd.api.resp.ApiNotification.Api_Notification.Builder subBuilder = net.pocrd.api.resp.ApiNotification.Api_Notification.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addNotification(subBuilder.buildPartial());
-              break;
-            }
+        net.pocrd.api.resp.ApiResponse.Api_Response parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (net.pocrd.api.resp.ApiResponse.Api_Response) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // required int64 systime = 1;
       private long systime_ ;
+      /**
+       * <code>required int64 systime = 1;</code>
+       *
+       * <pre>
+       * 当前服务端时间
+       * </pre>
+       */
       public boolean hasSystime() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
+      /**
+       * <code>required int64 systime = 1;</code>
+       *
+       * <pre>
+       * 当前服务端时间
+       * </pre>
+       */
       public long getSystime() {
         return systime_;
       }
+      /**
+       * <code>required int64 systime = 1;</code>
+       *
+       * <pre>
+       * 当前服务端时间
+       * </pre>
+       */
       public Builder setSystime(long value) {
         bitField0_ |= 0x00000001;
         systime_ = value;
         onChanged();
         return this;
       }
+      /**
+       * <code>required int64 systime = 1;</code>
+       *
+       * <pre>
+       * 当前服务端时间
+       * </pre>
+       */
       public Builder clearSystime() {
         bitField0_ = (bitField0_ & ~0x00000001);
         systime_ = 0L;
         onChanged();
         return this;
       }
-      
+
       // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
       private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> state_ =
         java.util.Collections.emptyList();
@@ -538,10 +778,17 @@ public final class ApiResponse {
           bitField0_ |= 0x00000002;
          }
       }
-      
+
       private com.google.protobuf.RepeatedFieldBuilder<
           net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> stateBuilder_;
-      
+
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStateList() {
         if (stateBuilder_ == null) {
           return java.util.Collections.unmodifiableList(state_);
@@ -549,6 +796,13 @@ public final class ApiResponse {
           return stateBuilder_.getMessageList();
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public int getStateCount() {
         if (stateBuilder_ == null) {
           return state_.size();
@@ -556,6 +810,13 @@ public final class ApiResponse {
           return stateBuilder_.getCount();
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index) {
         if (stateBuilder_ == null) {
           return state_.get(index);
@@ -563,6 +824,13 @@ public final class ApiResponse {
           return stateBuilder_.getMessage(index);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder setState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
         if (stateBuilder_ == null) {
@@ -577,6 +845,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder setState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
         if (stateBuilder_ == null) {
@@ -588,6 +863,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder addState(net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
         if (stateBuilder_ == null) {
           if (value == null) {
@@ -601,6 +883,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder addState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
         if (stateBuilder_ == null) {
@@ -615,6 +904,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder addState(
           net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
         if (stateBuilder_ == null) {
@@ -626,6 +922,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder addState(
           int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
         if (stateBuilder_ == null) {
@@ -637,6 +940,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder addAllState(
           java.lang.Iterable<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> values) {
         if (stateBuilder_ == null) {
@@ -648,6 +958,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder clearState() {
         if (stateBuilder_ == null) {
           state_ = java.util.Collections.emptyList();
@@ -658,6 +975,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public Builder removeState(int index) {
         if (stateBuilder_ == null) {
           ensureStateIsMutable();
@@ -668,10 +992,24 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder getStateBuilder(
           int index) {
         return getStateFieldBuilder().getBuilder(index);
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
           int index) {
         if (stateBuilder_ == null) {
@@ -679,6 +1017,13 @@ public final class ApiResponse {
           return stateBuilder_.getMessageOrBuilder(index);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
            getStateOrBuilderList() {
         if (stateBuilder_ != null) {
@@ -687,15 +1032,36 @@ public final class ApiResponse {
           return java.util.Collections.unmodifiableList(state_);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStateBuilder() {
         return getStateFieldBuilder().addBuilder(
             net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.getDefaultInstance());
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStateBuilder(
           int index) {
         return getStateFieldBuilder().addBuilder(
             index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.getDefaultInstance());
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       *
+       * <pre>
+       * API调用状态，code的信息请参考ApiCode.java
+       * </pre>
+       */
       public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder> 
            getStateBuilderList() {
         return getStateFieldBuilder().getBuilderList();
@@ -714,7 +1080,7 @@ public final class ApiResponse {
         }
         return stateBuilder_;
       }
-      
+
       // repeated .net.pocrd.api.resp.Api_Notification notification = 3;
       private java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> notification_ =
         java.util.Collections.emptyList();
@@ -724,10 +1090,17 @@ public final class ApiResponse {
           bitField0_ |= 0x00000004;
          }
       }
-      
+
       private com.google.protobuf.RepeatedFieldBuilder<
           net.pocrd.api.resp.ApiNotification.Api_Notification, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder, net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> notificationBuilder_;
-      
+
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification> getNotificationList() {
         if (notificationBuilder_ == null) {
           return java.util.Collections.unmodifiableList(notification_);
@@ -735,6 +1108,13 @@ public final class ApiResponse {
           return notificationBuilder_.getMessageList();
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public int getNotificationCount() {
         if (notificationBuilder_ == null) {
           return notification_.size();
@@ -742,6 +1122,13 @@ public final class ApiResponse {
           return notificationBuilder_.getCount();
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiNotification.Api_Notification getNotification(int index) {
         if (notificationBuilder_ == null) {
           return notification_.get(index);
@@ -749,6 +1136,13 @@ public final class ApiResponse {
           return notificationBuilder_.getMessage(index);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder setNotification(
           int index, net.pocrd.api.resp.ApiNotification.Api_Notification value) {
         if (notificationBuilder_ == null) {
@@ -763,6 +1157,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder setNotification(
           int index, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder builderForValue) {
         if (notificationBuilder_ == null) {
@@ -774,6 +1175,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder addNotification(net.pocrd.api.resp.ApiNotification.Api_Notification value) {
         if (notificationBuilder_ == null) {
           if (value == null) {
@@ -787,6 +1195,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder addNotification(
           int index, net.pocrd.api.resp.ApiNotification.Api_Notification value) {
         if (notificationBuilder_ == null) {
@@ -801,6 +1216,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder addNotification(
           net.pocrd.api.resp.ApiNotification.Api_Notification.Builder builderForValue) {
         if (notificationBuilder_ == null) {
@@ -812,6 +1234,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder addNotification(
           int index, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder builderForValue) {
         if (notificationBuilder_ == null) {
@@ -823,6 +1252,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder addAllNotification(
           java.lang.Iterable<? extends net.pocrd.api.resp.ApiNotification.Api_Notification> values) {
         if (notificationBuilder_ == null) {
@@ -834,6 +1270,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder clearNotification() {
         if (notificationBuilder_ == null) {
           notification_ = java.util.Collections.emptyList();
@@ -844,6 +1287,13 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public Builder removeNotification(int index) {
         if (notificationBuilder_ == null) {
           ensureNotificationIsMutable();
@@ -854,10 +1304,24 @@ public final class ApiResponse {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiNotification.Api_Notification.Builder getNotificationBuilder(
           int index) {
         return getNotificationFieldBuilder().getBuilder(index);
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder getNotificationOrBuilder(
           int index) {
         if (notificationBuilder_ == null) {
@@ -865,6 +1329,13 @@ public final class ApiResponse {
           return notificationBuilder_.getMessageOrBuilder(index);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public java.util.List<? extends net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder> 
            getNotificationOrBuilderList() {
         if (notificationBuilder_ != null) {
@@ -873,15 +1344,36 @@ public final class ApiResponse {
           return java.util.Collections.unmodifiableList(notification_);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiNotification.Api_Notification.Builder addNotificationBuilder() {
         return getNotificationFieldBuilder().addBuilder(
             net.pocrd.api.resp.ApiNotification.Api_Notification.getDefaultInstance());
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public net.pocrd.api.resp.ApiNotification.Api_Notification.Builder addNotificationBuilder(
           int index) {
         return getNotificationFieldBuilder().addBuilder(
             index, net.pocrd.api.resp.ApiNotification.Api_Notification.getDefaultInstance());
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_Notification notification = 3;</code>
+       *
+       * <pre>
+       * 服务端返回的通知事件集合
+       * </pre>
+       */
       public java.util.List<net.pocrd.api.resp.ApiNotification.Api_Notification.Builder> 
            getNotificationBuilderList() {
         return getNotificationFieldBuilder().getBuilderList();
@@ -900,24 +1392,24 @@ public final class ApiResponse {
         }
         return notificationBuilder_;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:net.pocrd.api.resp.Api_Response)
     }
-    
+
     static {
       defaultInstance = new Api_Response(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:net.pocrd.api.resp.Api_Response)
   }
-  
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_net_pocrd_api_resp_Api_Response_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_net_pocrd_api_resp_Api_Response_fieldAccessorTable;
-  
+
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -945,9 +1437,7 @@ public final class ApiResponse {
           internal_static_net_pocrd_api_resp_Api_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_net_pocrd_api_resp_Api_Response_descriptor,
-              new java.lang.String[] { "Systime", "State", "Notification", },
-              net.pocrd.api.resp.ApiResponse.Api_Response.class,
-              net.pocrd.api.resp.ApiResponse.Api_Response.Builder.class);
+              new java.lang.String[] { "Systime", "State", "Notification", });
           return null;
         }
       };
@@ -958,6 +1448,6 @@ public final class ApiResponse {
           net.pocrd.api.resp.ApiNotification.getDescriptor(),
         }, assigner);
   }
-  
+
   // @@protoc_insertion_point(outer_class_scope)
 }

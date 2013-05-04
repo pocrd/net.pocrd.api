@@ -1,5 +1,6 @@
 package net.pocrd.api.resp;
 
 message Api_String {
+    // 需要被单独返回的字符串
     optional string value = 1;
 }
