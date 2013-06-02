@@ -1,0 +1,9 @@
+package net.pocrd.api.resp;
+
+message Api_CallState {
+    // 返回值
+    required int32 code = 1;
+
+    // 返回信息
+    required string msg = 2;
+}

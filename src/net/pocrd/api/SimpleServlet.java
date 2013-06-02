@@ -1,5 +1,7 @@
 package net.pocrd.api;
 
+import java.util.ArrayList;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,6 +25,7 @@ public class SimpleServlet extends MultiServlet {
         int securityLevel = 0;
         if (mname != null && mname.length() > 0) {
             ApiMethodInfo method = apiManager.getApiMethodInfo(mname);
+            context.apiCallInfos = new ArrayList<ApiMethodCall>(1);
             if (method != null) {
                 ApiMethodCall call = new ApiMethodCall(method);
                 securityLevel = method.securityLevel.getValue();

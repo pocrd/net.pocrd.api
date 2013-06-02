@@ -2,6 +2,7 @@ package net.pocrd.api;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.pocrd.core.BaseServlet;
 import net.pocrd.entity.ApiContext;
@@ -19,5 +20,10 @@ public class InternalServlet extends BaseServlet{
     @Override
     public ReturnCode parseMethodInfo(ApiContext context, HttpServletRequest request) {
         return ReturnCode.SUCCESS;
+    }
+
+    @Override
+    protected void output(ApiContext apiContext, HttpServletRequest request, HttpServletResponse response) {
+        
     }
 }

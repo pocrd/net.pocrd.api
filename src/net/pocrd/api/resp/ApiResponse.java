@@ -29,26 +29,26 @@ public final class ApiResponse {
      */
     long getSystime();
 
-    // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
+    // repeated .net.pocrd.api.resp.Api_CallState state = 2;
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> 
+    java.util.List<net.pocrd.api.resp.ApiCallState.Api_CallState> 
         getStateList();
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index);
+    net.pocrd.api.resp.ApiCallState.Api_CallState getState(int index);
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
@@ -56,22 +56,22 @@ public final class ApiResponse {
      */
     int getStateCount();
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
+    java.util.List<? extends net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder> 
         getStateOrBuilderList();
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
+    net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder getStateOrBuilder(
         int index);
 
     // repeated .net.pocrd.api.resp.Api_Notification notification = 3;
@@ -177,10 +177,10 @@ public final class ApiResponse {
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                state_ = new java.util.ArrayList<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus>();
+                state_ = new java.util.ArrayList<net.pocrd.api.resp.ApiCallState.Api_CallState>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              state_.add(input.readMessage(net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.PARSER, extensionRegistry));
+              state_.add(input.readMessage(net.pocrd.api.resp.ApiCallState.Api_CallState.PARSER, extensionRegistry));
               break;
             }
             case 26: {
@@ -261,32 +261,32 @@ public final class ApiResponse {
       return systime_;
     }
 
-    // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
+    // repeated .net.pocrd.api.resp.Api_CallState state = 2;
     public static final int STATE_FIELD_NUMBER = 2;
-    private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> state_;
+    private java.util.List<net.pocrd.api.resp.ApiCallState.Api_CallState> state_;
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStateList() {
+    public java.util.List<net.pocrd.api.resp.ApiCallState.Api_CallState> getStateList() {
       return state_;
     }
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    public java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
+    public java.util.List<? extends net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder> 
         getStateOrBuilderList() {
       return state_;
     }
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
@@ -296,23 +296,23 @@ public final class ApiResponse {
       return state_.size();
     }
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index) {
+    public net.pocrd.api.resp.ApiCallState.Api_CallState getState(int index) {
       return state_.get(index);
     }
     /**
-     * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+     * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
      *
      * <pre>
      * API调用状态，code的信息请参考ApiCode.java
      * </pre>
      */
-    public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
+    public net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder getStateOrBuilder(
         int index) {
       return state_.get(index);
     }
@@ -769,27 +769,27 @@ public final class ApiResponse {
         return this;
       }
 
-      // repeated .net.pocrd.api.resp.Api_CallStatus state = 2;
-      private java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> state_ =
+      // repeated .net.pocrd.api.resp.Api_CallState state = 2;
+      private java.util.List<net.pocrd.api.resp.ApiCallState.Api_CallState> state_ =
         java.util.Collections.emptyList();
       private void ensureStateIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          state_ = new java.util.ArrayList<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus>(state_);
+          state_ = new java.util.ArrayList<net.pocrd.api.resp.ApiCallState.Api_CallState>(state_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilder<
-          net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> stateBuilder_;
+          net.pocrd.api.resp.ApiCallState.Api_CallState, net.pocrd.api.resp.ApiCallState.Api_CallState.Builder, net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder> stateBuilder_;
 
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> getStateList() {
+      public java.util.List<net.pocrd.api.resp.ApiCallState.Api_CallState> getStateList() {
         if (stateBuilder_ == null) {
           return java.util.Collections.unmodifiableList(state_);
         } else {
@@ -797,7 +797,7 @@ public final class ApiResponse {
         }
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
@@ -811,13 +811,13 @@ public final class ApiResponse {
         }
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus getState(int index) {
+      public net.pocrd.api.resp.ApiCallState.Api_CallState getState(int index) {
         if (stateBuilder_ == null) {
           return state_.get(index);
         } else {
@@ -825,14 +825,14 @@ public final class ApiResponse {
         }
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
       public Builder setState(
-          int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
+          int index, net.pocrd.api.resp.ApiCallState.Api_CallState value) {
         if (stateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -846,14 +846,14 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
       public Builder setState(
-          int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
+          int index, net.pocrd.api.resp.ApiCallState.Api_CallState.Builder builderForValue) {
         if (stateBuilder_ == null) {
           ensureStateIsMutable();
           state_.set(index, builderForValue.build());
@@ -864,13 +864,13 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public Builder addState(net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
+      public Builder addState(net.pocrd.api.resp.ApiCallState.Api_CallState value) {
         if (stateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -884,14 +884,14 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
       public Builder addState(
-          int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus value) {
+          int index, net.pocrd.api.resp.ApiCallState.Api_CallState value) {
         if (stateBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -905,14 +905,14 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
       public Builder addState(
-          net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
+          net.pocrd.api.resp.ApiCallState.Api_CallState.Builder builderForValue) {
         if (stateBuilder_ == null) {
           ensureStateIsMutable();
           state_.add(builderForValue.build());
@@ -923,14 +923,14 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
       public Builder addState(
-          int index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder builderForValue) {
+          int index, net.pocrd.api.resp.ApiCallState.Api_CallState.Builder builderForValue) {
         if (stateBuilder_ == null) {
           ensureStateIsMutable();
           state_.add(index, builderForValue.build());
@@ -941,14 +941,14 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
       public Builder addAllState(
-          java.lang.Iterable<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatus> values) {
+          java.lang.Iterable<? extends net.pocrd.api.resp.ApiCallState.Api_CallState> values) {
         if (stateBuilder_ == null) {
           ensureStateIsMutable();
           super.addAll(values, state_);
@@ -959,7 +959,7 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
@@ -976,7 +976,7 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
@@ -993,24 +993,24 @@ public final class ApiResponse {
         return this;
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder getStateBuilder(
+      public net.pocrd.api.resp.ApiCallState.Api_CallState.Builder getStateBuilder(
           int index) {
         return getStateFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder getStateOrBuilder(
+      public net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder getStateOrBuilder(
           int index) {
         if (stateBuilder_ == null) {
           return state_.get(index);  } else {
@@ -1018,13 +1018,13 @@ public final class ApiResponse {
         }
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public java.util.List<? extends net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
+      public java.util.List<? extends net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder> 
            getStateOrBuilderList() {
         if (stateBuilder_ != null) {
           return stateBuilder_.getMessageOrBuilderList();
@@ -1033,45 +1033,45 @@ public final class ApiResponse {
         }
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStateBuilder() {
+      public net.pocrd.api.resp.ApiCallState.Api_CallState.Builder addStateBuilder() {
         return getStateFieldBuilder().addBuilder(
-            net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.getDefaultInstance());
+            net.pocrd.api.resp.ApiCallState.Api_CallState.getDefaultInstance());
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder addStateBuilder(
+      public net.pocrd.api.resp.ApiCallState.Api_CallState.Builder addStateBuilder(
           int index) {
         return getStateFieldBuilder().addBuilder(
-            index, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.getDefaultInstance());
+            index, net.pocrd.api.resp.ApiCallState.Api_CallState.getDefaultInstance());
       }
       /**
-       * <code>repeated .net.pocrd.api.resp.Api_CallStatus state = 2;</code>
+       * <code>repeated .net.pocrd.api.resp.Api_CallState state = 2;</code>
        *
        * <pre>
        * API调用状态，code的信息请参考ApiCode.java
        * </pre>
        */
-      public java.util.List<net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder> 
+      public java.util.List<net.pocrd.api.resp.ApiCallState.Api_CallState.Builder> 
            getStateBuilderList() {
         return getStateFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder> 
+          net.pocrd.api.resp.ApiCallState.Api_CallState, net.pocrd.api.resp.ApiCallState.Api_CallState.Builder, net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder> 
           getStateFieldBuilder() {
         if (stateBuilder_ == null) {
           stateBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              net.pocrd.api.resp.ApiCallStatus.Api_CallStatus, net.pocrd.api.resp.ApiCallStatus.Api_CallStatus.Builder, net.pocrd.api.resp.ApiCallStatus.Api_CallStatusOrBuilder>(
+              net.pocrd.api.resp.ApiCallState.Api_CallState, net.pocrd.api.resp.ApiCallState.Api_CallState.Builder, net.pocrd.api.resp.ApiCallState.Api_CallStateOrBuilder>(
                   state_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
@@ -1419,13 +1419,13 @@ public final class ApiResponse {
   static {
     java.lang.String[] descriptorData = {
       "\n%net/pocrd/api/resp/Api_Response.proto\022" +
-      "\022net.pocrd.api.resp\032\'net/pocrd/api/resp/" +
-      "Api_CallStatus.proto\032)net/pocrd/api/resp" +
-      "/Api_Notification.proto\"\216\001\n\014Api_Response" +
-      "\022\017\n\007systime\030\001 \002(\003\0221\n\005state\030\002 \003(\0132\".net.p" +
-      "ocrd.api.resp.Api_CallStatus\022:\n\014notifica" +
-      "tion\030\003 \003(\0132$.net.pocrd.api.resp.Api_Noti" +
-      "fication"
+      "\022net.pocrd.api.resp\032&net/pocrd/api/resp/" +
+      "Api_CallState.proto\032)net/pocrd/api/resp/" +
+      "Api_Notification.proto\"\215\001\n\014Api_Response\022" +
+      "\017\n\007systime\030\001 \002(\003\0220\n\005state\030\002 \003(\0132!.net.po" +
+      "crd.api.resp.Api_CallState\022:\n\014notificati" +
+      "on\030\003 \003(\0132$.net.pocrd.api.resp.Api_Notifi" +
+      "cation"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1444,7 +1444,7 @@ public final class ApiResponse {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          net.pocrd.api.resp.ApiCallStatus.getDescriptor(),
+          net.pocrd.api.resp.ApiCallState.getDescriptor(),
           net.pocrd.api.resp.ApiNotification.getDescriptor(),
         }, assigner);
   }

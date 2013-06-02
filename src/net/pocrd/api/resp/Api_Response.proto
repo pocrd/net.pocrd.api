@@ -1,4 +1,4 @@
-import "net/pocrd/api/resp/Api_CallStatus.proto";
+import "net/pocrd/api/resp/Api_CallState.proto";
 import "net/pocrd/api/resp/Api_Notification.proto";
 package net.pocrd.api.resp;
 
@@ -7,7 +7,7 @@ message Api_Response {
     required int64 systime = 1;
 
     // API调用状态，code的信息请参考ApiCode.java
-    repeated Api_CallStatus state = 2;
+    repeated Api_CallState state = 2;
 
     // 服务端返回的通知事件集合
     repeated Api_Notification notification = 3;
