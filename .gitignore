@@ -8,4 +8,5 @@
 /build/
 /bin/
 /debug/
-
+.settings/*
+.classpath
