@@ -2,6 +2,7 @@ package net.pocrd.webapi.device;
 
 import net.pocrd.annotation.ApiGroup;
 import net.pocrd.annotation.ApiParameter;
+import net.pocrd.annotation.DesignedErrorCode;
 import net.pocrd.annotation.HttpApi;
 import net.pocrd.api.ApiCode;
 import net.pocrd.api.resp.ApiLoginResp.Api_LoginResp;
@@ -23,6 +24,7 @@ public class Login {
     private UserDAO             userDAO   = SingletonUtil.getSingleton(UserDAO.class);
 
     @HttpApi(name = "device.login", desc = "设备登录", security = SecurityType.None)
+    @DesignedErrorCode({1,2})
     public Api_LoginResp execute(
             @ApiParameter(required = true, name="sn", desc = "设备序列号") long sn, 
             @ApiParameter(required = true, name="appid", desc = "应用编号") int appid,
