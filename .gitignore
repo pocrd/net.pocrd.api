@@ -8,3 +8,6 @@
 /build/
 /bin/
 /debug/
+src/net/pocrd/api/resp/*.java
+
+.DS_Store
