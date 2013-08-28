@@ -3,7 +3,7 @@ package net.pocrd.api.resp;
 message Api_BookInfo {
     // 书籍所属版权方id
     optional int32 crid = 1;
-    
+
     // 书籍id
     optional int32 bookid = 2;
     
