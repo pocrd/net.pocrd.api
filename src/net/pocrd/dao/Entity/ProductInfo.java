@@ -1,4 +1,4 @@
-package net.pocrd.dao.Entity;
+package net.pocrd.dao.entity;
 
 public class ProductInfo {
     // 产品id

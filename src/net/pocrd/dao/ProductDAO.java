@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import net.pocrd.dao.Entity.ProductInfo;
+import net.pocrd.dao.entity.ProductInfo;
 import net.pocrd.data.Page;
 import net.pocrd.util.C3P0Utils;
 import net.pocrd.util.CommonConfig;
