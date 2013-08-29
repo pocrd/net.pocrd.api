@@ -1,23 +1,21 @@
 package net.pocrd.webapi.product;
 
+import java.sql.SQLException;
+
 import net.pocrd.annotation.ApiGroup;
 import net.pocrd.annotation.ApiParameter;
 import net.pocrd.annotation.HttpApi;
 import net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo;
 import net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo;
 import net.pocrd.dao.ProductDAO;
-import net.pocrd.dao.entity.ProductInfo;
+import net.pocrd.dao.Entity.ProductInfo;
 import net.pocrd.data.Page;
 import net.pocrd.define.SecurityType;
 //import net.pocrd.util.EvaluaterProvider;
 import net.pocrd.util.SingletonUtil;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-
 @ApiGroup("product")
 public class GetProductList {
-//    private final static Logger logger     = LogManager.getLogger(GetProductList.class);
     private ProductDAO          productDao = SingletonUtil.getSingleton(ProductDAO.class);
 
     @HttpApi(name = "product.getProductList", desc = "获取产品列表", security = SecurityType.None)
@@ -27,7 +25,7 @@ public class GetProductList {
             @ApiParameter(required = false, name = "categoryId", desc = "贷款分类,0：默认分类", defaultValue = "0") int categoryId,
             @ApiParameter(required = false, name = "pageIndex", desc = "页码", defaultValue = "1") int pageIndex,
             @ApiParameter(required = false, name = "pageSize", desc = "页大小", defaultValue = "20") int pageSize,
-            @ApiParameter(required = false, name = "orderby", desc = "排序依据，0:默认排序，1:月供排序，2:按照总利息", defaultValue = "0") int orderby){
+            @ApiParameter(required = false, name = "orderby", desc = "排序依据，0:默认排序，1:月供排序，2:按照总利息", defaultValue = "0") int orderby) throws SQLException{
         // 与用户相关信息都从token中获取
         Api_List_ProductInfo.Builder resp = Api_List_ProductInfo.newBuilder();
         Page<ProductInfo> infopage = productDao.getProductInfoList(ceiling, cycle, categoryId, pageIndex, pageSize, orderby);

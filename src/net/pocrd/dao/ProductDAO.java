@@ -1,26 +1,18 @@
 package net.pocrd.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import net.pocrd.dao.entity.ProductInfo;
+import net.pocrd.dao.Entity.ProductInfo;
 import net.pocrd.data.Page;
-import net.pocrd.util.C3P0Utils;
-import net.pocrd.util.CommonConfig;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
- * @author guankaiqiang TODO:数据访问方式、connectpool等，目前使用最简单的方式实现
+ * @author guankaiqiang TODO:ORM，使用了Tomcat JDBC连接池
  */
 public class ProductDAO extends BaseDAO {
-    private final static Logger logger = LogManager.getLogger(ProductDAO.class);
 
     /**
      * 最简单的实现
@@ -33,92 +25,80 @@ public class ProductDAO extends BaseDAO {
      * @param orderby
      * @return
      * @throws SQLException
-     * @throws ClassNotFoundException
-     * @throws IllegalAccessException
-     * @throws InstantiationException
      */
-    public Page<ProductInfo> getProductInfoList(int ceiling, int cycle, int categoryId, int pageIndex, int pageSize, int orderby) {
-        if (CommonConfig.Instance.isDebug)
-            logger.info(CommonConfig.Instance.c3p0config.getJdbcUrl() + "&user=" + CommonConfig.Instance.c3p0config.getUser() + "&password="
-                    + CommonConfig.Instance.c3p0config.getPassword());
+    public Page<ProductInfo> getProductInfoList(int ceiling, int cycle, int categoryId, int pageIndex, int pageSize, int orderby) throws SQLException {
         Connection conn = getConnection();
         if (conn == null) return null;
         PreparedStatement pst = null;
         ResultSet result = null;
         Page<ProductInfo> products;
-        try {
-            // 1.获取总数
-            int totalcount = 0;
-            pst = conn.prepareCall("select count(1) from tb_product where state= 0 and ceiling=? and cycle=? and categoryId=?");
-            pst.setObject(1, ceiling);
-            pst.setObject(2, cycle);
-            pst.setObject(3, categoryId);
-            result = pst.executeQuery();
-            if (result.next()) {
-                totalcount = result.getInt(1);
-            }
-            // 2.获取分页内容
-            int startIndex = (pageIndex - 1) * pageSize;
-            if (startIndex + 1 > totalcount) {
-                return null;
-            }
-            products = new Page<ProductInfo>(totalcount, pageIndex, pageSize);
-            String sql = null;
-            if (orderby == 1)
-                sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
-                        + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
-                        + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
-                        + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? order by t.monthlyPayment desc limit ?,?";
-            else if (orderby == 2)
-                sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
-                        + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
-                        + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
-                        + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? order by t.interest desc limit ?,?";
-            else sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
+        // 1.获取总数
+        int totalcount = 0;
+        pst = conn.prepareCall("select count(1) from tb_product where state= 0 and ceiling=? and cycle=? and categoryId=?");
+        pst.setObject(1, ceiling);
+        pst.setObject(2, cycle);
+        pst.setObject(3, categoryId);
+        result = pst.executeQuery();
+        if (result.next()) {
+            totalcount = result.getInt(1);
+        }
+        // 2.获取分页内容
+        int startIndex = (pageIndex - 1) * pageSize;
+        if (startIndex + 1 > totalcount) {
+            return null;
+        }
+        products = new Page<ProductInfo>(totalcount, pageIndex, pageSize);
+        String sql = null;
+        if (orderby == 1)
+            sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
                     + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
                     + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
-                    + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? limit ?,?";
-            pst = conn.prepareCall(sql);
-            pst.setObject(1, ceiling);
-            pst.setObject(2, cycle);
-            pst.setObject(3, categoryId);
-            pst.setObject(4, startIndex);
-            pst.setObject(5, pageSize);
-            result = pst.executeQuery();
-            ProductInfo info = null;
-            while (result.next()) {
-                info = new ProductInfo();
-                info.setProductId(result.getInt("productid"));
-                info.setProductName(result.getString("productname"));
-                info.setCorporationId(result.getInt("corporationid"));
-                info.setCorporationName(result.getString("corporationName"));
-                info.setCeiling(result.getInt("ceiling"));
-                info.setCycle(result.getInt("cycle"));
-                info.setRate(result.getDouble("rate"));
-                info.setInterest(result.getInt("interest"));
-                info.setMonthlyPayment(result.getInt("monthlyPayment"));
-                info.setCategoryId(result.getInt("categoryId"));
-                info.setCategoryName(result.getString("categoryName"));
-                info.setAgeRange(result.getInt("floorAge") + "-" + result.getInt("upperAge"));
-                info.setFloorWorkExp(result.getInt("floorWorkExp"));
-                info.setFloorSalary(result.getInt("floorSalary"));
-                info.setReleaseTime(dateFormat(result.getDate("releasetime")));
-                {// 这四个字段后期可能是作为多选形式存在，并且可能参与查找匹配
-                    info.setIndustry(getIndustryName(result.getInt("industry")));
-                    info.setLocation(getLocationName(result.getInt("location")));
-                    info.setMortgage(getMortgageName(result.getInt("mortgage")));
-                    info.setMaterial(result.getString("material"));
-                }
-                info.setOtherReq(result.getString("otherReq"));
-                products.addItem(info);
+                    + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? order by t.monthlyPayment desc limit ?,?";
+        else if (orderby == 2)
+            sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
+                    + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
+                    + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
+                    + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? order by t.interest desc limit ?,?";
+        else sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
+                + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
+                + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
+                + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? limit ?,?";
+        pst = conn.prepareCall(sql);
+        pst.setObject(1, ceiling);
+        pst.setObject(2, cycle);
+        pst.setObject(3, categoryId);
+        pst.setObject(4, startIndex);
+        pst.setObject(5, pageSize);
+        result = pst.executeQuery();
+        ProductInfo info = null;
+        while (result.next()) {
+            info = new ProductInfo();
+            info.setProductId(result.getInt("productid"));
+            info.setProductName(result.getString("productname"));
+            info.setCorporationId(result.getInt("corporationid"));
+            info.setCorporationName(result.getString("corporationName"));
+            info.setCeiling(result.getInt("ceiling"));
+            info.setCycle(result.getInt("cycle"));
+            info.setRate(result.getDouble("rate"));
+            info.setInterest(result.getInt("interest"));
+            info.setMonthlyPayment(result.getInt("monthlyPayment"));
+            info.setCategoryId(result.getInt("categoryId"));
+            info.setCategoryName(result.getString("categoryName"));
+            info.setAgeRange(result.getInt("floorAge") + "-" + result.getInt("upperAge"));
+            info.setFloorWorkExp(result.getInt("floorWorkExp"));
+            info.setFloorSalary(result.getInt("floorSalary"));
+            info.setReleaseTime(dateFormat(result.getDate("releasetime")));
+            {// 这四个字段后期可能是作为多选形式存在，并且可能参与查找匹配
+                info.setIndustry(getIndustryName(result.getInt("industry")));
+                info.setLocation(getLocationName(result.getInt("location")));
+                info.setMortgage(getMortgageName(result.getInt("mortgage")));
+                info.setMaterial(result.getString("material"));
             }
-            return products;
-        } catch (SQLException e) {
-            logger.error(e);
-            return null;
-        } finally {
-            closeQuietly(conn, result, pst);
+            info.setOtherReq(result.getString("otherReq"));
+            products.addItem(info);
         }
+        closeQuietly(conn, result, pst);// TODO:这个想办法做成aop环绕，对于sql异常向外抛出，以便使用错误码
+        return products;
     }
 
     private static String dateFormat(Date date) {
