@@ -4,6 +4,7 @@
 *.so
 *.exe
 *.log
+*.prefs
 .metadata
 .settings
 /build/
