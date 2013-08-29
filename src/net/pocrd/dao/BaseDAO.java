@@ -1,74 +1,68 @@
 package net.pocrd.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//import net.pocrd.util.C3P0Utils;
 import net.pocrd.util.CommonConfig;
-import net.pocrd.webapi.book.GetBookInfo;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.pocrd.util.JDBCPoolConfig;
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 public class BaseDAO {
-    private final static Logger logger = LogManager.getLogger(GetBookInfo.class);
-    // public static Connection getConnection() {
-    // Connection conn = null;
-    // try {
-    // conn = C3P0Utils.getConnection();
-    // } catch (Exception e) {
-    // logger.error(e);
-    // }
-    // return conn;
-    // }
-
+    private static DataSource   datasource     = null;
+//    static {
+//        Context initCtx;
+//        try {
+//            initCtx = new InitialContext();
+//            datasource = (DataSource)initCtx.lookup("java:comp/env/jdbc/test");
+//        } catch (NamingException e) {
+//            logger.error(e);
+//        }
+//    }
+    
     static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (InstantiationException e) {
-            logger.error(e);
-        } catch (IllegalAccessException e) {
-            logger.error(e);
-        } catch (ClassNotFoundException e) {
-            logger.error(e);
-        }
+        PoolProperties p = new PoolProperties();
+        JDBCPoolConfig config=CommonConfig.Instance.jdbcPoolConfig;
+        p.setUrl(config.getJdbcUrl());
+        p.setDriverClassName(config.getDriverClassName());
+        p.setUsername(config.getUserName());
+        p.setPassword(config.getPassword());
+        p.setJmxEnabled(config.isJmxEnabled());
+        p.setTestWhileIdle(config.isTestWhileIdle());
+        p.setTestOnBorrow(config.isTestOnBorrow());
+        p.setTestOnReturn(config.isTestOnReturn());
+        p.setValidationQuery(config.getValidationQuery());
+        p.setValidationInterval(config.getValidationInterval());
+        p.setTimeBetweenEvictionRunsMillis(config.getTimeBetweenEvictionRunsMillis());
+        p.setMinEvictableIdleTimeMillis(config.getMinEvictableIdleTimeMillis());
+        p.setMaxActive(config.getMaxActive());
+        p.setInitialSize(config.getInitialSize());
+        p.setMaxWait(config.getMaxWait());
+        p.setMinIdle(config.getMinIdle());
+        p.setMaxIdle(config.getMaxIdle());
+        p.setLogAbandoned(config.isLogAbandoned());
+        p.setRemoveAbandoned(config.isRemoveAbandoned());
+        p.setRemoveAbandonedTimeout(config.getRemoveAbandonedTimeout());
+        p.setJdbcInterceptors(config.getJdbcInterceptors());
+        datasource= new DataSource();
+        datasource.setPoolProperties(p);
     }
 
-    public static Connection getConnection() {
-        Connection conn = null;
-        try {
-            conn = DriverManager
-                    .getConnection(CommonConfig.Instance.connectString);
-        } catch (SQLException e) {
-            logger.error(e);
-        }
-        return conn;
+    public static final Connection getConnection() throws SQLException {
+        return datasource.getConnection();
     }
 
-    public static final void closeQuietly(Connection conn, ResultSet rs, Statement st) {
+    public static final void closeQuietly(Connection conn, ResultSet rs, Statement st) throws SQLException {
         if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                logger.error(e);
-            }
+            rs.close();
         }
         if (st != null) {
-            try {
-                st.close();
-            } catch (SQLException e) {
-                logger.error(e);
-            }
+            st.close();
         }
         if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                logger.error(e);
-            }
+            conn.close();
         }
     }
 }
