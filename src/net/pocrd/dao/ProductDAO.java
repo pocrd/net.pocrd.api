@@ -7,17 +7,19 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import net.pocrd.dao.entity.ProductInfo;
 import net.pocrd.data.Page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
- * @author guankaiqiang TODO:ORM，使用了Tomcat JDBC连接池
+ * @author guankaiqiang 
+ * TODO:ORM，使用了Tomcat JDBC连接池
  */
 public class ProductDAO extends BaseDAO {
-    private final static Logger logger = LogManager.getLogger(ProductDAO.class);
+    private static final Logger logger = LogManager.getLogger(ProductDAO.class);
+
     /**
      * 最简单的实现
      * 
@@ -104,7 +106,8 @@ public class ProductDAO extends BaseDAO {
                 products.addItem(info);
             }
         } catch (SQLException e) {
-            logger.error(e);
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         } finally {
             closeQuietly(conn, result, pst);
             return products;

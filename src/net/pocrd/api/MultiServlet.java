@@ -46,7 +46,7 @@ public class MultiServlet extends BaseServlet {
             context.apiCallInfos = new ArrayList<ApiMethodCall>(names.length);
                     
             for (int m = 0; m < names.length; m++) {
-                String mname = names[m].toLowerCase();
+                String mname = names[m];
                 ApiMethodInfo method = apiManager.getApiMethodInfo(mname);
                 if (method != null) {
                     ApiMethodCall call = new ApiMethodCall(method);

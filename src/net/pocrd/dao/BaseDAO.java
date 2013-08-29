@@ -14,8 +14,8 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 public class BaseDAO {
-    private static DataSource datasource = null;
-    private static final Logger logger = LogManager.getLogger(BaseDAO.class);
+    private static final Logger logger     = LogManager.getLogger(BaseDAO.class);
+    private static DataSource   datasource = null;
     // static {
     // Context initCtx;
     // try {
@@ -58,24 +58,44 @@ public class BaseDAO {
         try {
             return datasource.getConnection();
         } catch (SQLException e) {
-            logger.error(e);
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public static final void closeQuietly(Connection conn, ResultSet rs, Statement st) {
+        SQLException dbException = null;
         try {
             if (rs != null) {
                 rs.close();
             }
+        } catch (SQLException e) {
+            logger.error("result set close failed.", e);
+            dbException = e;
+        }
+        try {
             if (st != null) {
                 st.close();
             }
+        } catch (SQLException e) {
+            logger.error("statement close failed.", e);
+            if (dbException != null) {
+                dbException = e;
+            }
+        }
+        try {
             if (conn != null) {
                 conn.close();
             }
         } catch (SQLException e) {
-            logger.error(e);
+            logger.error("connection close failed.", e);
+            if (dbException != null) {
+                dbException = e;
+            }
+        }
+
+        if (dbException != null) {
+            throw new RuntimeException(dbException);
         }
     }
 }
