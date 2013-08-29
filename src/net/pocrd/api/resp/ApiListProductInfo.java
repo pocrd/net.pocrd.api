@@ -10,81 +10,201 @@ public final class ApiListProductInfo {
   }
   public interface Api_List_ProductInfoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     java.util.List<net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo> 
         getProductInfoList();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo getProductInfo(int index);
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     int getProductInfoCount();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     java.util.List<? extends net.pocrd.api.resp.ApiProductInfo.Api_ProductInfoOrBuilder> 
         getProductInfoOrBuilderList();
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     net.pocrd.api.resp.ApiProductInfo.Api_ProductInfoOrBuilder getProductInfoOrBuilder(
         int index);
-    
+
     // optional int32 totalcount = 2;
+    /**
+     * <code>optional int32 totalcount = 2;</code>
+     */
     boolean hasTotalcount();
+    /**
+     * <code>optional int32 totalcount = 2;</code>
+     */
     int getTotalcount();
   }
+  /**
+   * Protobuf type {@code net.pocrd.api.resp.Api_List_ProductInfo}
+   */
   public static final class Api_List_ProductInfo extends
       com.google.protobuf.GeneratedMessage
       implements Api_List_ProductInfoOrBuilder {
     // Use Api_List_ProductInfo.newBuilder() to construct.
-    private Api_List_ProductInfo(Builder builder) {
+    private Api_List_ProductInfo(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Api_List_ProductInfo(boolean noInit) {}
-    
+    private Api_List_ProductInfo(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final Api_List_ProductInfo defaultInstance;
     public static Api_List_ProductInfo getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public Api_List_ProductInfo getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Api_List_ProductInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                productInfo_ = new java.util.ArrayList<net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              productInfo_.add(input.readMessage(net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.PARSER, extensionRegistry));
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000001;
+              totalcount_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          productInfo_ = java.util.Collections.unmodifiableList(productInfo_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return net.pocrd.api.resp.ApiListProductInfo.internal_static_net_pocrd_api_resp_Api_List_ProductInfo_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return net.pocrd.api.resp.ApiListProductInfo.internal_static_net_pocrd_api_resp_Api_List_ProductInfo_fieldAccessorTable;
+      return net.pocrd.api.resp.ApiListProductInfo.internal_static_net_pocrd_api_resp_Api_List_ProductInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.class, net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<Api_List_ProductInfo> PARSER =
+        new com.google.protobuf.AbstractParser<Api_List_ProductInfo>() {
+      public Api_List_ProductInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Api_List_ProductInfo(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Api_List_ProductInfo> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;
     public static final int PRODUCTINFO_FIELD_NUMBER = 1;
     private java.util.List<net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo> productInfo_;
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     public java.util.List<net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo> getProductInfoList() {
       return productInfo_;
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     public java.util.List<? extends net.pocrd.api.resp.ApiProductInfo.Api_ProductInfoOrBuilder> 
         getProductInfoOrBuilderList() {
       return productInfo_;
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     public int getProductInfoCount() {
       return productInfo_.size();
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     public net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo getProductInfo(int index) {
       return productInfo_.get(index);
     }
+    /**
+     * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+     */
     public net.pocrd.api.resp.ApiProductInfo.Api_ProductInfoOrBuilder getProductInfoOrBuilder(
         int index) {
       return productInfo_.get(index);
     }
-    
+
     // optional int32 totalcount = 2;
     public static final int TOTALCOUNT_FIELD_NUMBER = 2;
     private int totalcount_;
+    /**
+     * <code>optional int32 totalcount = 2;</code>
+     */
     public boolean hasTotalcount() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
+    /**
+     * <code>optional int32 totalcount = 2;</code>
+     */
     public int getTotalcount() {
       return totalcount_;
     }
-    
+
     private void initFields() {
       productInfo_ = java.util.Collections.emptyList();
       totalcount_ = 0;
@@ -93,11 +213,11 @@ public final class ApiListProductInfo {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -109,12 +229,12 @@ public final class ApiListProductInfo {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       for (int i = 0; i < productInfo_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -128,94 +248,83 @@ public final class ApiListProductInfo {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code net.pocrd.api.resp.Api_List_ProductInfo}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfoOrBuilder {
@@ -223,18 +332,21 @@ public final class ApiListProductInfo {
           getDescriptor() {
         return net.pocrd.api.resp.ApiListProductInfo.internal_static_net_pocrd_api_resp_Api_List_ProductInfo_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return net.pocrd.api.resp.ApiListProductInfo.internal_static_net_pocrd_api_resp_Api_List_ProductInfo_fieldAccessorTable;
+        return net.pocrd.api.resp.ApiListProductInfo.internal_static_net_pocrd_api_resp_Api_List_ProductInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.class, net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.Builder.class);
       }
-      
+
       // Construct using net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -246,7 +358,7 @@ public final class ApiListProductInfo {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         if (productInfoBuilder_ == null) {
@@ -259,20 +371,20 @@ public final class ApiListProductInfo {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.getDescriptor();
+        return net.pocrd.api.resp.ApiListProductInfo.internal_static_net_pocrd_api_resp_Api_List_ProductInfo_descriptor;
       }
-      
+
       public net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo getDefaultInstanceForType() {
         return net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.getDefaultInstance();
       }
-      
+
       public net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo build() {
         net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo result = buildPartial();
         if (!result.isInitialized()) {
@@ -280,17 +392,7 @@ public final class ApiListProductInfo {
         }
         return result;
       }
-      
-      private net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo buildPartial() {
         net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo result = new net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo(this);
         int from_bitField0_ = bitField0_;
@@ -312,7 +414,7 @@ public final class ApiListProductInfo {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo) {
           return mergeFrom((net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo)other);
@@ -321,7 +423,7 @@ public final class ApiListProductInfo {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo other) {
         if (other == net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.getDefaultInstance()) return this;
         if (productInfoBuilder_ == null) {
@@ -356,51 +458,30 @@ public final class ApiListProductInfo {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 10: {
-              net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder subBuilder = net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addProductInfo(subBuilder.buildPartial());
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              totalcount_ = input.readInt32();
-              break;
-            }
+        net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;
       private java.util.List<net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo> productInfo_ =
         java.util.Collections.emptyList();
@@ -410,10 +491,13 @@ public final class ApiListProductInfo {
           bitField0_ |= 0x00000001;
          }
       }
-      
+
       private com.google.protobuf.RepeatedFieldBuilder<
           net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo, net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder, net.pocrd.api.resp.ApiProductInfo.Api_ProductInfoOrBuilder> productInfoBuilder_;
-      
+
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public java.util.List<net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo> getProductInfoList() {
         if (productInfoBuilder_ == null) {
           return java.util.Collections.unmodifiableList(productInfo_);
@@ -421,6 +505,9 @@ public final class ApiListProductInfo {
           return productInfoBuilder_.getMessageList();
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public int getProductInfoCount() {
         if (productInfoBuilder_ == null) {
           return productInfo_.size();
@@ -428,6 +515,9 @@ public final class ApiListProductInfo {
           return productInfoBuilder_.getCount();
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo getProductInfo(int index) {
         if (productInfoBuilder_ == null) {
           return productInfo_.get(index);
@@ -435,6 +525,9 @@ public final class ApiListProductInfo {
           return productInfoBuilder_.getMessage(index);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder setProductInfo(
           int index, net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo value) {
         if (productInfoBuilder_ == null) {
@@ -449,6 +542,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder setProductInfo(
           int index, net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder builderForValue) {
         if (productInfoBuilder_ == null) {
@@ -460,6 +556,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder addProductInfo(net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo value) {
         if (productInfoBuilder_ == null) {
           if (value == null) {
@@ -473,6 +572,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder addProductInfo(
           int index, net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo value) {
         if (productInfoBuilder_ == null) {
@@ -487,6 +589,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder addProductInfo(
           net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder builderForValue) {
         if (productInfoBuilder_ == null) {
@@ -498,6 +603,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder addProductInfo(
           int index, net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder builderForValue) {
         if (productInfoBuilder_ == null) {
@@ -509,6 +617,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder addAllProductInfo(
           java.lang.Iterable<? extends net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo> values) {
         if (productInfoBuilder_ == null) {
@@ -520,6 +631,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder clearProductInfo() {
         if (productInfoBuilder_ == null) {
           productInfo_ = java.util.Collections.emptyList();
@@ -530,6 +644,9 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public Builder removeProductInfo(int index) {
         if (productInfoBuilder_ == null) {
           ensureProductInfoIsMutable();
@@ -540,10 +657,16 @@ public final class ApiListProductInfo {
         }
         return this;
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder getProductInfoBuilder(
           int index) {
         return getProductInfoFieldBuilder().getBuilder(index);
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public net.pocrd.api.resp.ApiProductInfo.Api_ProductInfoOrBuilder getProductInfoOrBuilder(
           int index) {
         if (productInfoBuilder_ == null) {
@@ -551,6 +674,9 @@ public final class ApiListProductInfo {
           return productInfoBuilder_.getMessageOrBuilder(index);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public java.util.List<? extends net.pocrd.api.resp.ApiProductInfo.Api_ProductInfoOrBuilder> 
            getProductInfoOrBuilderList() {
         if (productInfoBuilder_ != null) {
@@ -559,15 +685,24 @@ public final class ApiListProductInfo {
           return java.util.Collections.unmodifiableList(productInfo_);
         }
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder addProductInfoBuilder() {
         return getProductInfoFieldBuilder().addBuilder(
             net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.getDefaultInstance());
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder addProductInfoBuilder(
           int index) {
         return getProductInfoFieldBuilder().addBuilder(
             index, net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.getDefaultInstance());
       }
+      /**
+       * <code>repeated .net.pocrd.api.resp.Api_ProductInfo productInfo = 1;</code>
+       */
       public java.util.List<net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo.Builder> 
            getProductInfoBuilderList() {
         return getProductInfoFieldBuilder().getBuilderList();
@@ -586,45 +721,57 @@ public final class ApiListProductInfo {
         }
         return productInfoBuilder_;
       }
-      
+
       // optional int32 totalcount = 2;
       private int totalcount_ ;
+      /**
+       * <code>optional int32 totalcount = 2;</code>
+       */
       public boolean hasTotalcount() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
+      /**
+       * <code>optional int32 totalcount = 2;</code>
+       */
       public int getTotalcount() {
         return totalcount_;
       }
+      /**
+       * <code>optional int32 totalcount = 2;</code>
+       */
       public Builder setTotalcount(int value) {
         bitField0_ |= 0x00000002;
         totalcount_ = value;
         onChanged();
         return this;
       }
+      /**
+       * <code>optional int32 totalcount = 2;</code>
+       */
       public Builder clearTotalcount() {
         bitField0_ = (bitField0_ & ~0x00000002);
         totalcount_ = 0;
         onChanged();
         return this;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:net.pocrd.api.resp.Api_List_ProductInfo)
     }
-    
+
     static {
       defaultInstance = new Api_List_ProductInfo(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:net.pocrd.api.resp.Api_List_ProductInfo)
   }
-  
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_net_pocrd_api_resp_Api_List_ProductInfo_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_net_pocrd_api_resp_Api_List_ProductInfo_fieldAccessorTable;
-  
+
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -650,9 +797,7 @@ public final class ApiListProductInfo {
           internal_static_net_pocrd_api_resp_Api_List_ProductInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_net_pocrd_api_resp_Api_List_ProductInfo_descriptor,
-              new java.lang.String[] { "ProductInfo", "Totalcount", },
-              net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.class,
-              net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo.Builder.class);
+              new java.lang.String[] { "ProductInfo", "Totalcount", });
           return null;
         }
       };
@@ -662,6 +807,6 @@ public final class ApiListProductInfo {
           net.pocrd.api.resp.ApiProductInfo.getDescriptor(),
         }, assigner);
   }
-  
+
   // @@protoc_insertion_point(outer_class_scope)
 }

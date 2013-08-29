@@ -7,24 +7,28 @@ import java.sql.Statement;
 
 import net.pocrd.util.CommonConfig;
 import net.pocrd.util.JDBCPoolConfig;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 public class BaseDAO {
-    private static DataSource   datasource     = null;
-//    static {
-//        Context initCtx;
-//        try {
-//            initCtx = new InitialContext();
-//            datasource = (DataSource)initCtx.lookup("java:comp/env/jdbc/test");
-//        } catch (NamingException e) {
-//            logger.error(e);
-//        }
-//    }
-    
+    private static final Logger logger     = LogManager.getLogger(BaseDAO.class);
+    private static DataSource   datasource = null;
+    // static {
+    // Context initCtx;
+    // try {
+    // initCtx = new InitialContext();
+    // datasource = (DataSource)initCtx.lookup("java:comp/env/jdbc/test");
+    // } catch (NamingException e) {
+    // logger.error(e);
+    // }
+    // }
+
     static {
         PoolProperties p = new PoolProperties();
-        JDBCPoolConfig config=CommonConfig.Instance.jdbcPoolConfig;
+        JDBCPoolConfig config = CommonConfig.Instance.jdbcPoolConfig;
         p.setUrl(config.getJdbcUrl());
         p.setDriverClassName(config.getDriverClassName());
         p.setUsername(config.getUserName());
@@ -46,7 +50,7 @@ public class BaseDAO {
         p.setRemoveAbandoned(config.isRemoveAbandoned());
         p.setRemoveAbandonedTimeout(config.getRemoveAbandonedTimeout());
         p.setJdbcInterceptors(config.getJdbcInterceptors());
-        datasource= new DataSource();
+        datasource = new DataSource();
         datasource.setPoolProperties(p);
     }
 
@@ -54,15 +58,39 @@ public class BaseDAO {
         return datasource.getConnection();
     }
 
-    public static final void closeQuietly(Connection conn, ResultSet rs, Statement st) throws SQLException {
-        if (rs != null) {
-            rs.close();
+    public static final void closeQuietly(Connection conn, ResultSet rs, Statement st) {
+        SQLException dbException = null;
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            logger.error("result set close failed.", e);
+            dbException = e;
         }
-        if (st != null) {
-            st.close();
+        try {
+            if (st != null) {
+                st.close();
+            }
+        } catch (SQLException e) {
+            logger.error("statement close failed.", e);
+            if (dbException != null) {
+                dbException = e;
+            }
         }
-        if (conn != null) {
-            conn.close();
+        try {
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            logger.error("connection close failed.", e);
+            if (dbException != null) {
+                dbException = e;
+            }
+        }
+        
+        if(dbException != null){
+            throw new RuntimeException(dbException);
         }
     }
 }

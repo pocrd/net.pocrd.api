@@ -10,11 +10,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * @author guankaiqiang 
- * Test
+ * @author guankaiqiang Test
  */
 public class TestDAO extends BaseDAO {
     private final static Logger logger = LogManager.getLogger(TestDAO.class);
+
     public void testC3p0() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         Connection conn = getConnection();
         PreparedStatement pst = null;
@@ -32,7 +32,8 @@ public class TestDAO extends BaseDAO {
             closeQuietly(conn, result, pst);
         }
     }
-    public void testCommonConnect(){
+
+    public void testCommonConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
         } catch (InstantiationException e) {
@@ -42,9 +43,10 @@ public class TestDAO extends BaseDAO {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Connection conn=null;
+        Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://112.124.17.212:3306/test?useUnicode=true&amp;characterset=utf-8&user=gkq&password=gkq1990");
+            conn = DriverManager
+                    .getConnection("jdbc:mysql://112.124.17.212:3306/test?useUnicode=true&amp;characterset=utf-8&user=gkq&password=gkq1990");
         } catch (SQLException e1) {
             e1.printStackTrace();
         }

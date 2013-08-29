@@ -8,7 +8,7 @@ import net.pocrd.annotation.HttpApi;
 import net.pocrd.api.resp.ApiListProductInfo.Api_List_ProductInfo;
 import net.pocrd.api.resp.ApiProductInfo.Api_ProductInfo;
 import net.pocrd.dao.ProductDAO;
-import net.pocrd.dao.Entity.ProductInfo;
+import net.pocrd.dao.entity.ProductInfo;
 import net.pocrd.data.Page;
 import net.pocrd.define.SecurityType;
 //import net.pocrd.util.EvaluaterProvider;

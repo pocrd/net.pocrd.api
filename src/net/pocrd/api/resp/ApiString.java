@@ -10,72 +10,185 @@ public final class ApiString {
   }
   public interface Api_StringOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // optional string value = 1;
+    /**
+     * <code>optional string value = 1;</code>
+     *
+     * <pre>
+     * 需要被单独返回的字符串
+     * </pre>
+     */
     boolean hasValue();
-    String getValue();
+    /**
+     * <code>optional string value = 1;</code>
+     *
+     * <pre>
+     * 需要被单独返回的字符串
+     * </pre>
+     */
+    java.lang.String getValue();
+    /**
+     * <code>optional string value = 1;</code>
+     *
+     * <pre>
+     * 需要被单独返回的字符串
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getValueBytes();
   }
+  /**
+   * Protobuf type {@code net.pocrd.api.resp.Api_String}
+   */
   public static final class Api_String extends
       com.google.protobuf.GeneratedMessage
       implements Api_StringOrBuilder {
     // Use Api_String.newBuilder() to construct.
-    private Api_String(Builder builder) {
+    private Api_String(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Api_String(boolean noInit) {}
-    
+    private Api_String(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final Api_String defaultInstance;
     public static Api_String getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public Api_String getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Api_String(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              value_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return net.pocrd.api.resp.ApiString.internal_static_net_pocrd_api_resp_Api_String_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return net.pocrd.api.resp.ApiString.internal_static_net_pocrd_api_resp_Api_String_fieldAccessorTable;
+      return net.pocrd.api.resp.ApiString.internal_static_net_pocrd_api_resp_Api_String_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              net.pocrd.api.resp.ApiString.Api_String.class, net.pocrd.api.resp.ApiString.Api_String.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<Api_String> PARSER =
+        new com.google.protobuf.AbstractParser<Api_String>() {
+      public Api_String parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Api_String(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Api_String> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // optional string value = 1;
     public static final int VALUE_FIELD_NUMBER = 1;
     private java.lang.Object value_;
+    /**
+     * <code>optional string value = 1;</code>
+     *
+     * <pre>
+     * 需要被单独返回的字符串
+     * </pre>
+     */
     public boolean hasValue() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getValue() {
+    /**
+     * <code>optional string value = 1;</code>
+     *
+     * <pre>
+     * 需要被单独返回的字符串
+     * </pre>
+     */
+    public java.lang.String getValue() {
       java.lang.Object ref = value_;
-      if (ref instanceof String) {
-        return (String) ref;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
           value_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getValueBytes() {
+    /**
+     * <code>optional string value = 1;</code>
+     *
+     * <pre>
+     * 需要被单独返回的字符串
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getValueBytes() {
       java.lang.Object ref = value_;
-      if (ref instanceof String) {
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         value_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-    
+
     private void initFields() {
       value_ = "";
     }
@@ -83,11 +196,11 @@ public final class ApiString {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -96,12 +209,12 @@ public final class ApiString {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -111,94 +224,83 @@ public final class ApiString {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiString.Api_String parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(net.pocrd.api.resp.ApiString.Api_String prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code net.pocrd.api.resp.Api_String}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements net.pocrd.api.resp.ApiString.Api_StringOrBuilder {
@@ -206,18 +308,21 @@ public final class ApiString {
           getDescriptor() {
         return net.pocrd.api.resp.ApiString.internal_static_net_pocrd_api_resp_Api_String_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return net.pocrd.api.resp.ApiString.internal_static_net_pocrd_api_resp_Api_String_fieldAccessorTable;
+        return net.pocrd.api.resp.ApiString.internal_static_net_pocrd_api_resp_Api_String_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                net.pocrd.api.resp.ApiString.Api_String.class, net.pocrd.api.resp.ApiString.Api_String.Builder.class);
       }
-      
+
       // Construct using net.pocrd.api.resp.ApiString.Api_String.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -228,27 +333,27 @@ public final class ApiString {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         value_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return net.pocrd.api.resp.ApiString.Api_String.getDescriptor();
+        return net.pocrd.api.resp.ApiString.internal_static_net_pocrd_api_resp_Api_String_descriptor;
       }
-      
+
       public net.pocrd.api.resp.ApiString.Api_String getDefaultInstanceForType() {
         return net.pocrd.api.resp.ApiString.Api_String.getDefaultInstance();
       }
-      
+
       public net.pocrd.api.resp.ApiString.Api_String build() {
         net.pocrd.api.resp.ApiString.Api_String result = buildPartial();
         if (!result.isInitialized()) {
@@ -256,17 +361,7 @@ public final class ApiString {
         }
         return result;
       }
-      
-      private net.pocrd.api.resp.ApiString.Api_String buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        net.pocrd.api.resp.ApiString.Api_String result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public net.pocrd.api.resp.ApiString.Api_String buildPartial() {
         net.pocrd.api.resp.ApiString.Api_String result = new net.pocrd.api.resp.ApiString.Api_String(this);
         int from_bitField0_ = bitField0_;
@@ -279,7 +374,7 @@ public final class ApiString {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.pocrd.api.resp.ApiString.Api_String) {
           return mergeFrom((net.pocrd.api.resp.ApiString.Api_String)other);
@@ -288,70 +383,100 @@ public final class ApiString {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(net.pocrd.api.resp.ApiString.Api_String other) {
         if (other == net.pocrd.api.resp.ApiString.Api_String.getDefaultInstance()) return this;
         if (other.hasValue()) {
-          setValue(other.getValue());
+          bitField0_ |= 0x00000001;
+          value_ = other.value_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              value_ = input.readBytes();
-              break;
-            }
+        net.pocrd.api.resp.ApiString.Api_String parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (net.pocrd.api.resp.ApiString.Api_String) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // optional string value = 1;
       private java.lang.Object value_ = "";
+      /**
+       * <code>optional string value = 1;</code>
+       *
+       * <pre>
+       * 需要被单独返回的字符串
+       * </pre>
+       */
       public boolean hasValue() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getValue() {
+      /**
+       * <code>optional string value = 1;</code>
+       *
+       * <pre>
+       * 需要被单独返回的字符串
+       * </pre>
+       */
+      public java.lang.String getValue() {
         java.lang.Object ref = value_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
           value_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
-      public Builder setValue(String value) {
+      /**
+       * <code>optional string value = 1;</code>
+       *
+       * <pre>
+       * 需要被单独返回的字符串
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        java.lang.Object ref = value_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          value_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string value = 1;</code>
+       *
+       * <pre>
+       * 需要被单独返回的字符串
+       * </pre>
+       */
+      public Builder setValue(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -360,35 +485,54 @@ public final class ApiString {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional string value = 1;</code>
+       *
+       * <pre>
+       * 需要被单独返回的字符串
+       * </pre>
+       */
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000001);
         value_ = getDefaultInstance().getValue();
         onChanged();
         return this;
       }
-      void setValue(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
+      /**
+       * <code>optional string value = 1;</code>
+       *
+       * <pre>
+       * 需要被单独返回的字符串
+       * </pre>
+       */
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
         value_ = value;
         onChanged();
+        return this;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:net.pocrd.api.resp.Api_String)
     }
-    
+
     static {
       defaultInstance = new Api_String(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:net.pocrd.api.resp.Api_String)
   }
-  
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_net_pocrd_api_resp_Api_String_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_net_pocrd_api_resp_Api_String_fieldAccessorTable;
-  
+
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -411,9 +555,7 @@ public final class ApiString {
           internal_static_net_pocrd_api_resp_Api_String_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_net_pocrd_api_resp_Api_String_descriptor,
-              new java.lang.String[] { "Value", },
-              net.pocrd.api.resp.ApiString.Api_String.class,
-              net.pocrd.api.resp.ApiString.Api_String.Builder.class);
+              new java.lang.String[] { "Value", });
           return null;
         }
       };
@@ -422,6 +564,6 @@ public final class ApiString {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-  
+
   // @@protoc_insertion_point(outer_class_scope)
 }

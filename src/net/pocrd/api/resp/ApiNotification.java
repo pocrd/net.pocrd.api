@@ -10,69 +10,238 @@ public final class ApiNotification {
   }
   public interface Api_NotificationOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // optional int32 what = 1;
+    /**
+     * <code>optional int32 what = 1;</code>
+     *
+     * <pre>
+     * 消息类型
+     * </pre>
+     */
     boolean hasWhat();
+    /**
+     * <code>optional int32 what = 1;</code>
+     *
+     * <pre>
+     * 消息类型
+     * </pre>
+     */
     int getWhat();
-    
+
     // repeated string arg = 2;
-    java.util.List<String> getArgList();
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
+    java.util.List<java.lang.String>
+    getArgList();
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
     int getArgCount();
-    String getArg(int index);
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
+    java.lang.String getArg(int index);
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getArgBytes(int index);
   }
+  /**
+   * Protobuf type {@code net.pocrd.api.resp.Api_Notification}
+   */
   public static final class Api_Notification extends
       com.google.protobuf.GeneratedMessage
       implements Api_NotificationOrBuilder {
     // Use Api_Notification.newBuilder() to construct.
-    private Api_Notification(Builder builder) {
+    private Api_Notification(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Api_Notification(boolean noInit) {}
-    
+    private Api_Notification(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final Api_Notification defaultInstance;
     public static Api_Notification getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public Api_Notification getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Api_Notification(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              what_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                arg_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              arg_.add(input.readBytes());
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          arg_ = new com.google.protobuf.UnmodifiableLazyStringList(arg_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return net.pocrd.api.resp.ApiNotification.internal_static_net_pocrd_api_resp_Api_Notification_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return net.pocrd.api.resp.ApiNotification.internal_static_net_pocrd_api_resp_Api_Notification_fieldAccessorTable;
+      return net.pocrd.api.resp.ApiNotification.internal_static_net_pocrd_api_resp_Api_Notification_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              net.pocrd.api.resp.ApiNotification.Api_Notification.class, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<Api_Notification> PARSER =
+        new com.google.protobuf.AbstractParser<Api_Notification>() {
+      public Api_Notification parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Api_Notification(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Api_Notification> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // optional int32 what = 1;
     public static final int WHAT_FIELD_NUMBER = 1;
     private int what_;
+    /**
+     * <code>optional int32 what = 1;</code>
+     *
+     * <pre>
+     * 消息类型
+     * </pre>
+     */
     public boolean hasWhat() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
+    /**
+     * <code>optional int32 what = 1;</code>
+     *
+     * <pre>
+     * 消息类型
+     * </pre>
+     */
     public int getWhat() {
       return what_;
     }
-    
+
     // repeated string arg = 2;
     public static final int ARG_FIELD_NUMBER = 2;
     private com.google.protobuf.LazyStringList arg_;
-    public java.util.List<String>
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
+    public java.util.List<java.lang.String>
         getArgList() {
       return arg_;
     }
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
     public int getArgCount() {
       return arg_.size();
     }
-    public String getArg(int index) {
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
+    public java.lang.String getArg(int index) {
       return arg_.get(index);
     }
-    
+    /**
+     * <code>repeated string arg = 2;</code>
+     *
+     * <pre>
+     * 消息参数
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getArgBytes(int index) {
+      return arg_.getByteString(index);
+    }
+
     private void initFields() {
       what_ = 0;
       arg_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -81,11 +250,11 @@ public final class ApiNotification {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -97,12 +266,12 @@ public final class ApiNotification {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -121,94 +290,83 @@ public final class ApiNotification {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static net.pocrd.api.resp.ApiNotification.Api_Notification parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(net.pocrd.api.resp.ApiNotification.Api_Notification prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code net.pocrd.api.resp.Api_Notification}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements net.pocrd.api.resp.ApiNotification.Api_NotificationOrBuilder {
@@ -216,18 +374,21 @@ public final class ApiNotification {
           getDescriptor() {
         return net.pocrd.api.resp.ApiNotification.internal_static_net_pocrd_api_resp_Api_Notification_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return net.pocrd.api.resp.ApiNotification.internal_static_net_pocrd_api_resp_Api_Notification_fieldAccessorTable;
+        return net.pocrd.api.resp.ApiNotification.internal_static_net_pocrd_api_resp_Api_Notification_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                net.pocrd.api.resp.ApiNotification.Api_Notification.class, net.pocrd.api.resp.ApiNotification.Api_Notification.Builder.class);
       }
-      
+
       // Construct using net.pocrd.api.resp.ApiNotification.Api_Notification.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -238,7 +399,7 @@ public final class ApiNotification {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         what_ = 0;
@@ -247,20 +408,20 @@ public final class ApiNotification {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return net.pocrd.api.resp.ApiNotification.Api_Notification.getDescriptor();
+        return net.pocrd.api.resp.ApiNotification.internal_static_net_pocrd_api_resp_Api_Notification_descriptor;
       }
-      
+
       public net.pocrd.api.resp.ApiNotification.Api_Notification getDefaultInstanceForType() {
         return net.pocrd.api.resp.ApiNotification.Api_Notification.getDefaultInstance();
       }
-      
+
       public net.pocrd.api.resp.ApiNotification.Api_Notification build() {
         net.pocrd.api.resp.ApiNotification.Api_Notification result = buildPartial();
         if (!result.isInitialized()) {
@@ -268,17 +429,7 @@ public final class ApiNotification {
         }
         return result;
       }
-      
-      private net.pocrd.api.resp.ApiNotification.Api_Notification buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        net.pocrd.api.resp.ApiNotification.Api_Notification result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public net.pocrd.api.resp.ApiNotification.Api_Notification buildPartial() {
         net.pocrd.api.resp.ApiNotification.Api_Notification result = new net.pocrd.api.resp.ApiNotification.Api_Notification(this);
         int from_bitField0_ = bitField0_;
@@ -297,7 +448,7 @@ public final class ApiNotification {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof net.pocrd.api.resp.ApiNotification.Api_Notification) {
           return mergeFrom((net.pocrd.api.resp.ApiNotification.Api_Notification)other);
@@ -306,7 +457,7 @@ public final class ApiNotification {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(net.pocrd.api.resp.ApiNotification.Api_Notification other) {
         if (other == net.pocrd.api.resp.ApiNotification.Api_Notification.getDefaultInstance()) return this;
         if (other.hasWhat()) {
@@ -325,71 +476,79 @@ public final class ApiNotification {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              what_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              ensureArgIsMutable();
-              arg_.add(input.readBytes());
-              break;
-            }
+        net.pocrd.api.resp.ApiNotification.Api_Notification parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (net.pocrd.api.resp.ApiNotification.Api_Notification) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // optional int32 what = 1;
       private int what_ ;
+      /**
+       * <code>optional int32 what = 1;</code>
+       *
+       * <pre>
+       * 消息类型
+       * </pre>
+       */
       public boolean hasWhat() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
+      /**
+       * <code>optional int32 what = 1;</code>
+       *
+       * <pre>
+       * 消息类型
+       * </pre>
+       */
       public int getWhat() {
         return what_;
       }
+      /**
+       * <code>optional int32 what = 1;</code>
+       *
+       * <pre>
+       * 消息类型
+       * </pre>
+       */
       public Builder setWhat(int value) {
         bitField0_ |= 0x00000001;
         what_ = value;
         onChanged();
         return this;
       }
+      /**
+       * <code>optional int32 what = 1;</code>
+       *
+       * <pre>
+       * 消息类型
+       * </pre>
+       */
       public Builder clearWhat() {
         bitField0_ = (bitField0_ & ~0x00000001);
         what_ = 0;
         onChanged();
         return this;
       }
-      
+
       // repeated string arg = 2;
       private com.google.protobuf.LazyStringList arg_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureArgIsMutable() {
@@ -398,18 +557,57 @@ public final class ApiNotification {
           bitField0_ |= 0x00000002;
          }
       }
-      public java.util.List<String>
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
+      public java.util.List<java.lang.String>
           getArgList() {
         return java.util.Collections.unmodifiableList(arg_);
       }
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
       public int getArgCount() {
         return arg_.size();
       }
-      public String getArg(int index) {
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
+      public java.lang.String getArg(int index) {
         return arg_.get(index);
       }
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getArgBytes(int index) {
+        return arg_.getByteString(index);
+      }
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
       public Builder setArg(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -418,7 +616,15 @@ public final class ApiNotification {
         onChanged();
         return this;
       }
-      public Builder addArg(String value) {
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
+      public Builder addArg(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -427,42 +633,68 @@ public final class ApiNotification {
         onChanged();
         return this;
       }
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
       public Builder addAllArg(
-          java.lang.Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureArgIsMutable();
         super.addAll(values, arg_);
         onChanged();
         return this;
       }
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
       public Builder clearArg() {
         arg_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
-      void addArg(com.google.protobuf.ByteString value) {
-        ensureArgIsMutable();
+      /**
+       * <code>repeated string arg = 2;</code>
+       *
+       * <pre>
+       * 消息参数
+       * </pre>
+       */
+      public Builder addArgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureArgIsMutable();
         arg_.add(value);
         onChanged();
+        return this;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:net.pocrd.api.resp.Api_Notification)
     }
-    
+
     static {
       defaultInstance = new Api_Notification(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:net.pocrd.api.resp.Api_Notification)
   }
-  
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_net_pocrd_api_resp_Api_Notification_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_net_pocrd_api_resp_Api_Notification_fieldAccessorTable;
-  
+
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -485,9 +717,7 @@ public final class ApiNotification {
           internal_static_net_pocrd_api_resp_Api_Notification_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_net_pocrd_api_resp_Api_Notification_descriptor,
-              new java.lang.String[] { "What", "Arg", },
-              net.pocrd.api.resp.ApiNotification.Api_Notification.class,
-              net.pocrd.api.resp.ApiNotification.Api_Notification.Builder.class);
+              new java.lang.String[] { "What", "Arg", });
           return null;
         }
       };
@@ -496,6 +726,6 @@ public final class ApiNotification {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-  
+
   // @@protoc_insertion_point(outer_class_scope)
 }
