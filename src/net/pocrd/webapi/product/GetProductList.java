@@ -1,7 +1,5 @@
 package net.pocrd.webapi.product;
 
-import java.sql.SQLException;
-
 import net.pocrd.annotation.ApiGroup;
 import net.pocrd.annotation.ApiParameter;
 import net.pocrd.annotation.HttpApi;
@@ -24,8 +22,7 @@ public class GetProductList {
             @ApiParameter(required = false, name = "categoryId", desc = "贷款分类,0：默认分类", defaultValue = "0") int categoryId,
             @ApiParameter(required = false, name = "pageIndex", desc = "页码", defaultValue = "1") int pageIndex,
             @ApiParameter(required = false, name = "pageSize", desc = "页大小", defaultValue = "20") int pageSize,
-            @ApiParameter(required = false, name = "orderby", desc = "排序依据，0:默认排序，1:月供排序，2:按照总利息", defaultValue = "0") int orderby)
-            throws SQLException {
+            @ApiParameter(required = false, name = "orderby", desc = "排序依据，0:默认排序，1:月供排序，2:按照总利息", defaultValue = "0") int orderby){
         // 与用户相关信息都从token中获取
         Api_List_ProductInfo.Builder resp = Api_List_ProductInfo.newBuilder();
         Page<ProductInfo> infopage = productDao.getProductInfoList(ceiling, cycle, categoryId, pageIndex, pageSize, orderby);

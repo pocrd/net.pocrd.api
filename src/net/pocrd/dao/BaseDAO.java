@@ -54,8 +54,13 @@ public class BaseDAO {
         datasource.setPoolProperties(p);
     }
 
-    public static final Connection getConnection() throws SQLException {
-        return datasource.getConnection();
+    public static final Connection getConnection() {
+        try {
+            return datasource.getConnection();
+        } catch (SQLException e) {
+            logger.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 
     public static final void closeQuietly(Connection conn, ResultSet rs, Statement st) {
