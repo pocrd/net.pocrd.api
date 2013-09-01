@@ -47,3 +47,4 @@ nbproject
 .CVS
 .idea
 node_modules
+*.config

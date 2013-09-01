@@ -27,7 +27,7 @@ public class TestDAO extends BaseDAO {
                 totalcount = result.getInt(1);
             }
         } catch (SQLException e) {
-            logger.error(e);
+            logger.error("", e);
         } finally {
             closeQuietly(conn, result, pst);
         }
@@ -60,7 +60,7 @@ public class TestDAO extends BaseDAO {
                 totalcount = result.getInt(1);
             }
         } catch (SQLException e) {
-            logger.error(e);
+            logger.error("", e);
         } finally {
             closeQuietly(conn, result, pst);
         }

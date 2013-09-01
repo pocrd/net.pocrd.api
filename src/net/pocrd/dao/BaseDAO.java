@@ -22,7 +22,7 @@ public class BaseDAO {
     // initCtx = new InitialContext();
     // datasource = (DataSource)initCtx.lookup("java:comp/env/jdbc/test");
     // } catch (NamingException e) {
-    // logger.error(e);
+    // logger.error("", e);
     // }
     // }
 
@@ -88,8 +88,8 @@ public class BaseDAO {
                 dbException = e;
             }
         }
-        
-        if(dbException != null){
+
+        if (dbException != null) {
             throw new RuntimeException(dbException);
         }
     }

@@ -152,7 +152,7 @@ public class DeviceDAO {
         // }
         // catch (Exception e)
         // {
-        // logger.Error(e);
+        // logger.Error("", e);
         // }
     }
 

@@ -1,44 +1,50 @@
 package net.pocrd.api.resp;
 
-message Api_ProductInfo{
-	//产品id
-	optional int32 productId = 1;
-	//产品名称
-	optional string productName=2;
-	//机构编号
-	optional int32 corporationId=3;
-	//机构名称
-	optional string corporationName=4;
-	//贷款额度，元
-	optional int32 ceiling=5;
-	//周期,单位月
-	optional int32 cycle=7;
-	//利率%
-	optional double rate = 8;
-	//产品分类，0：默认分类，1：消费贷款
-	optional int32 categoryId=9;
-	//产品所属分类名称
-	optional string categoryName=10;
-	//年龄区间，格式from-to
-	optional string ageRange=11;
-	//在职时间最低要求,月
-	optional int32 floorWorkExp=12;
-	//贷款人所在行业要求
-	optional string industry=13;
-	//贷款人最低收入要求
-	optional int32 floorSalary=14;
-	//工作地点
-	optional string location = 15;
-	//抵押类型
-	optional string mortgage = 16;
-	//申请材料要求，这个要再考虑如何做关联
-	optional string material=17;
-	//产品推出时间,yyyy-mm-dd
-	optional string releaseTime=18;
-	//其他要求
-	optional string otherReq=19;
-		//总利息
-	optional int32 interest=20;
-	//月供
-	optional int32 monthlyPayamount = 21;
+message Api_ProductInfo {
+//产品id
+    optional int32 productId = 1;
+    //产品名称
+    optional string productName = 2;
+    //机构编号
+    optional int32 corporationId = 3;
+    //机构名称
+    optional string corporationName = 4;
+    //贷款额度，元
+    optional int32 ceiling = 5;
+    //周期,单位月
+    optional int32 cycle = 7;
+    //利率%
+    optional double rate = 8;
+    //产品分类，0：默认分类，1：消费贷款
+    optional int32 categoryId = 9;
+    //产品所属分类名称
+    optional string categoryName = 10;
+    //年龄区间，格式from-to
+    optional string ageRange = 11;
+    //在职时间最低要求,月
+    optional int32 floorWorkExp = 12;
+    //贷款人所在行业要求
+    optional string industry = 13;
+    //贷款人最低收入要求
+    optional int32 floorSalary = 14;
+    //工作地点
+    optional string location = 15;
+    //抵押类型
+    optional string mortgage = 16;
+    //申请材料要求，这个要再考虑如何做关联
+    optional string material = 17;
+    //产品推出时间,yyyy-mm-dd
+    optional string releaseTime = 18;
+    //其他要求
+    optional string otherReq = 19;
+    //总利息
+    optional int32 interest = 20;
+    //月供
+    optional int32 monthlyPayamount = 21;
+    //图标地址
+    optional string iconUrl = 22;
+    //图片地址
+    optional string imageUrl = 23;
+    //产品描述，支持html标签
+    optional string desc = 24;
 }

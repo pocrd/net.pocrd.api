@@ -50,20 +50,22 @@ public class ProductDAO extends BaseDAO {
         }
         products = new Page<ProductInfo>(totalcount, pageIndex, pageSize);
         String sql = null;
-        if (orderby == 1)
+        if (orderby == 1) {
             sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
                     + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
                     + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
                     + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? order by t.monthlyPayment desc limit ?,?";
-        else if (orderby == 2)
+        } else if (orderby == 2) {
             sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
                     + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
                     + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
                     + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? order by t.interest desc limit ?,?";
-        else sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
-                + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
-                + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
-                + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? limit ?,?";
+        } else {
+            sql = "select t.*,t2.corporationName,t2.description,t2.officialSite,t3.categoryName "
+                    + "from tb_product t LEFT JOIN tb_corporation t2 on t.corporationId=t2.corporationId "
+                    + "LEFT JOIN tb_product_cate t3 on t.categoryId=t3.categoryId "
+                    + "where t.state= 0 and t.ceiling=? and t.cycle=? and t.categoryId=? limit ?,?";
+        }
         pst = conn.prepareCall(sql);
         pst.setObject(1, ceiling);
         pst.setObject(2, cycle);
@@ -89,6 +91,9 @@ public class ProductDAO extends BaseDAO {
             info.setFloorWorkExp(result.getInt("floorWorkExp"));
             info.setFloorSalary(result.getInt("floorSalary"));
             info.setReleaseTime(dateFormat(result.getDate("releasetime")));
+            info.setIconUrl(result.getString("iconUrl"));
+            info.setImageUrl(result.getString("imageUrl"));
+            info.setDesc(result.getString("desc"));
             {// 这四个字段后期可能是作为多选形式存在，并且可能参与查找匹配
                 info.setIndustry(getIndustryName(result.getInt("industry")));
                 info.setLocation(getLocationName(result.getInt("location")));

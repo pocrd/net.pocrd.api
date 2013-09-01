@@ -44,7 +44,7 @@ public class MultiServlet extends BaseServlet {
         if (nameString != null && nameString.length() > 0) {
             String[] names = nameString.split(",");
             context.apiCallInfos = new ArrayList<ApiMethodCall>(names.length);
-                    
+
             for (int m = 0; m < names.length; m++) {
                 String mname = names[m];
                 ApiMethodInfo method = apiManager.getApiMethodInfo(mname);
@@ -81,6 +81,8 @@ public class MultiServlet extends BaseServlet {
     }
 
     protected boolean checkSignature(ApiContext context, int securityLevel, HttpServletRequest request) {
+        // TODO:remove when signature function complete.
+        if (CommonConfig.isDebug) return true;
         if (context.agent != null && context.agent.contains(DEBUG_AGENT)) {
             return true;
         }

@@ -460,6 +460,87 @@ public final class ApiProductInfo {
      * </pre>
      */
     int getMonthlyPayamount();
+
+    // optional string iconUrl = 22;
+    /**
+     * <code>optional string iconUrl = 22;</code>
+     *
+     * <pre>
+     *图标地址
+     * </pre>
+     */
+    boolean hasIconUrl();
+    /**
+     * <code>optional string iconUrl = 22;</code>
+     *
+     * <pre>
+     *图标地址
+     * </pre>
+     */
+    java.lang.String getIconUrl();
+    /**
+     * <code>optional string iconUrl = 22;</code>
+     *
+     * <pre>
+     *图标地址
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getIconUrlBytes();
+
+    // optional string imageUrl = 23;
+    /**
+     * <code>optional string imageUrl = 23;</code>
+     *
+     * <pre>
+     *图片地址
+     * </pre>
+     */
+    boolean hasImageUrl();
+    /**
+     * <code>optional string imageUrl = 23;</code>
+     *
+     * <pre>
+     *图片地址
+     * </pre>
+     */
+    java.lang.String getImageUrl();
+    /**
+     * <code>optional string imageUrl = 23;</code>
+     *
+     * <pre>
+     *图片地址
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getImageUrlBytes();
+
+    // optional string desc = 24;
+    /**
+     * <code>optional string desc = 24;</code>
+     *
+     * <pre>
+     *产品描述，支持html标签
+     * </pre>
+     */
+    boolean hasDesc();
+    /**
+     * <code>optional string desc = 24;</code>
+     *
+     * <pre>
+     *产品描述，支持html标签
+     * </pre>
+     */
+    java.lang.String getDesc();
+    /**
+     * <code>optional string desc = 24;</code>
+     *
+     * <pre>
+     *产品描述，支持html标签
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getDescBytes();
   }
   /**
    * Protobuf type {@code net.pocrd.api.resp.Api_ProductInfo}
@@ -610,6 +691,21 @@ public final class ApiProductInfo {
             case 168: {
               bitField0_ |= 0x00080000;
               monthlyPayamount_ = input.readInt32();
+              break;
+            }
+            case 178: {
+              bitField0_ |= 0x00100000;
+              iconUrl_ = input.readBytes();
+              break;
+            }
+            case 186: {
+              bitField0_ |= 0x00200000;
+              imageUrl_ = input.readBytes();
+              break;
+            }
+            case 194: {
+              bitField0_ |= 0x00400000;
+              desc_ = input.readBytes();
               break;
             }
           }
@@ -1442,6 +1538,171 @@ public final class ApiProductInfo {
       return monthlyPayamount_;
     }
 
+    // optional string iconUrl = 22;
+    public static final int ICONURL_FIELD_NUMBER = 22;
+    private java.lang.Object iconUrl_;
+    /**
+     * <code>optional string iconUrl = 22;</code>
+     *
+     * <pre>
+     *图标地址
+     * </pre>
+     */
+    public boolean hasIconUrl() {
+      return ((bitField0_ & 0x00100000) == 0x00100000);
+    }
+    /**
+     * <code>optional string iconUrl = 22;</code>
+     *
+     * <pre>
+     *图标地址
+     * </pre>
+     */
+    public java.lang.String getIconUrl() {
+      java.lang.Object ref = iconUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          iconUrl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string iconUrl = 22;</code>
+     *
+     * <pre>
+     *图标地址
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getIconUrlBytes() {
+      java.lang.Object ref = iconUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        iconUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string imageUrl = 23;
+    public static final int IMAGEURL_FIELD_NUMBER = 23;
+    private java.lang.Object imageUrl_;
+    /**
+     * <code>optional string imageUrl = 23;</code>
+     *
+     * <pre>
+     *图片地址
+     * </pre>
+     */
+    public boolean hasImageUrl() {
+      return ((bitField0_ & 0x00200000) == 0x00200000);
+    }
+    /**
+     * <code>optional string imageUrl = 23;</code>
+     *
+     * <pre>
+     *图片地址
+     * </pre>
+     */
+    public java.lang.String getImageUrl() {
+      java.lang.Object ref = imageUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          imageUrl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string imageUrl = 23;</code>
+     *
+     * <pre>
+     *图片地址
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getImageUrlBytes() {
+      java.lang.Object ref = imageUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        imageUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string desc = 24;
+    public static final int DESC_FIELD_NUMBER = 24;
+    private java.lang.Object desc_;
+    /**
+     * <code>optional string desc = 24;</code>
+     *
+     * <pre>
+     *产品描述，支持html标签
+     * </pre>
+     */
+    public boolean hasDesc() {
+      return ((bitField0_ & 0x00400000) == 0x00400000);
+    }
+    /**
+     * <code>optional string desc = 24;</code>
+     *
+     * <pre>
+     *产品描述，支持html标签
+     * </pre>
+     */
+    public java.lang.String getDesc() {
+      java.lang.Object ref = desc_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          desc_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string desc = 24;</code>
+     *
+     * <pre>
+     *产品描述，支持html标签
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getDescBytes() {
+      java.lang.Object ref = desc_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        desc_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       productId_ = 0;
       productName_ = "";
@@ -1463,6 +1724,9 @@ public final class ApiProductInfo {
       otherReq_ = "";
       interest_ = 0;
       monthlyPayamount_ = 0;
+      iconUrl_ = "";
+      imageUrl_ = "";
+      desc_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1535,6 +1799,15 @@ public final class ApiProductInfo {
       }
       if (((bitField0_ & 0x00080000) == 0x00080000)) {
         output.writeInt32(21, monthlyPayamount_);
+      }
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+        output.writeBytes(22, getIconUrlBytes());
+      }
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+        output.writeBytes(23, getImageUrlBytes());
+      }
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+        output.writeBytes(24, getDescBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1624,6 +1897,18 @@ public final class ApiProductInfo {
       if (((bitField0_ & 0x00080000) == 0x00080000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(21, monthlyPayamount_);
+      }
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(22, getIconUrlBytes());
+      }
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(23, getImageUrlBytes());
+      }
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(24, getDescBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1781,6 +2066,12 @@ public final class ApiProductInfo {
         bitField0_ = (bitField0_ & ~0x00040000);
         monthlyPayamount_ = 0;
         bitField0_ = (bitField0_ & ~0x00080000);
+        iconUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00100000);
+        imageUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00200000);
+        desc_ = "";
+        bitField0_ = (bitField0_ & ~0x00400000);
         return this;
       }
 
@@ -1889,6 +2180,18 @@ public final class ApiProductInfo {
           to_bitField0_ |= 0x00080000;
         }
         result.monthlyPayamount_ = monthlyPayamount_;
+        if (((from_bitField0_ & 0x00100000) == 0x00100000)) {
+          to_bitField0_ |= 0x00100000;
+        }
+        result.iconUrl_ = iconUrl_;
+        if (((from_bitField0_ & 0x00200000) == 0x00200000)) {
+          to_bitField0_ |= 0x00200000;
+        }
+        result.imageUrl_ = imageUrl_;
+        if (((from_bitField0_ & 0x00400000) == 0x00400000)) {
+          to_bitField0_ |= 0x00400000;
+        }
+        result.desc_ = desc_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1984,6 +2287,21 @@ public final class ApiProductInfo {
         }
         if (other.hasMonthlyPayamount()) {
           setMonthlyPayamount(other.getMonthlyPayamount());
+        }
+        if (other.hasIconUrl()) {
+          bitField0_ |= 0x00100000;
+          iconUrl_ = other.iconUrl_;
+          onChanged();
+        }
+        if (other.hasImageUrl()) {
+          bitField0_ |= 0x00200000;
+          imageUrl_ = other.imageUrl_;
+          onChanged();
+        }
+        if (other.hasDesc()) {
+          bitField0_ |= 0x00400000;
+          desc_ = other.desc_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3482,6 +3800,300 @@ public final class ApiProductInfo {
         return this;
       }
 
+      // optional string iconUrl = 22;
+      private java.lang.Object iconUrl_ = "";
+      /**
+       * <code>optional string iconUrl = 22;</code>
+       *
+       * <pre>
+       *图标地址
+       * </pre>
+       */
+      public boolean hasIconUrl() {
+        return ((bitField0_ & 0x00100000) == 0x00100000);
+      }
+      /**
+       * <code>optional string iconUrl = 22;</code>
+       *
+       * <pre>
+       *图标地址
+       * </pre>
+       */
+      public java.lang.String getIconUrl() {
+        java.lang.Object ref = iconUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          iconUrl_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string iconUrl = 22;</code>
+       *
+       * <pre>
+       *图标地址
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getIconUrlBytes() {
+        java.lang.Object ref = iconUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          iconUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string iconUrl = 22;</code>
+       *
+       * <pre>
+       *图标地址
+       * </pre>
+       */
+      public Builder setIconUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00100000;
+        iconUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string iconUrl = 22;</code>
+       *
+       * <pre>
+       *图标地址
+       * </pre>
+       */
+      public Builder clearIconUrl() {
+        bitField0_ = (bitField0_ & ~0x00100000);
+        iconUrl_ = getDefaultInstance().getIconUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string iconUrl = 22;</code>
+       *
+       * <pre>
+       *图标地址
+       * </pre>
+       */
+      public Builder setIconUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00100000;
+        iconUrl_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string imageUrl = 23;
+      private java.lang.Object imageUrl_ = "";
+      /**
+       * <code>optional string imageUrl = 23;</code>
+       *
+       * <pre>
+       *图片地址
+       * </pre>
+       */
+      public boolean hasImageUrl() {
+        return ((bitField0_ & 0x00200000) == 0x00200000);
+      }
+      /**
+       * <code>optional string imageUrl = 23;</code>
+       *
+       * <pre>
+       *图片地址
+       * </pre>
+       */
+      public java.lang.String getImageUrl() {
+        java.lang.Object ref = imageUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          imageUrl_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string imageUrl = 23;</code>
+       *
+       * <pre>
+       *图片地址
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getImageUrlBytes() {
+        java.lang.Object ref = imageUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          imageUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string imageUrl = 23;</code>
+       *
+       * <pre>
+       *图片地址
+       * </pre>
+       */
+      public Builder setImageUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00200000;
+        imageUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string imageUrl = 23;</code>
+       *
+       * <pre>
+       *图片地址
+       * </pre>
+       */
+      public Builder clearImageUrl() {
+        bitField0_ = (bitField0_ & ~0x00200000);
+        imageUrl_ = getDefaultInstance().getImageUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string imageUrl = 23;</code>
+       *
+       * <pre>
+       *图片地址
+       * </pre>
+       */
+      public Builder setImageUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00200000;
+        imageUrl_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string desc = 24;
+      private java.lang.Object desc_ = "";
+      /**
+       * <code>optional string desc = 24;</code>
+       *
+       * <pre>
+       *产品描述，支持html标签
+       * </pre>
+       */
+      public boolean hasDesc() {
+        return ((bitField0_ & 0x00400000) == 0x00400000);
+      }
+      /**
+       * <code>optional string desc = 24;</code>
+       *
+       * <pre>
+       *产品描述，支持html标签
+       * </pre>
+       */
+      public java.lang.String getDesc() {
+        java.lang.Object ref = desc_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          desc_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string desc = 24;</code>
+       *
+       * <pre>
+       *产品描述，支持html标签
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getDescBytes() {
+        java.lang.Object ref = desc_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          desc_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string desc = 24;</code>
+       *
+       * <pre>
+       *产品描述，支持html标签
+       * </pre>
+       */
+      public Builder setDesc(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00400000;
+        desc_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string desc = 24;</code>
+       *
+       * <pre>
+       *产品描述，支持html标签
+       * </pre>
+       */
+      public Builder clearDesc() {
+        bitField0_ = (bitField0_ & ~0x00400000);
+        desc_ = getDefaultInstance().getDesc();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string desc = 24;</code>
+       *
+       * <pre>
+       *产品描述，支持html标签
+       * </pre>
+       */
+      public Builder setDescBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00400000;
+        desc_ = value;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:net.pocrd.api.resp.Api_ProductInfo)
     }
 
@@ -3508,7 +4120,7 @@ public final class ApiProductInfo {
   static {
     java.lang.String[] descriptorData = {
       "\n(net/pocrd/api/resp/Api_ProductInfo.pro" +
-      "to\022\022net.pocrd.api.resp\"\231\003\n\017Api_ProductIn" +
+      "to\022\022net.pocrd.api.resp\"\312\003\n\017Api_ProductIn" +
       "fo\022\021\n\tproductId\030\001 \001(\005\022\023\n\013productName\030\002 \001" +
       "(\t\022\025\n\rcorporationId\030\003 \001(\005\022\027\n\017corporation" +
       "Name\030\004 \001(\t\022\017\n\007ceiling\030\005 \001(\005\022\r\n\005cycle\030\007 \001" +
@@ -3518,7 +4130,9 @@ public final class ApiProductInfo {
       "floorSalary\030\016 \001(\005\022\020\n\010location\030\017 \001(\t\022\020\n\010m" +
       "ortgage\030\020 \001(\t\022\020\n\010material\030\021 \001(\t\022\023\n\013relea",
       "seTime\030\022 \001(\t\022\020\n\010otherReq\030\023 \001(\t\022\020\n\010intere" +
-      "st\030\024 \001(\005\022\030\n\020monthlyPayamount\030\025 \001(\005"
+      "st\030\024 \001(\005\022\030\n\020monthlyPayamount\030\025 \001(\005\022\017\n\007ic" +
+      "onUrl\030\026 \001(\t\022\020\n\010imageUrl\030\027 \001(\t\022\014\n\004desc\030\030 " +
+      "\001(\t"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3530,7 +4144,7 @@ public final class ApiProductInfo {
           internal_static_net_pocrd_api_resp_Api_ProductInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_net_pocrd_api_resp_Api_ProductInfo_descriptor,
-              new java.lang.String[] { "ProductId", "ProductName", "CorporationId", "CorporationName", "Ceiling", "Cycle", "Rate", "CategoryId", "CategoryName", "AgeRange", "FloorWorkExp", "Industry", "FloorSalary", "Location", "Mortgage", "Material", "ReleaseTime", "OtherReq", "Interest", "MonthlyPayamount", });
+              new java.lang.String[] { "ProductId", "ProductName", "CorporationId", "CorporationName", "Ceiling", "Cycle", "Rate", "CategoryId", "CategoryName", "AgeRange", "FloorWorkExp", "Industry", "FloorSalary", "Location", "Mortgage", "Material", "ReleaseTime", "OtherReq", "Interest", "MonthlyPayamount", "IconUrl", "ImageUrl", "Desc", });
           return null;
         }
       };
