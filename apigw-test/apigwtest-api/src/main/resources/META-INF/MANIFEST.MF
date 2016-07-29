@@ -1,0 +1,2 @@
+Api-Export: net.pocrd.apigwtest.api.LoadTestService net.pocrd.apigwtest.api.ApiFunctionTestService
+Api-Dependency-Type: dubbo

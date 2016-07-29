@@ -1,6 +1,0 @@
-package net.pocrd.api.resp;
-import "net/pocrd/api/resp/Api_ProductInfo.proto";
-message Api_List_ProductInfo{
-	repeated Api_ProductInfo productInfo = 1;
-	optional int32 totalcount = 2;
-}

@@ -1,9 +1,0 @@
-package net.pocrd.api.resp;
-
-message Api_Notification {
-    // 消息类型
-    optional int32 what = 1;
-
-    // 消息参数
-    repeated string arg = 2;
-}

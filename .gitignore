@@ -1,3 +1,4 @@
+*.iml
 *.class
 *.o
 *.a
@@ -5,12 +6,15 @@
 *.exe
 *.log
 *.prefs
+*.lst
+.classpath
 .metadata
 .settings
-/build/
-/bin/
-/debug/
-
+.idea
+**/build/
+**/bin/
+**/debug/
+**/target/
 # Numerous always-ignore extensions
 *.diff
 *.err
@@ -24,7 +28,7 @@
 *~
 *.sass-cache
 *.ruby-version
-
+*.project
 # OS or Editor folders
 .DS_Store
 ._*
@@ -36,15 +40,21 @@ Thumbs.db
 nbproject
 *.sublime-project
 *.sublime-workspace
-
 # Komodo
 *.komodoproject
 .komodotools
-
 # Folders to ignore
 .hg
 .svn
 .CVS
 .idea
 node_modules
-*.config
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+# Package Files #
+*.jar
+*.war
+*.ear
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/target

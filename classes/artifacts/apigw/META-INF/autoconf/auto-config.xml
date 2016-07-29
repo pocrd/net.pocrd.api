@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config description="sfht.config">
+    <group name="env">
+        <property name="net.pocrd.apigwVersion" description="apigw版本号" required="true"/>
+        <property name="dubbo.reference.version" description="dubbo服务版本号" required="true"/>
+        <property name="com.sfebiz.apigw.internalPort" description="internal接口的访问端口" required="true"/>
+    </group>
+    <group name="secret">
+        <property name="com.sfebiz.apigw.rsaPublic" description="用于非对称加密消息的rsa公私钥对" required="true"/>
+        <property name="com.sfebiz.apigw.rsaPrivate" description="用于非对称加密消息的rsa公私钥对" required="true"/>
+        <property name="com.sfebiz.apigw.tokenAes" description="用于对称加密消息的aes私钥" required="true"/>
+    </group>
+    <group name="oss">
+        <property name="oss.bucket.user.private" description="用户相关oss bucket" required="true"/>
+        <property name="oss.bucket.order.info" description="订单相关oss bucket" required="true"/>
+        <property name="oss.bucket.public" description="公共oss bucket" required="true"/>
+        <property name="oss.bucket.accessKey" description="oss access key" required="true"/>
+        <property name="oss.bucket.accessSecret" description="oss access secret" required="true"/>
+        <property name="oss.bucket.endPoint" description="oss access end point" required="true"/>
+    </group>
+    <script>
+        <generate template="config.properties.vm" destfile="WEB-INF/classes/config.properties" charset="UTF-8"/>
+    </script>
+</config>
