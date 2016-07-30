@@ -20,6 +20,6 @@ public class ClientGenerateTest {
         List<ApiMethodInfo> infoList = ApiManager.parseApi(ApiFunctionTestService.class, new Object());
         new ApiSdkJavaGenerator.Builder()
                 .setOutputPath("/Users/rendong/workspace/api/api-gw/apigw-test/apigwtest-autotest/src/main/java/com/fengqu/m/app/client")
-                .setPackagePrefix("com.fengqu.m.app.client").build().generateViaApiMethodInfo(infoList);
+                .setPackagePrefix("net.pocrd.m.app.client").build().generateViaApiMethodInfo(infoList);
     }
 }
