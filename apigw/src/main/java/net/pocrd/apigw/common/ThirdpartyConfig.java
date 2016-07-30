@@ -26,7 +26,7 @@ import java.util.*;
  */
 public class ThirdpartyConfig {
     private static final Logger logger = LoggerFactory.getLogger(ThirdpartyConfig.class);
-    private Map<Integer, ThirdpartyInfo> thirdpartyInfoMap;
+    private Map<Integer, ThirdpartyInfo> thirdpartyInfoMap = new HashMap<Integer, ThirdpartyInfo>();
 
     public static ThirdpartyConfig getInstance() {
         return ThirdpartyConfigHolder.INSTANCE;

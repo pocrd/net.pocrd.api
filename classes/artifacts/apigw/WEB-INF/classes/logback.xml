@@ -1,16 +1,16 @@
 <configuration debug="false">
     <property resource="config.properties"/>
     <!--resource读取classpath下属性文件，file查找指定目录-->
-    <!--<property name="com.sfebiz.apigw.log.home" value="../logs/"/>-->
+    <!--<property name="net.pocrd.apigw.log.home" value="../logs/"/>-->
     <appender name="RequestFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${com.sfebiz.apigw.log.home}/access/request.log</file>
+        <file>${net.pocrd.apigw.log.home}/access/request.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${com.sfebiz.apigw.log.home}/access/request-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
+            <FileNamePattern>${net.pocrd.apigw.log.home}/access/request-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>20MB</maxFileSize>
@@ -25,14 +25,14 @@
     </appender>
 
     <appender name="AccessFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${com.sfebiz.apigw.log.home}/access/access.log</file>
+        <file>${net.pocrd.apigw.log.home}/access/access.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${com.sfebiz.apigw.log.home}/access/access-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
+            <FileNamePattern>${net.pocrd.apigw.log.home}/access/access-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>20MB</maxFileSize>
@@ -47,14 +47,14 @@
     </appender>
 
     <appender name="ErrorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${com.sfebiz.apigw.log.home}/error/error.log</file>
+        <file>${net.pocrd.apigw.log.home}/error/error.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${com.sfebiz.apigw.log.home}/error/error-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
+            <FileNamePattern>${net.pocrd.apigw.log.home}/error/error-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>20MB</maxFileSize>
@@ -69,14 +69,14 @@
     </appender>
 
     <appender name="WeixinFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${com.sfebiz.apigw.log.home}/info/weixin.log</file>
+        <file>${net.pocrd.apigw.log.home}/info/weixin.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>DENY</onMatch>
             <onMismatch>ACCEPT</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${com.sfebiz.apigw.log.home}/info/weixin-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
+            <FileNamePattern>${net.pocrd.apigw.log.home}/info/weixin-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>20MB</maxFileSize>
@@ -91,14 +91,14 @@
     </appender>
 
     <appender name="InfoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${com.sfebiz.apigw.log.home}/info/info.log</file>
+        <file>${net.pocrd.apigw.log.home}/info/info.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>DENY</onMatch>
             <onMismatch>ACCEPT</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${com.sfebiz.apigw.log.home}/info/info-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
+            <FileNamePattern>${net.pocrd.apigw.log.home}/info/info-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>20MB</maxFileSize>
@@ -113,14 +113,14 @@
     </appender>
 
     <appender name="MiddlewareInfoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${com.sfebiz.apigw.log.home}/info/middleware.log</file>
+        <file>${net.pocrd.apigw.log.home}/info/middleware.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>DENY</onMatch>
             <onMismatch>ACCEPT</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${com.sfebiz.apigw.log.home}/info/middleware-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
+            <FileNamePattern>${net.pocrd.apigw.log.home}/info/middleware-%d{yyyy-MM-dd_HH}-%i.log</FileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>20MB</maxFileSize>

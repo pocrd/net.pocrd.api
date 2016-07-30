@@ -18,27 +18,27 @@ net.pocrd.originWhiteList=www.sfht.com,api.sfht.com,m.sfht.com,www.fengqu.com,m.
 net.pocrd.dubboAsync=true
 ##net.pocrd.dubboAsync=false
 #需要被托管的api jar包目录
-com.sfebiz.apigw.jarPath=/home/admin/api
+net.pocrd.apigw.jarPath=/home/admin/api
 #risk manager所用dubbo服务的
-com.sfebiz.apigw.riskServiceName=com.sfht.riskmanagement.api.service.RiskService
+net.pocrd.apigw.riskServiceName=com.sfht.riskmanagement.api.service.RiskService
 #日志输出目录
-com.sfebiz.apigw.log.home=/home/admin/logs/apigw-deploy/
+net.pocrd.apigw.log.home=/home/admin/logs/apigw-deploy/
 #用于非对称加密消息的rsa公私钥对
-com.sfebiz.apigw.rsaPublic=${com.sfebiz.apigw.rsaPublic}
-com.sfebiz.apigw.rsaPrivate=${com.sfebiz.apigw.rsaPrivate}
+net.pocrd.apigw.rsaPublic=${net.pocrd.apigw.rsaPublic}
+net.pocrd.apigw.rsaPrivate=${net.pocrd.apigw.rsaPrivate}
 #用于对称加密消息的aes私钥
-com.sfebiz.apigw.tokenAes=${com.sfebiz.apigw.tokenAes}
+net.pocrd.apigw.tokenAes=${net.pocrd.apigw.tokenAes}
 #风控系统配置
-com.sfebiz.apigw.riskServiceRedisKeySet=
-com.sfebiz.apigw.riskServiceRedisConfig=
+net.pocrd.apigw.riskServiceRedisKeySet=
+net.pocrd.apigw.riskServiceRedisConfig=
 #静态签名密钥
-com.sfebiz.apigw.staticSignPwd=sfhaitao.xyz!
-com.sfebiz.apigw.internalPort=${com.sfebiz.apigw.internalPort}
-com.sfebiz.apigw.sslPort=8443
+net.pocrd.apigw.staticSignPwd=sfhaitao.xyz!
+net.pocrd.apigw.internalPort=${net.pocrd.apigw.internalPort}
+net.pocrd.apigw.sslPort=8443
 #oss config
-com.sfebiz.apigw.ossAccessKey=${oss.bucket.accessKey}
-com.sfebiz.apigw.ossAccessSecret=${oss.bucket.accessSecret}
-com.sfebiz.apigw.ossEndPoint=${oss.bucket.endPoint}
+net.pocrd.apigw.ossAccessKey=${oss.bucket.accessKey}
+net.pocrd.apigw.ossAccessSecret=${oss.bucket.accessSecret}
+net.pocrd.apigw.ossEndPoint=${oss.bucket.endPoint}
 oss.bucket.user.private=${oss.bucket.user.private}
 oss.bucket.order.info=${oss.bucket.order.info}
 oss.bucket.public=${oss.bucket.public}

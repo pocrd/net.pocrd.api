@@ -19,7 +19,7 @@ public class ClientGenerateTest {
     public void testJavaGenertor() throws ParserConfigurationException, IOException, SAXException {
         List<ApiMethodInfo> infoList = ApiManager.parseApi(ApiFunctionTestService.class, new Object());
         new ApiSdkJavaGenerator.Builder()
-                .setOutputPath("/Users/rendong/workspace/api/api-gw/apigw-test/apigwtest-autotest/src/main/java/com/fengqu/m/app/client")
+                .setOutputPath("/home/admin/autogen")
                 .setPackagePrefix("net.pocrd.m.app.client").build().generateViaApiMethodInfo(infoList);
     }
 }
