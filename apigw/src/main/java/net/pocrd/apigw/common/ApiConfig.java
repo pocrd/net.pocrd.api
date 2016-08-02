@@ -1,5 +1,6 @@
 package net.pocrd.apigw.common;
 
+import net.pocrd.entity.CommonConfig;
 import net.pocrd.entity.CompileConfig;
 import net.pocrd.util.AESTokenHelper;
 import net.pocrd.util.AesHelper;
@@ -8,50 +9,65 @@ import net.pocrd.util.RsaHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ApiConfig {
     private static final Logger logger                 = LoggerFactory.getLogger(ApiConfig.class);
     private static final String DEFAULT_SEVICE_VERSION = "default";
-    private static ApiConfig instance;
+    private static Properties prop;
 
     private ApiConfig() {
     }
 
-    public static void init(Properties prop) {
-        synchronized (ApiConfig.class) {
-            if (instance == null) {
-                instance = new ApiConfig();
+    public static final void init(Properties properties) {
+        prop = properties;
+    }
+
+    private static class Singleton {
+        static ApiConfig instance = null;
+
+        static {
+            instance = new ApiConfig();
+            if (prop == null) {
+                try {
+                    logger.warn("missing call ApiConfig.init(), try to load api.config");
+                    InputStream is = CommonConfig.class.getResourceAsStream("/api.config");
+                    if (is != null) {
+                        prop = new Properties();
+                        prop.load(is);
+                    }
+                } catch (Exception e) {
+                    logger.warn("load /api.config failed.", e);
+                }
             }
             if (prop == null) {
-                throw new RuntimeException("api config init failed.");
-            } else {
-                instance.setApiRsaPrivate(prop.getProperty("net.pocrd.apigw.rsaPrivate"));
-                instance.setApiRsaPublic(prop.getProperty("net.pocrd.apigw.rsaPublic"));
-                instance.setApiTokenAes(prop.getProperty("net.pocrd.apigw.tokenAes"));
-                instance.setStaticSignPwd(prop.getProperty("net.pocrd.apigw.staticSignPwd"));
-                instance.setApiJarPath(prop.getProperty("net.pocrd.apigw.jarPath"));
-                instance.setInternalPort(prop.getProperty("net.pocrd.apigw.internalPort"));
-                instance.setSSLPort(prop.getProperty("net.pocrd.apigw.sslPort"));
-                instance.setOssAccessKey(prop.getProperty("net.pocrd.apigw.ossAccessKey"));
-                instance.setOssAccessSecret(prop.getProperty("net.pocrd.apigw.ossAccessSecret"));
-                instance.setOssEndPoint(prop.getProperty("net.pocrd.apigw.ossEndPoint"));
-                instance.setZkAddress(prop.getProperty("dubbo.registry.url"));
-                instance.setServiceVersion(prop.getProperty("dubbo.reference.version"));
-                instance.setOssOrder(prop.getProperty("oss.bucket.order.info"));
-                instance.setOssUserPrivate(prop.getProperty("oss.bucket.user.private"));
-                instance.setOssPublic(prop.getProperty("oss.bucket.public"));
-                instance.setRiskServiceRedisKeySet(prop.getProperty("net.pocrd.apigw.riskServiceRedisKeySet"));
-                instance.setRiskServiceRedisConfig(prop.getProperty("net.pocrd.apigw.riskServiceRedisConfig"));
+                logger.warn("load api.config failed. use default settings.");
+                prop = new Properties();
             }
+
+            instance.setApiRsaPrivate(prop.getProperty("net.pocrd.apigw.rsaPrivate"));
+            instance.setApiRsaPublic(prop.getProperty("net.pocrd.apigw.rsaPublic"));
+            instance.setApiTokenAes(prop.getProperty("net.pocrd.apigw.tokenAes"));
+            instance.setStaticSignPwd(prop.getProperty("net.pocrd.apigw.staticSignPwd"));
+            instance.setApiJarPath(prop.getProperty("net.pocrd.apigw.jarPath"));
+            instance.setInternalPort(prop.getProperty("net.pocrd.apigw.internalPort"));
+            instance.setSSLPort(prop.getProperty("net.pocrd.apigw.sslPort"));
+            instance.setOssAccessKey(prop.getProperty("net.pocrd.apigw.ossAccessKey"));
+            instance.setOssAccessSecret(prop.getProperty("net.pocrd.apigw.ossAccessSecret"));
+            instance.setOssEndPoint(prop.getProperty("net.pocrd.apigw.ossEndPoint"));
+            instance.setZkAddress(prop.getProperty("dubbo.registry.url"));
+            instance.setServiceVersion(prop.getProperty("dubbo.reference.version"));
+            instance.setOssOrder(prop.getProperty("oss.bucket.order.info"));
+            instance.setOssUserPrivate(prop.getProperty("oss.bucket.user.private"));
+            instance.setOssPublic(prop.getProperty("oss.bucket.public"));
+            instance.setRiskServiceRedisKeySet(prop.getProperty("net.pocrd.apigw.riskServiceRedisKeySet"));
+            instance.setRiskServiceRedisConfig(prop.getProperty("net.pocrd.apigw.riskServiceRedisConfig"));
         }
     }
 
     public static ApiConfig getInstance() {
-        if (instance == null) {
-            throw new RuntimeException("apigw config not init.");
-        }
-        return instance;
+        return Singleton.instance;
     }
 
     /**
