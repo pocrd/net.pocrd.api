@@ -87,6 +87,11 @@ public class MultiServlet extends BaseServlet {
                         return ApiReturnCode.UNKNOW_ENCRYPTION_DENIED;
                     }
                     ApiMethodCall call = new ApiMethodCall(method);
+                    if (names.length == 1) {
+                        call.businessId = request.getParameter(CommonParameter.businessId);
+                    } else {
+                        call.businessId = request.getParameter(m + "_" + CommonParameter.businessId);
+                    }
                     // 解析业务参数使其对应各自业务api
                     // TODO: 将注入参数拆分为上下文部分和注入部分，分别通过attachement和parameters来传递
                     String[] parameters = new String[method.parameterInfos.length];
@@ -94,67 +99,32 @@ public class MultiServlet extends BaseServlet {
                     for (int i = 0; i < parameters.length; i++) {
                         ApiParameterInfo ap = method.parameterInfos[i];
                         if (ap.isAutowired) {
-                            if (CommonParameter.userId.equals(ap.name)) {
-                                parameters[i] = context.caller == null ? "0" : String.valueOf(context.caller.uid);
-                            } else if (CommonParameter.deviceId.equals(ap.name)) {
-                                if (context.caller == null) {
-                                    // 当 caller 不存在时，使用请求中的明文deviceId作为参数注入给服务提供方
-                                    // 即:即使当前接口是 SecurityType.None 类型接口也可以要求注入一个deviceId
-                                    // 但是服务端不应该在这个 deviceId 上做任何有关安全方面的操作。
-                                    parameters[i] = context.deviceIdStr;
-                                } else {
-                                    parameters[i] = String.valueOf(context.caller.deviceId);
-                                }
-                            } else if (CommonParameter.userAgent.equals(ap.name)) {
-                                parameters[i] = context.agent;
-                            } else if (CommonParameter.applicationId.equals(ap.name)) {
-                                parameters[i] = String.valueOf(context.appid);
-                            } else if (CommonParameter.phoneNumber.equals(ap.name)) {
-                                parameters[i] = context.caller == null ? "0" : String.valueOf(context.caller.phoneNumber);
-                            } else if (CommonParameter.dynamic.equals(ap.name)) {
-                                parameters[i] = request.getParameter(CommonParameter.dynamic);
-                            } else if (CommonParameter.thirdPartyId.equals(ap.name)) {
-                                parameters[i] = String.valueOf(context.thirdPartyId);
-                            } else if (CommonParameter.deviceToken.equals(ap.name)) {
-                                parameters[i] = context.caller == null ? null : context.deviceToken;
-                            } else if (CommonParameter.token.equals(ap.name)) {
-                                parameters[i] = context.caller == null ? null : context.token;
-                            } else if (CommonParameter.stoken.equals(ap.name)) {
-                                parameters[i] = context.stoken;
-                            } else if (CommonParameter.clientIp.equals(ap.name)) {
-                                parameters[i] = context.clientIP;
-                            } else if (CommonParameter.versionCode.equals(ap.name)) {
-                                parameters[i] = context.versionCode;
-                            } else if (CommonParameter.versionName.equals(ap.name)) {
-                                parameters[i] = context.versionName;
-                            } else if (AutowireableParameter.oauthid.name().equals(ap.name)) {
-                                parameters[i] = context.caller == null ? null : context.caller.oauthid;
-                            } else if (CommonParameter.host.equals(ap.name)) {
-                                parameters[i] = context.host;
-                            } else if (CommonParameter.callId.equals(ap.name)) {
-                                parameters[i] = context.cid;
-                            } else if (CommonParameter.cookie.equals(ap.name)) {
-                                Map<String, String> map = new HashMap<String, String>(ap.names.length);
-                                for (String n : ap.names) {
-                                    String v = null;
-                                    if (CommonParameter.channel.equals(n)
-                                            || CommonParameter.location.equals(n)
-                                            || CommonParameter.businessId.equals(n)
-                                            || CommonParameter.clientIp.equals(n)
-                                            || CommonParameter.versionCode.equals(n)
-                                            || CommonParameter.inputCharset.equals(n)) {
-                                        v = request.getParameter(n);
+                            switch (AutowireableParameter.valueOf(ap.name)) {
+                                case userAgent: parameters[i] = context.agent; break;
+                                case cookies:
+                                    Map<String, String> map = new HashMap<String, String>(ap.names.length);
+                                    for (String n : ap.names) {
+                                        String v = context.getCookie(n);
+                                        if (v != null) {
+                                            map.put(n, v);
+                                        }
                                     }
-                                    if (v == null) {
-                                        v = context.getCookie(n);
+                                    parameters[i] = JSON.toJSONString(map);
+                                    break;
+                                case businessid: parameters[i] = call.businessId; break;
+                                case inputCharset: parameters[i] = request.getParameter("_input_charset"); break;
+                                case postBody:
+                                    if (SecurityType.Integrated.check(method.securityLevel)) {
+                                        parameters[i] = readPostBody(request);
                                     }
-                                    if (v != null) {
-                                        map.put(n, v);
-                                    }
-                                }
-                                parameters[i] = JSON.toJSONString(map);
-                            } else if (SecurityType.Integrated.check(method.securityLevel) && CommonParameter.postBody.equals(ap.name)) {
-                                parameters[i] = readPostBody(request);
+                                    break;
+                                case channel: parameters[i] = request.getParameter(CommonParameter.channel); break;
+                                case thirdPartyId: parameters[i] = context.thirdPartyId; break;
+                                case versionCode: parameters[i] = context.versionCode; break;
+                                case referer: parameters[i] = context.referer; break;
+                                case host: parameters[i] = context.host; break;
+                                case token: parameters[i] = context.token; break;
+                                case stoken: parameters[i] = context.stoken; break;
                             }
                         } else {
                             if (names.length == 1) {
@@ -184,11 +154,6 @@ public class MultiServlet extends BaseServlet {
                                 call.message.append(ap.name).append('=').append(parameters[i]).append('&');
                             }
                         }
-                    }
-                    if (names.length == 1) {
-                        call.businessId = request.getParameter(CommonParameter.businessId);
-                    } else {
-                        call.businessId = request.getParameter(m + "_" + CommonParameter.businessId);
                     }
                     call.parameters = parameters;
                     // 验证通过的api及其调用参数构造为一个ApiMethodCall实例
@@ -288,7 +253,7 @@ public class MultiServlet extends BaseServlet {
             } else if (context.deviceId != caller.deviceId) {
                 // 声称的 deviceId 和实际 token 中的 deviceId 不一致, 记录错误但是处理为正常 TODO: 严格处理
                 logger.error("deviceId error. context.deviceId:" + context.deviceId + " caller.deviceId:" + caller.deviceId);
-            } else if (context.appid != caller.appid) {
+            } else if (String.valueOf(caller.appid).equals(context.appid)) {
                 // 声称的 appId 和实际 token 中的 appId 不一致, 记录错误但是处理为正常 TODO: 严格处理
                 logger.error("appId error. context.appid:" + context.appid + " caller.appid:" + caller.appid);
             }
@@ -297,9 +262,6 @@ public class MultiServlet extends BaseServlet {
         if (SecurityType.UserLogin.check(authTarget)) {
             if (caller == null || caller.uid == 0) {
                 return ApiReturnCode.USER_CHECK_FAILED;
-            } else if (context.appid != caller.appid) {
-                // 用户级别访问才验证appid匹配性, 记录错误但是处理为正常 TODO: 严格处理
-                logger.error("appId error. aid:" + context.appid + " caller.aid:" + caller.appid);
             }
         }
 
@@ -308,7 +270,7 @@ public class MultiServlet extends BaseServlet {
                 return ApiReturnCode.RISK_MANAGER_DENIED;
             }
         } else {
-            if (!RiskManager.allowAccess(caller.appid, caller.deviceId, caller.uid, context.cid, context.clientIP)) {
+            if (!RiskManager.allowAccess(context.appid, caller.deviceId, caller.uid, context.cid, context.clientIP)) {
                 return ApiReturnCode.RISK_MANAGER_DENIED;
             }
         }
@@ -504,9 +466,9 @@ public class MultiServlet extends BaseServlet {
     }
 
     @Override
-    protected CallerInfo parseCallerInfo(ApiContext context, byte[] token) {
+    protected CallerInfo parseCallerInfo(ApiContext context, String token) {
         CallerInfo caller = null;
-        if (token != null && token.length > 0) {
+        if (token != null && token.length() > 0) {
             caller = ApiConfig.getInstance().getApiTokenHelper().parseToken(token);
             if (caller != null && caller.uid != 0) {
                 MDC.put(CommonParameter.userId, String.valueOf(caller.uid));

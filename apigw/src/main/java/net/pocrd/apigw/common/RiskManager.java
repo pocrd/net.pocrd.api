@@ -13,7 +13,7 @@ public class RiskManager {
         return RiskManagerHolder.manager;
     }
 
-    public static boolean allowAccess(int appId, long deviceId, long userId, String callId, String clientIp) {
+    public static boolean allowAccess(String appId, long deviceId, long userId, String callId, String clientIp) {
         RiskManager manager = getInstance();
         if (manager != null) {
             return manager.allow(appId, deviceId, userId, callId, clientIp);
@@ -25,11 +25,10 @@ public class RiskManager {
 
     }
 
-    public boolean allow(int appId, long deviceId, long userId, String callId, String clientIp) {
+    public boolean allow(String appId, long deviceId, long userId, String callId, String clientIp) {
         try {
 
         } catch (Exception e) {
-            RiskManagerHolder.manager = null;
             logger.error("risk manager load failed!", e);
         }
         return true;
@@ -40,12 +39,9 @@ public class RiskManager {
 
         static {
             try {
-                manager = null;
-
                 manager = new RiskManager();
 
             } catch (Exception e) {
-                manager = null;
                 logger.error("risk manager load failed!", e);
             }
         }
