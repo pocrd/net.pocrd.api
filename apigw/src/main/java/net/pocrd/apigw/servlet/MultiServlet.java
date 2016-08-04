@@ -112,7 +112,6 @@ public class MultiServlet extends BaseServlet {
                                     parameters[i] = JSON.toJSONString(map);
                                     break;
                                 case businessid: parameters[i] = call.businessId; break;
-                                case inputCharset: parameters[i] = request.getParameter("_input_charset"); break;
                                 case postBody:
                                     if (SecurityType.Integrated.check(method.securityLevel)) {
                                         parameters[i] = readPostBody(request);
@@ -182,11 +181,11 @@ public class MultiServlet extends BaseServlet {
                 }
             }
 
-            // 签名验证，用于防止中间人攻击
             if (SecurityType.Integrated.check(context.requiredSecurity)) {
                 if (context.apiCallInfos.size() != 1) {
                     return ApiReturnCode.ACCESS_DENIED;
                 }
+                // 签名验证，用于防止中间人攻击
                 if (!checkIntegratedSignature(context, request)) {
                     return ApiReturnCode.SIGNATURE_ERROR;
                 }
@@ -216,17 +215,32 @@ public class MultiServlet extends BaseServlet {
     }
 
     private AbstractReturnCode checkAuthorization(ApiContext context, int authTarget, HttpServletRequest request) {
-        if (SecurityType.isNone(authTarget) || SecurityType.Internal.check(context.requiredSecurity)) {// 不进行权限控制
+        CallerInfo caller = context.caller;
+        if (caller == null) {
+            if (!RiskManager.allowAccess(context.appid, context.deviceId, 0, context.cid, context.clientIP)) {
+                return ApiReturnCode.RISK_MANAGER_DENIED;
+            }
+        } else {
+            if (!RiskManager.allowAccess(context.appid, caller.deviceId, caller.uid, context.cid, context.clientIP)) {
+                return ApiReturnCode.RISK_MANAGER_DENIED;
+            }
+        }
+
+        if (SecurityType.isNone(authTarget)) {// 不进行权限控制
             return ApiReturnCode.SUCCESS;
         }
-        if (SecurityType.Integrated.check(context.requiredSecurity)) {//对标注了needVerify==true的Integrated接口进行访问权限的校验
-            Map<Integer, ThirdpartyInfo> thirdpartyInfoMap = ThirdpartyConfig.getInstance().getThirdpartyInfoMap();
+
+        if (SecurityType.Internal.check(authTarget)) {
+            return ApiConfig.getInstance().getInternalPort() == request.getLocalPort() ? ApiReturnCode.SUCCESS : ApiReturnCode.ACCESS_DENIED;
+        }
+
+        if (SecurityType.Integrated.check(authTarget)) {//对标注了needVerify==true的Integrated接口进行访问权限的校验
+            if (!context.apiCallInfos.get(0).method.needVerfiy) {
+                //业务方自己负责验证权限
+                return ApiReturnCode.SUCCESS;
+            }
+            Map<String, ThirdpartyInfo> thirdpartyInfoMap = ThirdpartyConfig.getInstance().getThirdpartyInfoMap();
             if (thirdpartyInfoMap != null) {
-                boolean needVerify = context.apiCallInfos.get(0).method.needVerfiy;
-                if (!needVerify) {
-                    //业务方自己负责验证权限
-                    return ApiReturnCode.SUCCESS;
-                }
                 ThirdpartyInfo thirdpartyInfo = thirdpartyInfoMap.get(context.thirdPartyId);
                 if (thirdpartyInfo != null) {
                     Set<String> thirdpartyRes = thirdpartyInfo.getApiSet();
@@ -242,37 +256,12 @@ public class MultiServlet extends BaseServlet {
                 }
             } else {
                 logger.warn("thirdparty info map is empty!");
-                return ApiReturnCode.SUCCESS;
+                return ApiReturnCode.ACCESS_DENIED;
             }
         }
-        CallerInfo caller = context.caller;
-        if (SecurityType.RegisteredDevice.check(authTarget)) {
-            // 解析出caller说明是授信的设备,对app端需要进行过设备注册,对web端则是进行了登录
-            if (caller == null || caller.deviceId == 0) {
-                return ApiReturnCode.UNKNOW_TOKEN_DENIED;
-            } else if (context.deviceId != caller.deviceId) {
-                // 声称的 deviceId 和实际 token 中的 deviceId 不一致, 记录错误但是处理为正常 TODO: 严格处理
-                logger.error("deviceId error. context.deviceId:" + context.deviceId + " caller.deviceId:" + caller.deviceId);
-            } else if (String.valueOf(caller.appid).equals(context.appid)) {
-                // 声称的 appId 和实际 token 中的 appId 不一致, 记录错误但是处理为正常 TODO: 严格处理
-                logger.error("appId error. context.appid:" + context.appid + " caller.appid:" + caller.appid);
-            }
-        }
-
-        if (SecurityType.UserLogin.check(authTarget)) {
-            if (caller == null || caller.uid == 0) {
-                return ApiReturnCode.USER_CHECK_FAILED;
-            }
-        }
-
-        if (caller == null) {
-            if (!RiskManager.allowAccess(context.appid, context.deviceId, 0, context.cid, context.clientIP)) {
-                return ApiReturnCode.RISK_MANAGER_DENIED;
-            }
-        } else {
-            if (!RiskManager.allowAccess(context.appid, caller.deviceId, caller.uid, context.cid, context.clientIP)) {
-                return ApiReturnCode.RISK_MANAGER_DENIED;
-            }
+        if ((authTarget & caller.securityLevel) != authTarget) {
+            logger.error("securityLevel missmatch. expact:" + authTarget + " actual:" + caller.securityLevel);
+            return ApiReturnCode.SECURITY_LEVEL_MISSMATCH;
         }
         return ApiReturnCode.SUCCESS;
     }
@@ -309,7 +298,7 @@ public class MultiServlet extends BaseServlet {
         // 验证签名
         String sig = request.getParameter(CommonParameter.signature);
         //integrated级别接口只允许单接口调用,allowThirdPartyIds在接口注册时已进行校验
-        Map<Integer, ThirdpartyInfo> thirdpartyInfoMap = ThirdpartyConfig.getInstance().getThirdpartyInfoMap();
+        Map<String, ThirdpartyInfo> thirdpartyInfoMap = ThirdpartyConfig.getInstance().getThirdpartyInfoMap();
         if (thirdpartyInfoMap != null) {
             boolean needVerify = context.apiCallInfos.get(0).method.needVerfiy;
             if (!needVerify) {
@@ -359,9 +348,6 @@ public class MultiServlet extends BaseServlet {
 
         // 验证签名
         String sig = request.getParameter(CommonParameter.signature);
-        if (SecurityType.Internal.check(securityLevel)) {
-            return ApiConfig.getInstance().getInternalPort() == request.getLocalPort();
-        }
         if (sig != null && sig.length() > 0) {
             // 安全级别为None的接口仅进行静态秘钥签名验证,sha1,md5
             String sm = request.getParameter(CommonParameter.signatureMethod);
@@ -460,6 +446,21 @@ public class MultiServlet extends BaseServlet {
                 } else {
                     return executer.execute(params);
                 }
+            }
+        }
+        if (api.roleSet != null) {
+            CallerInfo caller = ApiContext.getCurrent().caller;
+            boolean hasRole = false;
+            if (caller != null && caller.roles != null) {
+                for (String role : caller.roles.split(",")) {
+                    hasRole = api.roleSet.contains(role);
+                    if (hasRole) {
+                        break;
+                    }
+                }
+            }
+            if (!hasRole) {
+                throw new ReturnCodeException(ApiReturnCode.ROLE_DENIED, "missing role for api:" + api.methodName);
             }
         }
         return apiManager.processRequest(name, params);

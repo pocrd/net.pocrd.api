@@ -2,7 +2,6 @@ package net.pocrd.apigw.common;
 
 import com.alibaba.fastjson.JSON;
 import net.pocrd.define.ConstField;
-import net.pocrd.entity.CompileConfig;
 import net.pocrd.util.Base64Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,17 +15,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.*;
 
 /**
- * 集成第三方配置
+ * 集成第三方配置 //TODO: get config from zk.
  * Created by guankaiqiang on 2015/3/11.
  */
 public class ThirdpartyConfig {
-    private static final Logger logger = LoggerFactory.getLogger(ThirdpartyConfig.class);
-    private Map<Integer, ThirdpartyInfo> thirdpartyInfoMap = new HashMap<Integer, ThirdpartyInfo>();
+    private static final Logger                      logger            = LoggerFactory.getLogger(ThirdpartyConfig.class);
+    private              Map<String, ThirdpartyInfo> thirdpartyInfoMap = new HashMap<String, ThirdpartyInfo>();
 
     public static ThirdpartyConfig getInstance() {
         return ThirdpartyConfigHolder.INSTANCE;
@@ -59,7 +56,7 @@ public class ThirdpartyConfig {
                 }
                 JAXBContext context = JAXBContext.newInstance(ThirdpartyInfoList.class);
                 Unmarshaller um = context.createUnmarshaller();
-                config = (ThirdpartyInfoList) um.unmarshal(inputStream);
+                config = (ThirdpartyInfoList)um.unmarshal(inputStream);
             } catch (JAXBException e) {
                 throw new RuntimeException("load config failed", e);
             }
@@ -86,15 +83,15 @@ public class ThirdpartyConfig {
 
     @XmlRootElement(name = "thirdpartyInfo")
     public static class ThirdpartyInfo implements Serializable {
-        private String name;
-        private int thirdpartyId;
+        private           String                  name;
+        private           int                     thirdpartyId;
         //        @XmlTransient
-        private transient byte[] rsaPublicKeyBytes;
-        private String md5Key;
-        private String rsaPublicKey;
-        private Status status;
-        private Set<SignatureAlgorithm> algorithms;
-        private Set<String> apiSet;
+        private transient byte[]                  rsaPublicKeyBytes;
+        private           String                  md5Key;
+        private           String                  rsaPublicKey;
+        private           Status                  status;
+        private           Set<SignatureAlgorithm> algorithms;
+        private           Set<String>             apiSet;
 
         public byte[] getRsaPublicKeyBytes() {
             return rsaPublicKeyBytes;
@@ -112,8 +109,6 @@ public class ThirdpartyConfig {
 
         /**
          * 第三方合作名称
-         *
-         * @return
          */
         public String getName() {
             return name;
@@ -125,8 +120,6 @@ public class ThirdpartyConfig {
 
         /**
          * 第三方编号
-         *
-         * @return
          */
         public int getThirdpartyId() {
             return thirdpartyId;
@@ -138,8 +131,6 @@ public class ThirdpartyConfig {
 
         /**
          * md5key
-         *
-         * @return
          */
         public String getMd5Key() {
             return md5Key;
@@ -152,8 +143,6 @@ public class ThirdpartyConfig {
 
         /**
          * rsa public key
-         *
-         * @return
          */
         public String getRsaPublicKey() {
             return rsaPublicKey;
@@ -167,8 +156,6 @@ public class ThirdpartyConfig {
 
         /**
          * 状态：激活，非激活
-         *
-         * @return
          */
         public Status getStatus() {
             return status;
@@ -181,8 +168,6 @@ public class ThirdpartyConfig {
 
         /**
          * 验证签名方式
-         *
-         * @return
          */
         public Set<SignatureAlgorithm> getAlgorithms() {
             return algorithms;
@@ -213,44 +198,44 @@ public class ThirdpartyConfig {
     }
 
     private static final class ThirdpartyConfigHolder {
-        private static final ThirdpartyConfig INSTANCE = new ThirdpartyConfig();
-        private static final String APIGW_DIAMOND_GROUP = "APIGW";
-        private static final String APIGW_THIRDPARTY_DATAID = "net.pocrd.apigw.thirdparty";
+        private static final ThirdpartyConfig INSTANCE                = new ThirdpartyConfig();
+        private static final String           APIGW_DIAMOND_GROUP     = "APIGW";
+        private static final String           APIGW_THIRDPARTY_DATAID = "net.pocrd.apigw.thirdparty";
 
         static {
             try {
                 // TODO: load config from zk
-//                ManagerListener managerListener = new ThirdpartyConfigListener();
-//                DefaultDiamondManager defaultDiamondManager = new DefaultDiamondManager(APIGW_DIAMOND_GROUP, APIGW_THIRDPARTY_DATAID,
-//                        managerListener);
-//                DiamondConfigure configure = new DiamondConfigure();
-//                configure.setPollingIntervalTime(60);
-//                defaultDiamondManager.setDiamondConfigure(configure);
-//                String config = null;
-//                if (CompileConfig.isDebug) {
-//                    List<String> domainNameList = defaultDiamondManager.getDiamondConfigure().getDomainNameList();
-//                    boolean diamondServerExist = false;
-//                    if (domainNameList != null && domainNameList.size() > 0) {
-//                        Socket socket = new Socket();
-//                        try {
-//                            diamondServerExist = true;
-//                            socket.connect(new InetSocketAddress(domainNameList.get(0), defaultDiamondManager.getDiamondConfigure().getPort()), 1000);
-//                        } catch (Exception e) {
-//                            diamondServerExist = false;
-//                        } finally {
-//                            socket.close();
-//                        }
-//                    }
-//                    if (diamondServerExist) {
-//                        config = defaultDiamondManager.getConfigureInfomation(1000);
-//                        managerListener.receiveConfigInfo(config);
-//                    } else {
-//                        defaultDiamondManager.close();
-//                    }
-//                } else {
-//                    config = defaultDiamondManager.getConfigureInfomation(1000);
-//                    managerListener.receiveConfigInfo(config);
-//                }
+                //                ManagerListener managerListener = new ThirdpartyConfigListener();
+                //                DefaultDiamondManager defaultDiamondManager = new DefaultDiamondManager(APIGW_DIAMOND_GROUP, APIGW_THIRDPARTY_DATAID,
+                //                        managerListener);
+                //                DiamondConfigure configure = new DiamondConfigure();
+                //                configure.setPollingIntervalTime(60);
+                //                defaultDiamondManager.setDiamondConfigure(configure);
+                //                String config = null;
+                //                if (CompileConfig.isDebug) {
+                //                    List<String> domainNameList = defaultDiamondManager.getDiamondConfigure().getDomainNameList();
+                //                    boolean diamondServerExist = false;
+                //                    if (domainNameList != null && domainNameList.size() > 0) {
+                //                        Socket socket = new Socket();
+                //                        try {
+                //                            diamondServerExist = true;
+                //                            socket.connect(new InetSocketAddress(domainNameList.get(0), defaultDiamondManager.getDiamondConfigure().getPort()), 1000);
+                //                        } catch (Exception e) {
+                //                            diamondServerExist = false;
+                //                        } finally {
+                //                            socket.close();
+                //                        }
+                //                    }
+                //                    if (diamondServerExist) {
+                //                        config = defaultDiamondManager.getConfigureInfomation(1000);
+                //                        managerListener.receiveConfigInfo(config);
+                //                    } else {
+                //                        defaultDiamondManager.close();
+                //                    }
+                //                } else {
+                //                    config = defaultDiamondManager.getConfigureInfomation(1000);
+                //                    managerListener.receiveConfigInfo(config);
+                //                }
             } catch (Throwable e) {
                 //严重问题
                 logger.error("init thirdpartyInfo failed!", e);
@@ -258,48 +243,48 @@ public class ThirdpartyConfig {
         }
     }
 
-//    private static class ThirdpartyConfigListener extends ManagerListenerAdapter {
-//        @Override
-//        public void receiveConfigInfo(String s) {
-//            Map<Integer, ThirdpartyInfo> thirdpartyInfoMap = new HashMap<Integer, ThirdpartyInfo>();
-//            //            ThirdpartyInfoList thirdpartyInfoList = ThirdpartyInfoList.loadFromXmlConfig(s);
-//            ThirdpartyInfoList thirdpartyInfoList = ThirdpartyInfoList.loadFromJSONString(s);
-//            if (thirdpartyInfoList != null) {
-//                List<ThirdpartyInfo> thirdpartyInfos = thirdpartyInfoList.getThirdpartyInfos();
-//                if (thirdpartyInfos != null) {
-//                    for (ThirdpartyInfo thirdpartyInfo : thirdpartyInfos) {
-//                        if (thirdpartyInfo.getAlgorithms() != null) {
-//                            if (thirdpartyInfo.getAlgorithms().contains(SignatureAlgorithm.MD5)) {
-//                                if (thirdpartyInfo.getMd5Key() == null) {
-//                                    logger.error("md5key is missing!thirdpartyId:{}", thirdpartyInfo.getThirdpartyId());
-//                                    continue;
-//                                }
-//                            }
-//                            if (thirdpartyInfo.getAlgorithms().contains(SignatureAlgorithm.RSA)) {
-//                                if (thirdpartyInfo.getRsaPublicKey() == null) {
-//                                    logger.error("rsa public key or private key is missing!thirdpartyId:{}", thirdpartyInfo.getThirdpartyId());
-//                                    continue;
-//                                }
-//                            }
-//                            logger.info("add thirdparty infomation:{}", thirdpartyInfo.toString());
-//                            thirdpartyInfoMap.put(thirdpartyInfo.getThirdpartyId(), thirdpartyInfo);
-//                        } else {
-//                            logger.error("support sig algorithm can not be empty!thirdpartyId:{}", thirdpartyInfo.getThirdpartyId());
-//                        }
-//                    }
-//                }
-//            } else {
-//                logger.warn("no thirdparty info config have be setted!");
-//            }
-//            ThirdpartyConfigHolder.INSTANCE.setThirdpartyInfoMap(thirdpartyInfoMap);
-//        }
-//    }
+    //    private static class ThirdpartyConfigListener extends ManagerListenerAdapter {
+    //        @Override
+    //        public void receiveConfigInfo(String s) {
+    //            Map<Integer, ThirdpartyInfo> thirdpartyInfoMap = new HashMap<Integer, ThirdpartyInfo>();
+    //            //            ThirdpartyInfoList thirdpartyInfoList = ThirdpartyInfoList.loadFromXmlConfig(s);
+    //            ThirdpartyInfoList thirdpartyInfoList = ThirdpartyInfoList.loadFromJSONString(s);
+    //            if (thirdpartyInfoList != null) {
+    //                List<ThirdpartyInfo> thirdpartyInfos = thirdpartyInfoList.getThirdpartyInfos();
+    //                if (thirdpartyInfos != null) {
+    //                    for (ThirdpartyInfo thirdpartyInfo : thirdpartyInfos) {
+    //                        if (thirdpartyInfo.getAlgorithms() != null) {
+    //                            if (thirdpartyInfo.getAlgorithms().contains(SignatureAlgorithm.MD5)) {
+    //                                if (thirdpartyInfo.getMd5Key() == null) {
+    //                                    logger.error("md5key is missing!thirdpartyId:{}", thirdpartyInfo.getThirdpartyId());
+    //                                    continue;
+    //                                }
+    //                            }
+    //                            if (thirdpartyInfo.getAlgorithms().contains(SignatureAlgorithm.RSA)) {
+    //                                if (thirdpartyInfo.getRsaPublicKey() == null) {
+    //                                    logger.error("rsa public key or private key is missing!thirdpartyId:{}", thirdpartyInfo.getThirdpartyId());
+    //                                    continue;
+    //                                }
+    //                            }
+    //                            logger.info("add thirdparty infomation:{}", thirdpartyInfo.toString());
+    //                            thirdpartyInfoMap.put(thirdpartyInfo.getThirdpartyId(), thirdpartyInfo);
+    //                        } else {
+    //                            logger.error("support sig algorithm can not be empty!thirdpartyId:{}", thirdpartyInfo.getThirdpartyId());
+    //                        }
+    //                    }
+    //                }
+    //            } else {
+    //                logger.warn("no thirdparty info config have be setted!");
+    //            }
+    //            ThirdpartyConfigHolder.INSTANCE.setThirdpartyInfoMap(thirdpartyInfoMap);
+    //        }
+    //    }
 
-    public Map<Integer, ThirdpartyInfo> getThirdpartyInfoMap() {
+    public Map<String, ThirdpartyInfo> getThirdpartyInfoMap() {
         return thirdpartyInfoMap;
     }
 
-    void setThirdpartyInfoMap(Map<Integer, ThirdpartyInfo> thirdpartyInfoMap) {
+    void setThirdpartyInfoMap(Map<String, ThirdpartyInfo> thirdpartyInfoMap) {
         this.thirdpartyInfoMap = thirdpartyInfoMap;
     }
 }
