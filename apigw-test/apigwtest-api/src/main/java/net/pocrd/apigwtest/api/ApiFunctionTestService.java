@@ -5,6 +5,7 @@ import net.pocrd.apigwtest.entity.BadResponse;
 import net.pocrd.apigwtest.entity.SimpleTestEntity;
 import net.pocrd.annotation.*;
 import net.pocrd.define.ApiOpenState;
+import net.pocrd.define.AutowireableParameter;
 import net.pocrd.define.CommonParameter;
 import net.pocrd.define.SecurityType;
 import net.pocrd.entity.ServiceException;
@@ -34,9 +35,7 @@ public interface ApiFunctionTestService {
     @HttpApi(name = "apitest.testAutowiredClientIP", desc = "服务端获取客户端IP测试", security = SecurityType.None, owner = "sunji180",
              state = ApiOpenState.OPEN)
     @DesignedErrorCode(ApigwTestReturnCode._C_TEST_UNKNOW_ERROR)
-    String testAutowiredClientIP(
-            @ApiAutowired(CommonParameter.clientIp)
-            String clientIp) throws ServiceException;
+    String testAutowiredClientIP() throws ServiceException;
 
     @HttpApi(name = "apitest.testApiParameterIsRsaEncryptedOrAesEncrypted", desc = "Api文档RsaEncrypted或AesEncrypted字段展示测试",
              security = SecurityType.None, owner = "sunji180", state = ApiOpenState.OPEN)
@@ -96,23 +95,23 @@ public interface ApiFunctionTestService {
             @ApiParameter(required = true, name = "param", desc = "param")
             String param) throws ServiceException;
 
-    @HttpApi(name = "apitest.testPostbody", desc = "测试test post body", security = SecurityType.Integrated)
+    @HttpApi(name = "apitest.testPostbody", desc = "测试test post body", security = SecurityType.Integrated, owner = "rendong")
     String testPostbody(
-            @ApiAutowired(CommonParameter.postBody)
+            @ApiAutowired(AutowireableParameter.postBody)
             String postBody) throws ServiceException;
 
-    @HttpApi(name = "apitest.testDoc", desc = "测试test testDoc", state = ApiOpenState.DOCUMENT, security = SecurityType.Document)
+    @HttpApi(name = "apitest.testDoc", desc = "测试test testDoc", state = ApiOpenState.DOCUMENT, security = SecurityType.Document, owner = "rendong")
     String testDoc(
             @ApiParameter(required = true, name = "param", desc = "param")
             String postBody) throws ServiceException;
 
     @HttpApi(name = "apitest.testThrowServiceException", desc = "测试test testThrowServiceException", state = ApiOpenState.OPEN,
-             security = SecurityType.None)
+             security = SecurityType.None, owner = "rendong")
     @DesignedErrorCode(ApigwTestReturnCode._C_TEST_FOR_TEST)
     String testThrowServiceException() throws ServiceException;
 
     @HttpApi(name = "apitest.testBadResponse", desc = "测试序列化异常", state = ApiOpenState.OPEN,
-             security = SecurityType.None)
+             security = SecurityType.None, owner = "rendong")
     BadResponse testBadResponse() throws ServiceException;
 }
 

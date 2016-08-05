@@ -37,7 +37,7 @@
             <dependency>
                 <groupId>net.pocrd</groupId>
                 <artifactId>api-util</artifactId>
-                <version>1.2.2-SNAPSHOT</version>
+                <version>1.2.3-SNAPSHOT</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
@@ -50,18 +50,6 @@
                     <exclusion>
                         <groupId>com.alibaba</groupId>
                         <artifactId>fastjson</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.httpcomponents</groupId>
-                        <artifactId>httpclient</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.httpcomponents</groupId>
-                        <artifactId>fluent-hc</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.httpcomponents</groupId>
-                        <artifactId>httpmime</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>com.alibaba</groupId>

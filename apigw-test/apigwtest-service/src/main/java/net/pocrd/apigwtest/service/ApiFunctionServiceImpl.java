@@ -151,9 +151,9 @@ public class ApiFunctionServiceImpl implements ApiFunctionTestService {
     }
 
     @Override
-    public String testAutowiredClientIP(String clientIp) throws ServiceException {
+    public String testAutowiredClientIP() throws ServiceException {
         try {
-            return clientIp;
+            return DubboExtProperty.getClientCallerFromAttachment().clientIP;
         } catch (ServiceRuntimeException sre) {
             logger.error("api failed.", sre);
             throw new ServiceException("api failed.", sre);

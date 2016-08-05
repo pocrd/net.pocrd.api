@@ -215,21 +215,6 @@ public class MultiServlet extends BaseServlet {
     }
 
     private AbstractReturnCode checkAuthorization(ApiContext context, int authTarget, HttpServletRequest request) {
-        CallerInfo caller = context.caller;
-        if (caller == null) {
-            if (!RiskManager.allowAccess(context.appid, context.deviceId, 0, context.cid, context.clientIP)) {
-                return ApiReturnCode.RISK_MANAGER_DENIED;
-            }
-        } else {
-            if (!RiskManager.allowAccess(context.appid, caller.deviceId, caller.uid, context.cid, context.clientIP)) {
-                return ApiReturnCode.RISK_MANAGER_DENIED;
-            }
-        }
-
-        if (SecurityType.isNone(authTarget)) {// 不进行权限控制
-            return ApiReturnCode.SUCCESS;
-        }
-
         if (SecurityType.Internal.check(authTarget)) {
             return ApiConfig.getInstance().getInternalPort() == request.getLocalPort() ? ApiReturnCode.SUCCESS : ApiReturnCode.ACCESS_DENIED;
         }
@@ -259,6 +244,22 @@ public class MultiServlet extends BaseServlet {
                 return ApiReturnCode.ACCESS_DENIED;
             }
         }
+
+        CallerInfo caller = context.caller;
+        if (caller == null) {
+            if (!RiskManager.allowAccess(context.appid, context.deviceId, 0, context.cid, context.clientIP)) {
+                return ApiReturnCode.RISK_MANAGER_DENIED;
+            }
+        } else {
+            if (!RiskManager.allowAccess(context.appid, caller.deviceId, caller.uid, context.cid, context.clientIP)) {
+                return ApiReturnCode.RISK_MANAGER_DENIED;
+            }
+        }
+
+        if (SecurityType.isNone(authTarget)) {// 不进行权限控制
+            return ApiReturnCode.SUCCESS;
+        }
+
         if ((authTarget & caller.securityLevel) != authTarget) {
             logger.error("securityLevel missmatch. expact:" + authTarget + " actual:" + caller.securityLevel);
             return ApiReturnCode.SECURITY_LEVEL_MISSMATCH;
@@ -451,13 +452,8 @@ public class MultiServlet extends BaseServlet {
         if (api.roleSet != null) {
             CallerInfo caller = ApiContext.getCurrent().caller;
             boolean hasRole = false;
-            if (caller != null && caller.roles != null) {
-                for (String role : caller.roles.split(",")) {
-                    hasRole = api.roleSet.contains(role);
-                    if (hasRole) {
-                        break;
-                    }
-                }
+            if (caller != null && caller.role != null) {
+                hasRole = api.roleSet.contains(caller.role);
             }
             if (!hasRole) {
                 throw new ReturnCodeException(ApiReturnCode.ROLE_DENIED, "missing role for api:" + api.methodName);
