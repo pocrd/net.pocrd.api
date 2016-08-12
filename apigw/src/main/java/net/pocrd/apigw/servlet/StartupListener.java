@@ -3,9 +3,11 @@ package net.pocrd.apigw.servlet;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import net.pocrd.annotation.ApiMockInterfaceImpl;
 import net.pocrd.apigw.common.ApiConfig;
 import net.pocrd.apigw.common.ThirdpartyConfig;
-import net.pocrd.annotation.ApiMockInterfaceImpl;
 import net.pocrd.core.ApiManager;
 import net.pocrd.core.InfoServlet;
 import net.pocrd.define.MockApiImplementation;
@@ -39,6 +41,13 @@ public class StartupListener implements ServletContextListener {
     static {
         InputStream input = null;
         try {
+            JSON.DEFAULT_GENERATE_FEATURE |= SerializerFeature.DisableCircularReferenceDetect.getMask();//disable循环引用
+            //            JSON.DEFAULT_GENERATE_FEATURE |= SerializerFeature.WriteMapNullValue;//null属性，序列化为null,do by guankaiqiang,android sdk中 JSON.optString()将null convert成了"null",故关闭该特性
+            JSON.DEFAULT_GENERATE_FEATURE |= SerializerFeature.NotWriteRootClassName.getMask();
+            //            JSON.DEFAULT_GENERATE_FEATURE |= SerializerFeature.WriteEnumUsingToString.getMask();
+            JSON.DEFAULT_GENERATE_FEATURE |= SerializerFeature.WriteNullNumberAsZero.getMask();
+            JSON.DEFAULT_GENERATE_FEATURE |= SerializerFeature.WriteNullBooleanAsFalse.getMask();
+
             input = StartupListener.class.getResourceAsStream("/config.properties");
             logger.info("properties load " + (input == null ? "failed" : "success"));
             Properties prop = null;
