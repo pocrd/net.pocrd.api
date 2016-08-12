@@ -34,7 +34,7 @@ public class MultiServlet extends BaseServlet {
     private static final Logger logger           = LoggerFactory.getLogger(MultiServlet.class);
     private static final long   serialVersionUID = 1L;
     private static final String staticSignPwd    = ApiConfig.getInstance().getStaticSignPwd();
-    public static final  String DEBUG_AGENT      = "sf.tester";
+    public static final  String DEBUG_AGENT      = "pocrd.tester";
 
     private static ApiManager apiManager = null;
 
