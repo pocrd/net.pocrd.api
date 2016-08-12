@@ -99,31 +99,53 @@ public class MultiServlet extends BaseServlet {
                     for (int i = 0; i < parameters.length; i++) {
                         ApiParameterInfo ap = method.parameterInfos[i];
                         if (ap.isAutowired) {
-                            switch (AutowireableParameter.valueOf(ap.name)) {
-                                case userAgent: parameters[i] = context.agent; break;
-                                case cookies:
-                                    Map<String, String> map = new HashMap<String, String>(ap.names.length);
-                                    for (String n : ap.names) {
-                                        String v = context.getCookie(n);
-                                        if (v != null) {
-                                            map.put(n, v);
+                            if (ap.creator != null) {
+                                parameters[i] = ap.creator.create();
+                            } else {
+                                switch (AutowireableParameter.valueOf(ap.name)) {
+                                    case userAgent:
+                                        parameters[i] = context.agent;
+                                        break;
+                                    case cookies:
+                                        Map<String, String> map = new HashMap<String, String>(ap.names.length);
+                                        for (String n : ap.names) {
+                                            String v = context.getCookie(n);
+                                            if (v != null) {
+                                                map.put(n, v);
+                                            }
                                         }
-                                    }
-                                    parameters[i] = JSON.toJSONString(map);
-                                    break;
-                                case businessid: parameters[i] = call.businessId; break;
-                                case postBody:
-                                    if (SecurityType.Integrated.check(method.securityLevel)) {
-                                        parameters[i] = readPostBody(request);
-                                    }
-                                    break;
-                                case channel: parameters[i] = request.getParameter(CommonParameter.channel); break;
-                                case thirdPartyId: parameters[i] = context.thirdPartyId; break;
-                                case versionCode: parameters[i] = context.versionCode; break;
-                                case referer: parameters[i] = context.referer; break;
-                                case host: parameters[i] = context.host; break;
-                                case token: parameters[i] = context.token; break;
-                                case stoken: parameters[i] = context.stoken; break;
+                                        parameters[i] = JSON.toJSONString(map);
+                                        break;
+                                    case businessid:
+                                        parameters[i] = call.businessId;
+                                        break;
+                                    case postBody:
+                                        if (SecurityType.Integrated.check(method.securityLevel)) {
+                                            parameters[i] = readPostBody(request);
+                                        }
+                                        break;
+                                    case channel:
+                                        parameters[i] = request.getParameter(CommonParameter.channel);
+                                        break;
+                                    case thirdPartyId:
+                                        parameters[i] = context.thirdPartyId;
+                                        break;
+                                    case versionCode:
+                                        parameters[i] = context.versionCode;
+                                        break;
+                                    case referer:
+                                        parameters[i] = context.referer;
+                                        break;
+                                    case host:
+                                        parameters[i] = context.host;
+                                        break;
+                                    case token:
+                                        parameters[i] = context.token;
+                                        break;
+                                    case stoken:
+                                        parameters[i] = context.stoken;
+                                        break;
+                                }
                             }
                         } else {
                             if (names.length == 1) {
