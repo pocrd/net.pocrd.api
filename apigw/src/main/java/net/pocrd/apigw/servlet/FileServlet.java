@@ -40,7 +40,7 @@ import java.util.UUID;
  */
 @WebServlet("/file.api")
 @MultipartConfig
-public class FileServlet extends MultiServlet {
+public class FileServlet extends MainServlet {
     private static final long      serialVersionUID       = 1L;
     private static final String    HASH_SLAT              = "www.sfht.com";
     private static final Logger    logger                 = LoggerFactory.getLogger(FileServlet.class);

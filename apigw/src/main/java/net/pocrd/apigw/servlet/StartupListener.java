@@ -58,7 +58,6 @@ public class StartupListener implements ServletContextListener {
             CommonConfig.init(prop);
             ApiConfig.init(prop);
             ThirdpartyConfig.getInstance().getThirdpartyInfoMap();
-            MultiServlet.setApiManager(new ApiManager());
         } catch (Throwable e) {
             logger.error("application init failed. ====================================================================================", e);
             throw new RuntimeException(e);
@@ -206,7 +205,7 @@ public class StartupListener implements ServletContextListener {
                                             if (service == null) {
                                                 logger.error("cannot find dubbo service for " + clazz.getName());
                                             }
-                                            MultiServlet.getApiManager().register(f.getName(), ApiManager.parseApi(clazz, service));
+                                            MainServlet.getApiManager().register(f.getName(), ApiManager.parseApi(clazz, service));
                                         }
                                     }
                                 }
@@ -225,7 +224,7 @@ public class StartupListener implements ServletContextListener {
             logger.error("load api failed.", t);
         }
         if (CompileConfig.isDebug) {
-            InfoServlet.setApiMethodInfos(MultiServlet.getApiInfos());
+            InfoServlet.setApiMethodInfos(MainServlet.getApiInfos());
         }
     }
 

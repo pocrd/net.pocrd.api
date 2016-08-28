@@ -111,7 +111,7 @@ public interface ApiFunctionTestService {
     String testThrowServiceException() throws ServiceException;
 
     @HttpApi(name = "apitest.testBadResponse", desc = "测试序列化异常", state = ApiOpenState.OPEN,
-             security = SecurityType.None, owner = "rendong")
+             security = SecurityType.None, owner = "rendongds")
     BadResponse testBadResponse() throws ServiceException;
 }
 
