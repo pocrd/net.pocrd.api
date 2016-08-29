@@ -6,6 +6,7 @@ import com.aliyun.oss.model.OSSObject;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
 import net.pocrd.apigw.common.ApiConfig;
+import net.pocrd.core.HttpRequestExecutor;
 import net.pocrd.define.CommonParameter;
 import net.pocrd.define.ConstField;
 import net.pocrd.define.SecurityType;
@@ -20,13 +21,11 @@ import org.slf4j.MDC;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Collection;
 import java.util.HashMap;
@@ -40,15 +39,12 @@ import java.util.UUID;
  */
 @WebServlet("/file.api")
 @MultipartConfig
-public class FileServlet extends MainServlet {
+public class FileServlet extends HttpServlet {
     private static final long      serialVersionUID       = 1L;
     private static final String    HASH_SLAT              = "www.sfht.com";
     private static final Logger    logger                 = LoggerFactory.getLogger(FileServlet.class);
     private static final int       MAX_UPLOAD_FILE_LENGTH = 1024 * 1024 * 10;
-    private static final OSSClient client                 = (ApiConfig.getInstance().getOssEndPoint() == null
-            || ApiConfig.getInstance().getOssEndPoint().length() == 0) ?
-            new OSSClient(ApiConfig.getInstance().getOssAccessKey(), ApiConfig.getInstance().getOssAccessSecret())
-            :
+    private static final OSSClient client                 =
             new OSSClient(ApiConfig.getInstance().getOssEndPoint(), ApiConfig.getInstance().getOssAccessKey(),
                     ApiConfig.getInstance().getOssAccessSecret());
     private static final String    RESULT_FORMAT_STR      = "{\"stat\":{\"cid\":\"0\",\"code\":0,\"stateList\":[{\"code\":%s,\"length\":%s,\"msg\":\"\"}],\"systime\":%s},\"content\":[%s]}";
@@ -56,19 +52,7 @@ public class FileServlet extends MainServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("n");
-        String tk = req.getParameter(CommonParameter.token);
-        if (tk == null || tk.length() == 0) {
-            Cookie[] cs = req.getCookies();
-            String appId = req.getParameter(CommonParameter.applicationId);
-            if (cs != null && appId != null) {
-                String tokenName = appId + CommonParameter.token;
-                for (Cookie c : cs) {
-                    if (tokenName.equals(c.getName())) {
-                        tk = URLDecoder.decode(c.getValue(), "utf-8");
-                    }
-                }
-            }
-        }
+        String tk = getToken(req);
         CallerInfo caller = null;
         if (tk != null && tk.length() > 0) {
             caller = ApiConfig.getInstance().getApiTokenHelper().parseToken(tk);
@@ -80,7 +64,7 @@ public class FileServlet extends MainServlet {
             return;
         }
 
-        if (!checkSignature(caller, SecurityType.UserLogin.authorize(0), req)) {
+        if (!HttpRequestExecutor.checkSignature(caller, SecurityType.UserLogin.authorize(0), req)) {
             logger.error("check signature failed.");
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden");
             return;
@@ -181,19 +165,7 @@ public class FileServlet extends MainServlet {
 
     private int uploadFiles(HttpServletRequest request, Map<String, String> files) {
         try {
-            String tk = request.getParameter(CommonParameter.token);
-            if (tk == null || tk.length() == 0) {
-                Cookie[] cs = request.getCookies();
-                String appId = request.getParameter(CommonParameter.applicationId);
-                if (cs != null && appId != null) {
-                    String tokenName = appId + CommonParameter.token;
-                    for (Cookie c : cs) {
-                        if (tokenName.equals(c.getName())) {
-                            tk = URLDecoder.decode(c.getValue(), "utf-8");
-                        }
-                    }
-                }
-            }
+            String tk = getToken(request);
             CallerInfo caller = null;
             if (tk == null || tk.length() == 0) {
                 return ApiReturnCode._C_TOKEN_ERROR;
@@ -342,11 +314,27 @@ public class FileServlet extends MainServlet {
         return ApiReturnCode._C_UNKNOWN_ERROR;
     }
 
+    private String getToken(HttpServletRequest request) throws UnsupportedEncodingException {
+        String tk = request.getParameter(CommonParameter.token);
+        if (tk == null || tk.length() == 0) {
+            Cookie[] cs = request.getCookies();
+            String appId = request.getParameter(CommonParameter.applicationId);
+            if (cs != null && appId != null) {
+                String tokenName = appId + CommonParameter.token;
+                for (Cookie c : cs) {
+                    if (tokenName.equals(c.getName())) {
+                        tk = URLDecoder.decode(c.getValue(), "utf-8");
+                    }
+                }
+            }
+        }
+        return tk;
+    }
+
     /**
      * 获取文件名称
      *
      * @param part
-     * @return
      */
     public String parseFileName(Part part) {
         String fileName = null;
@@ -364,12 +352,18 @@ public class FileServlet extends MainServlet {
     }
 
     private static enum FileType {
-        ID_CARD_1, // 身份证正面
-        ID_CARD_2, // 身份证背面
-        ORDER_SNAPSHOT, // 物流订单图片, 应用系统上传, 网关不处理
-        THIRD_ORDER, // 第三方订单图片
-        USER_IMG, // 用户头像
-        CPRODUCT_IMG; // c2c产品图片
+        // 身份证正面
+        ID_CARD_1,
+        // 身份证背面
+        ID_CARD_2,
+        // 物流订单图片, 应用系统上传, 网关不处理
+        ORDER_SNAPSHOT,
+        // 第三方订单图片
+        THIRD_ORDER,
+        // 用户头像
+        USER_IMG,
+        // c2c产品图片
+        CPRODUCT_IMG;
 
         private FileType() {
         }
