@@ -18,15 +18,17 @@ import java.util.Set;
 /**
  * Created by rendong on 16/8/28.
  */
-public class RequestExecutor extends HttpRequestExecutor {
-    private static final Logger logger = LoggerFactory.getLogger(RequestExecutor.class);
+public class ApiGwRequestExecutor extends HttpRequestExecutor {
+    private static final Logger logger = LoggerFactory.getLogger(ApiGwRequestExecutor.class);
 
+    @Override
     protected AbstractReturnCode checkAuthorization(ApiContext context, int authTarget, HttpServletRequest request) {
         if (SecurityType.Internal.check(authTarget)) {
             return CommonConfig.getInstance().getInternalPort() == request.getLocalPort() ? ApiReturnCode.SUCCESS : ApiReturnCode.ACCESS_DENIED;
         }
 
-        if (SecurityType.Integrated.check(authTarget)) {//对标注了needVerify==true的Integrated接口进行访问权限的校验
+        //对标注了needVerify==true的Integrated接口进行访问权限的校验
+        if (SecurityType.Integrated.check(authTarget)) {
             if (!context.apiCallInfos.get(0).method.needVerfiy) {
                 //业务方自己负责验证权限
                 return ApiReturnCode.SUCCESS;
@@ -75,6 +77,7 @@ public class RequestExecutor extends HttpRequestExecutor {
         return ApiReturnCode.SUCCESS;
     }
 
+    @Override
     protected boolean checkIntegratedSignature(ApiContext context, HttpServletRequest request) {
         // 拼装被签名参数列表
         StringBuilder sb = getSortedParameters(request);

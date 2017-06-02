@@ -1,5 +1,6 @@
 package net.pocrd.apigw.servlet;
 
+import net.pocrd.apigw.common.ApiConfig;
 import net.pocrd.core.ApiManager;
 import net.pocrd.core.HttpRequestExecutor;
 import net.pocrd.entity.ApiMethodInfo;
@@ -48,7 +49,7 @@ public class MainServlet extends HttpServlet {
         try {
             HttpRequestExecutor executor = HttpRequestExecutor.get();
             if (executor == null) {
-                HttpRequestExecutor.createIfNull(apiManager);
+                HttpRequestExecutor.createIfNull(apiManager, ApiConfig.getInstance().getZkAddress());
                 executor = HttpRequestExecutor.get();
             }
             executor.processRequest(request, response);

@@ -72,6 +72,7 @@ public class StartupListener implements ServletContextListener {
         }
     }
 
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
             WebappClassLoader loader = (WebappClassLoader)getClass().getClassLoader();
@@ -223,11 +224,10 @@ public class StartupListener implements ServletContextListener {
         } catch (Throwable t) {
             logger.error("load api failed.", t);
         }
-        if (CompileConfig.isDebug) {
-            InfoServlet.setApiMethodInfos(MainServlet.getApiInfos());
-        }
+        InfoServlet.setApiMethodInfos(ApiConfig.getInstance().getServiceVersion(), MainServlet.getApiInfos());
     }
 
+    @Override
     public void contextDestroyed(ServletContextEvent arg0) {
 
     }
