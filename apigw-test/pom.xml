@@ -37,7 +37,7 @@
             <dependency>
                 <groupId>net.pocrd</groupId>
                 <artifactId>api-util</artifactId>
-                <version>1.2.3-SNAPSHOT</version>
+                <version>2.1.0-SNAPSHOT</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
