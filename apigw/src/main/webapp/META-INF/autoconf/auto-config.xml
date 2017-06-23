@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<config description="sfht.config">
+<config description="pocrd.config">
     <group name="env">
         <property name="net.pocrd.apigwVersion" description="apigw版本号" required="true"/>
         <property name="dubbo.reference.version" description="dubbo服务版本号" required="true"/>

@@ -41,7 +41,7 @@ import java.util.UUID;
 @MultipartConfig
 public class FileServlet extends HttpServlet {
     private static final long      serialVersionUID       = 1L;
-    private static final String    HASH_SLAT              = "www.sfht.com";
+    private static final String    HASH_SLAT              = "www.pocrd.com";
     private static final Logger    logger                 = LoggerFactory.getLogger(FileServlet.class);
     private static final int       MAX_UPLOAD_FILE_LENGTH = 1024 * 1024 * 10;
     private static final OSSClient client                 =
@@ -251,8 +251,8 @@ public class FileServlet extends HttpServlet {
                             meta.setContentLength(size);
                             meta.setServerSideEncryption("AES256");
                             switch (type) {
-                                case ID_CARD_1: // 私有图片, 上传者从file.api 访问。第三方从 img.sfht.com 访问
-                                case ID_CARD_2: // 私有图片, 上传者从file.api 访问。第三方从 img.sfht.com 访问
+                                case ID_CARD_1: // 私有图片, 上传者从file.api 访问。第三方从 img.pocrd.com 访问
+                                case ID_CARD_2: // 私有图片, 上传者从file.api 访问。第三方从 img.pocrd.com 访问
                                     String cardId = request.getParameter("addressId");
                                     if (cardId == null || cardId.length() == 0) {
                                         cardId = UUID.randomUUID().toString();
@@ -264,7 +264,7 @@ public class FileServlet extends HttpServlet {
                                             Md5Util.computeToHex((caller.uid + cardId + type.toString() + HASH_SLAT).getBytes(ConstField.UTF8))
                                                     + "_" + type.toString() + fileName;
                                     break;
-                                case THIRD_ORDER: // 私有图片, 上传者从file.api 访问。第三方从 img.sfht.com 访问
+                                case THIRD_ORDER: // 私有图片, 上传者从file.api 访问。第三方从 img.pocrd.com 访问
                                     String oid = request.getParameter("oid");
                                     if (oid != null && oid.length() > 0) {
                                         meta.addUserMetadata("uid", "" + caller.uid);
@@ -275,14 +275,14 @@ public class FileServlet extends HttpServlet {
                                                 + HASH_SLAT).getBytes(ConstField.UTF8)) + "_" + type.toString() + fileName;
                                     }
                                     break;
-                                case USER_IMG: // 公开图片, 从 img.sfht.com 访问
+                                case USER_IMG: // 公开图片, 从 img.pocrd.com 访问
                                     meta.addUserMetadata("uid", "" + caller.uid);
                                     meta.setContentType(contentType);
                                     fileName = type.toString() + "/" + Md5Util.computeToHex((caller.uid + type.toString()
                                             + HASH_SLAT).getBytes(ConstField.UTF8)) + fileName;
                                     meta.setContentDisposition("inline; filename=" + fileName);
                                     break;
-                                case CPRODUCT_IMG: // 公开图片, 从 img.sfht.com 访问
+                                case CPRODUCT_IMG: // 公开图片, 从 img.pocrd.com 访问
                                     meta.addUserMetadata("uid", "" + caller.uid);
                                     meta.setContentType(contentType);
                                     fileName = type.toString() + "/" + Md5Util.computeToHex((caller.uid + type.toString()
