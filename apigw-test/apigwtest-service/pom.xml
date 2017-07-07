@@ -18,6 +18,10 @@
             <artifactId>api-util</artifactId>
         </dependency>
         <dependency>
+            <groupId>net.pocrd</groupId>
+            <artifactId>demo-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
