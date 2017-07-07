@@ -13,7 +13,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>src/main/bin</directory>
+            <directory>src/main/shell_script</directory>
             <outputDirectory>/</outputDirectory>
             <includes>
             </includes>

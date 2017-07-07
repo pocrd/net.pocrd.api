@@ -5,7 +5,7 @@ then
   exit 1
 fi
 #这里写自己服务的名字
-SERVICE_NAME="demo"
+SERVICE_NAME="apigw-test"
 PID_FILE="../$SERVICE_NAME.pid"
 BASE_DIR=$(dirname $0)
 LIB_DIR=$BASE_DIR/lib
@@ -18,7 +18,7 @@ fi
 
 JAVA_OPT_1="-server -Xms2g -Xmx2g -Xmn1g -XX:PermSize=128m -XX:MaxPermSize=320m"
 JAVA_OPT_2="-XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8 -XX:+DisableExplicitGC"
-#JAVA_OPT_3="-verbose:gc -Xloggc:${HOME}/demo_gc.log -XX:+PrintGCDetails"
+#JAVA_OPT_3="-verbose:gc -Xloggc:${HOME}/apigw-test_gc.log -XX:+PrintGCDetails"
 JAVA_OPT_4="-XX:-OmitStackTraceInFastThrow"
 JAVA_OPT_5="-Djava.ext.dirs=${JAVA_HOME}/jre/lib/ext"
 #JAVA_OPT_6="-Xdebug -Xrunjdwp:transport=dt_socket,address=9555,server=y,suspend=n"
