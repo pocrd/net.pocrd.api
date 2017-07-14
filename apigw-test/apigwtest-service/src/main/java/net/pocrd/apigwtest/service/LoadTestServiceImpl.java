@@ -67,6 +67,7 @@ public class LoadTestServiceImpl implements LoadTestService {
     @Override
     public String testDemoSayHello(String name) {
         DemoEntity de = demoService.sayHello(name);
+        logger.info("say hello to " + name);
         return de.name + "..." + de.id;
     }
 }
