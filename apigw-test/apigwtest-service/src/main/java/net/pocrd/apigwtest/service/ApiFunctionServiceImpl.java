@@ -6,6 +6,7 @@ import net.pocrd.apigwtest.entity.ApigwTestReturnCode;
 import net.pocrd.apigwtest.entity.BadResponse;
 import net.pocrd.apigwtest.entity.SimpleTestEntity;
 import net.pocrd.dubboext.DubboExtProperty;
+import net.pocrd.dubboext.TraceInfo;
 import net.pocrd.entity.ServiceRuntimeException;
 import net.pocrd.responseEntity.CreditNotification;
 import net.pocrd.responseEntity.JSONString;
@@ -122,7 +123,7 @@ public class ApiFunctionServiceImpl implements ApiFunctionTestService {
 
     @Override
     public String testAutowiredClientIP() {
-        return DubboExtProperty.getClientCallerFromAttachment().clientIP;
+        return TraceInfo.getTraceInfo().sysinfo;
     }
 
     @Override
