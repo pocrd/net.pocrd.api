@@ -40,13 +40,12 @@
         <property name="version" value="LATEST"/>
         <property name="timeout" value="3000"/>
     </bean>
-
     <bean id="demoService" class="com.alibaba.dubbo.config.spring.ReferenceBean">
         <property name="interface" value="net.pocrd.demo.api.DemoService"/>
         <property name="application" ref="dubboApplicationConfig"/>
         <property name="registry" ref="dubboRegistryConfig"/>
         <property name="check" value="false"/>
-        <property name="version" value="${dubbo.reference.version}"/>
+        <property name="version" value="LATEST"/>
         <property name="retries" value="0"/>
     </bean>
 </beans>

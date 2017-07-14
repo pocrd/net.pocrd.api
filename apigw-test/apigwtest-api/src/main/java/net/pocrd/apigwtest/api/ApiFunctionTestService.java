@@ -32,7 +32,7 @@ public interface ApiFunctionTestService {
     @DesignedErrorCode(ApigwTestReturnCode._C_TEST_UNKNOW_ERROR)
     String testAutowiredClientIP();
 
-    @HttpApi(name = "apitest.testApiParameterIsRsaEncryptedOrAesEncrypted", desc = "Api文档RsaEncrypted或AesEncrypted字段展示测试",
+    @HttpApi(name = "apitest.testApiParameterRsaEncrypted", desc = "Api文档RsaEncrypted字段展示测试",
              security = SecurityType.None, owner = "sunji180", state = ApiOpenState.OPEN)
     @DesignedErrorCode(ApigwTestReturnCode._C_TEST_UNKNOW_ERROR)
     String testApiParameterRsaEncrypted(
@@ -100,7 +100,7 @@ public interface ApiFunctionTestService {
     String testThrowServiceException();
 
     @HttpApi(name = "apitest.testBadResponse", desc = "测试序列化异常", state = ApiOpenState.OPEN,
-             security = SecurityType.None, owner = "rendongds")
+             security = SecurityType.None, owner = "rendong")
     BadResponse testBadResponse();
 }
 
