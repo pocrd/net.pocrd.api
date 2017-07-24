@@ -1,13 +1,10 @@
 package net.pocrd.apigwtest.api;
 
-import net.pocrd.annotation.ApiGroup;
-import net.pocrd.annotation.ApiParameter;
-import net.pocrd.annotation.HttpApi;
+import net.pocrd.annotation.*;
 import net.pocrd.apigwtest.entity.ApigwTestReturnCode;
 import net.pocrd.apigwtest.entity.ComplexTestEntity;
 import net.pocrd.apigwtest.entity.SimpleTestEntity;
 import net.pocrd.define.SecurityType;
-import net.pocrd.entity.ServiceException;
 
 import java.util.List;
 
@@ -37,6 +34,8 @@ public interface LoadTestService {
                     int intParam);
 
     @HttpApi(name = "apitest.testDemoSayHello", desc = "测试转发到demoservice", security = SecurityType.None, owner = "rendong")
-    public String testDemoSayHello(
+    @DesignedErrorCode({ 123, 456, 789 })
+    @ErrorCodeMapping(mapping = { 123, 1000001 }, mapping1 = { 456, 1000002 }, mapping2 = { 789, 1000003 })
+    public ComplexTestEntity testDemoSayHello(
             @ApiParameter(required = true, name = "name", desc = "say hello") String name);
 }

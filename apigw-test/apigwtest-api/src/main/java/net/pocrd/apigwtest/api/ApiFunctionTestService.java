@@ -96,7 +96,7 @@ public interface ApiFunctionTestService {
 
     @HttpApi(name = "apitest.testThrowServiceException", desc = "测试test testThrowServiceException", state = ApiOpenState.OPEN,
              security = SecurityType.None, owner = "rendong")
-    @DesignedErrorCode(ApigwTestReturnCode._C_TEST_FOR_TEST)
+    @DesignedErrorCode(ApigwTestReturnCode._C_TEST_FOR_TEST123)
     String testThrowServiceException();
 
     @HttpApi(name = "apitest.testBadResponse", desc = "测试序列化异常", state = ApiOpenState.OPEN,

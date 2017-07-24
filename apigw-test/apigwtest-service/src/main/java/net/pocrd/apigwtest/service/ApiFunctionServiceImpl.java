@@ -212,7 +212,7 @@ public class ApiFunctionServiceImpl implements ApiFunctionTestService {
     @Override
     public String testThrowServiceException() {
         System.out.println("test");
-        throw new ServiceRuntimeException(ApigwTestReturnCode.TEST_FOR_TEST, "abc");
+        throw new ServiceRuntimeException(ApigwTestReturnCode.TEST_FOR_TEST123, "abc");
     }
 
     @Override
