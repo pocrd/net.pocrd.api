@@ -3,6 +3,7 @@ package net.pocrd.apigwtest.entity;
 import net.pocrd.annotation.Description;
 import net.pocrd.annotation.DynamicStructure;
 import net.pocrd.responseEntity.DynamicEntity;
+import net.pocrd.responseEntity.KeyValueList;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,6 +36,6 @@ public class ComplexTestEntity implements Serializable {
     @DynamicStructure({ SimpleTestEntity.class, BadResponse.class })
     public DynamicEntity<?>       dynamicEntity;
     @Description("dynamic entity list")
-    @DynamicStructure({ SimpleTestEntity.class, BadResponse.class })
+    @DynamicStructure({ SimpleTestEntity.class, BadResponse.class, KeyValueList.class })
     public List<DynamicEntity<?>> dynamicEntityList;
 }
