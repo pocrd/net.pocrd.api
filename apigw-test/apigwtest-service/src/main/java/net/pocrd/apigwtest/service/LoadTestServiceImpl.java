@@ -1,10 +1,14 @@
 package net.pocrd.apigwtest.service;
 
 import net.pocrd.apigwtest.api.LoadTestService;
+import net.pocrd.apigwtest.entity.BadResponse;
 import net.pocrd.apigwtest.entity.ComplexTestEntity;
 import net.pocrd.apigwtest.entity.SimpleTestEntity;
 import net.pocrd.demo.api.DemoService;
 import net.pocrd.demo.entity.DemoEntity;
+import net.pocrd.responseEntity.DynamicEntity;
+import net.pocrd.responseEntity.KeyValueList;
+import net.pocrd.responseEntity.KeyValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +74,33 @@ public class LoadTestServiceImpl implements LoadTestService {
         logger.info("say hello to " + name);
         ComplexTestEntity e = new ComplexTestEntity();
         e.strValue = de.name + "..." + de.id;
+        e.dynamicEntity = new DynamicEntity<SimpleTestEntity>();
+        SimpleTestEntity ste = new SimpleTestEntity();
+        ste.intArray = new int[] { 1, 2, 3 };
+        ste.strValue = "aabbcc";
+        e.dynamicEntity.entity = ste;
+        List<DynamicEntity> des = new ArrayList<DynamicEntity>(3);
+        {
+            DynamicEntity de1 = new DynamicEntity();
+            SimpleTestEntity s = new SimpleTestEntity();
+            s.intArray = new int[] { 4, 1, 4 };
+            s.strValue = "kkkkkk";
+            de1.entity = s;
+            des.add(de1);
+
+            DynamicEntity de2 = new DynamicEntity();
+            BadResponse b = new BadResponse("nonono");
+            de2.entity = b;
+            des.add(de2);
+
+            DynamicEntity de3 = new DynamicEntity();
+            KeyValueList kvl = new KeyValueList();
+            kvl.keyValue = new ArrayList<KeyValuePair>(2);
+            kvl.keyValue.add(new KeyValuePair("x", "y"));
+            kvl.keyValue.add(new KeyValuePair("n", "b"));
+            de3.entity = kvl;
+            des.add(de3);
+        }
         return e;
     }
 }
