@@ -36,6 +36,6 @@ public class ComplexTestEntity implements Serializable {
     @DynamicStructure({ SimpleTestEntity.class, BadResponse.class })
     public DynamicEntity          dynamicEntity;
     @Description("dynamic entity list")
-    @DynamicStructure({ SimpleTestEntity.class, BadResponse.class, KeyValueList.class })
+    @DynamicStructure({ SimpleTestEntity.class, KeyValueList.class })
     public List<DynamicEntity>    dynamicEntityList;
 }

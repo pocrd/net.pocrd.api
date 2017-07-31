@@ -75,16 +75,19 @@ public class LoadTestServiceImpl implements LoadTestService {
         ComplexTestEntity e = new ComplexTestEntity();
         e.strValue = de.name + "..." + de.id;
         e.dynamicEntity = new DynamicEntity<SimpleTestEntity>();
-        KeyValueList ste = new KeyValueList();
-        ste.keyValue = new ArrayList<KeyValuePair>(3);
-        ste.keyValue.add(new KeyValuePair("a", "b"));
-        ste.keyValue.add(new KeyValuePair("c", "d"));
-
-        //        e.dynamicEntity = new DynamicEntity<SimpleTestEntity>();
-        //        SimpleTestEntity ste = new SimpleTestEntity();
-        //        ste.intArray = new int[] { 1, 2, 3 };
-        //        ste.strValue = "aabbcc";
-        e.dynamicEntity.entity = ste;
+        if ("dynamicError".equals(name)) {
+            KeyValueList ste = new KeyValueList();
+            ste.keyValue = new ArrayList<KeyValuePair>(3);
+            ste.keyValue.add(new KeyValuePair("a", "b"));
+            ste.keyValue.add(new KeyValuePair("c", "d"));
+            e.dynamicEntity.entity = ste;
+        } else {
+            e.dynamicEntity = new DynamicEntity<SimpleTestEntity>();
+            SimpleTestEntity ste = new SimpleTestEntity();
+            ste.intArray = new int[] { 1, 2, 3 };
+            ste.strValue = "aabbcc";
+            e.dynamicEntity.entity = ste;
+        }
         List<DynamicEntity> des = new ArrayList<DynamicEntity>(3);
         {
             DynamicEntity de1 = new DynamicEntity();
@@ -94,10 +97,12 @@ public class LoadTestServiceImpl implements LoadTestService {
             de1.entity = s;
             des.add(de1);
 
-            DynamicEntity de2 = new DynamicEntity();
-            BadResponse b = new BadResponse("nonono");
-            de2.entity = b;
-            des.add(de2);
+            if ("dynamicListError".equals(name)) {
+                DynamicEntity de2 = new DynamicEntity();
+                BadResponse b = new BadResponse("nonono");
+                de2.entity = b;
+                des.add(de2);
+            }
 
             DynamicEntity de3 = new DynamicEntity();
             KeyValueList kvl = new KeyValueList();
