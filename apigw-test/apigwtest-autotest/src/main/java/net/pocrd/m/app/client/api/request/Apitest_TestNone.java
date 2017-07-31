@@ -10,18 +10,25 @@ import net.pocrd.m.app.client.SecurityType;
 import net.pocrd.m.app.client.api.resp.*;
 
 /**
- * 测试errorcode
+ * testSecurityTypeNoe
  * 
- * @author guankaiqiang
+ * @author guangkaiqiang521
  *
  */
-public class Apitest_TestErrorCodeFromThirdParty extends BaseRequest<Api_BoolResp> {
+public class Apitest_TestNone extends BaseRequest<Api_NumberResp> {
     
     /**
      * 当前请求的构造函数，以下参数为该请求的必填参数
+     * @param intParam int param
      */
-    public Apitest_TestErrorCodeFromThirdParty() {
-        super("apitest.testErrorCodeFromThirdParty", SecurityType.None);
+    public Apitest_TestNone(int intParam) {
+        super("apitest.testNone", SecurityType.None);
+        
+        try {
+            params.put("intParam", String.valueOf(intParam));
+        } catch(Exception e) {
+            throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
+        }
         
     }
     /**
@@ -37,11 +44,11 @@ public class Apitest_TestErrorCodeFromThirdParty extends BaseRequest<Api_BoolRes
      * 不要直接调用这个方法，API使用者应该访问基类的getResponse()获取接口的返回值
      */
     @Override
-    protected Api_BoolResp getResult(JsonObject json) {
+    protected Api_NumberResp getResult(JsonObject json) {
         try {
-            return Api_BoolResp.deserialize(json);
+            return Api_NumberResp.deserialize(json);
         } catch (Exception e) {
-            logger.error("Api_BoolResp deserialize failed.", e);
+            logger.error("Api_NumberResp deserialize failed.", e);
         }
         return null;
         

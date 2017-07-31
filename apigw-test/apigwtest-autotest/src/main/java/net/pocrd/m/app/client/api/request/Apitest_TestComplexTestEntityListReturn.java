@@ -10,18 +10,18 @@ import net.pocrd.m.app.client.SecurityType;
 import net.pocrd.m.app.client.api.resp.*;
 
 /**
- * 测试errorcode
+ * testComplexTestEntityListReturn
  * 
- * @author guankaiqiang
+ * @author rendong
  *
  */
-public class Apitest_TestErrorCodeFromThirdParty extends BaseRequest<Api_BoolResp> {
+public class Apitest_TestComplexTestEntityListReturn extends BaseRequest<Api_APITEST_ComplexTestEntity_ArrayResp> {
     
     /**
      * 当前请求的构造函数，以下参数为该请求的必填参数
      */
-    public Apitest_TestErrorCodeFromThirdParty() {
-        super("apitest.testErrorCodeFromThirdParty", SecurityType.None);
+    public Apitest_TestComplexTestEntityListReturn() {
+        super("apitest.testComplexTestEntityListReturn", SecurityType.None);
         
     }
     /**
@@ -37,11 +37,11 @@ public class Apitest_TestErrorCodeFromThirdParty extends BaseRequest<Api_BoolRes
      * 不要直接调用这个方法，API使用者应该访问基类的getResponse()获取接口的返回值
      */
     @Override
-    protected Api_BoolResp getResult(JsonObject json) {
+    protected Api_APITEST_ComplexTestEntity_ArrayResp getResult(JsonObject json) {
         try {
-            return Api_BoolResp.deserialize(json);
+            return Api_APITEST_ComplexTestEntity_ArrayResp.deserialize(json);
         } catch (Exception e) {
-            logger.error("Api_BoolResp deserialize failed.", e);
+            logger.error("Api_APITEST_ComplexTestEntity_ArrayResp deserialize failed.", e);
         }
         return null;
         

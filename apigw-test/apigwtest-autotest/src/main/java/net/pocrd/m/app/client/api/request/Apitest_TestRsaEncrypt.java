@@ -1,6 +1,10 @@
 // Auto Generated.  DO NOT EDIT!
-    
+
 package net.pocrd.m.app.client.api.request;
+
+import java.util.List;
+import com.google.gson.*;
+
 import net.pocrd.m.app.client.ApiContext;
 import net.pocrd.m.app.client.util.Base64Util;
 import net.pocrd.m.app.client.util.RsaHelper;
@@ -8,10 +12,6 @@ import net.pocrd.m.app.client.LocalException;
 import net.pocrd.m.app.client.BaseRequest;
 import net.pocrd.m.app.client.SecurityType;
 import net.pocrd.m.app.client.api.resp.*;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import java.util.List;
 
 /**
  * 测试rsa加解密
@@ -44,7 +44,7 @@ public class Apitest_TestRsaEncrypt extends BaseRequest<Api_StringResp> {
             JsonArray param7Array = new JsonArray();
             if (param7 != null) {
                 for (int value : param7) {
-                    param7Array.add(value);
+                    param7Array.add(new JsonPrimitive(value));
                 }
             }
     
@@ -113,7 +113,7 @@ public class Apitest_TestRsaEncrypt extends BaseRequest<Api_StringResp> {
             JsonArray param8Array = new JsonArray();
             if (param8 != null) {
                 for (int value : param8) {
-                    param8Array.add(value);
+                    param8Array.add(new JsonPrimitive(value));
                 }
             }
     
@@ -134,7 +134,7 @@ public class Apitest_TestRsaEncrypt extends BaseRequest<Api_StringResp> {
         }
         return response.code;
     }
-    
+
     /**
      * 不要直接调用这个方法，API使用者应该访问基类的getResponse()获取接口的返回值
      */

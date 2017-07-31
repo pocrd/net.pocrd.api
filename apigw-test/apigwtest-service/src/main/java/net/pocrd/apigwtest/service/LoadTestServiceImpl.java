@@ -75,9 +75,15 @@ public class LoadTestServiceImpl implements LoadTestService {
         ComplexTestEntity e = new ComplexTestEntity();
         e.strValue = de.name + "..." + de.id;
         e.dynamicEntity = new DynamicEntity<SimpleTestEntity>();
-        SimpleTestEntity ste = new SimpleTestEntity();
-        ste.intArray = new int[] { 1, 2, 3 };
-        ste.strValue = "aabbcc";
+        KeyValueList ste = new KeyValueList();
+        ste.keyValue = new ArrayList<KeyValuePair>(3);
+        ste.keyValue.add(new KeyValuePair("a", "b"));
+        ste.keyValue.add(new KeyValuePair("c", "d"));
+
+        //        e.dynamicEntity = new DynamicEntity<SimpleTestEntity>();
+        //        SimpleTestEntity ste = new SimpleTestEntity();
+        //        ste.intArray = new int[] { 1, 2, 3 };
+        //        ste.strValue = "aabbcc";
         e.dynamicEntity.entity = ste;
         List<DynamicEntity> des = new ArrayList<DynamicEntity>(3);
         {
@@ -101,6 +107,7 @@ public class LoadTestServiceImpl implements LoadTestService {
             de3.entity = kvl;
             des.add(de3);
         }
+        e.dynamicEntityList = des;
         return e;
     }
 }

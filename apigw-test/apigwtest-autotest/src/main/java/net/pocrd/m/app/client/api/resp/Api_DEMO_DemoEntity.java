@@ -4,27 +4,26 @@ package net.pocrd.m.app.client.api.resp;
 import com.google.gson.*;
 import net.pocrd.m.app.client.util.JsonSerializable;
 
-public class Api_CallState implements JsonSerializable {
+public class Api_DEMO_DemoEntity implements JsonSerializable {
 
     /**
-     * 返回值
+     * id多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト
      */
-    public int code;
+    public int id;
       
     /**
-     * 数据长度
+     * name多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト
      */
-    public int length;
-      
-    /**
-     * 返回信息
-     */
-    public String msg;
+    public String name;
       
     /**
      * 反序列化函数，用于从json字符串反序列化本类型实例
      */
-    public static Api_CallState deserialize(String json) {
+    public static Api_DEMO_DemoEntity deserialize(String json) {
         if (json != null && json.length() != 0) {
             return deserialize(new JsonParser().parse(json).getAsJsonObject());
         }
@@ -34,27 +33,25 @@ public class Api_CallState implements JsonSerializable {
     /**
      * 反序列化函数，用于从json节点对象反序列化本类型实例
      */
-    public static Api_CallState deserialize(JsonObject json) {
+    public static Api_DEMO_DemoEntity deserialize(JsonObject json) {
         if (json != null && !json.isJsonNull()) {
-            Api_CallState result = new Api_CallState();
+            Api_DEMO_DemoEntity result = new Api_DEMO_DemoEntity();
             JsonElement element = null;
             
-            /* 返回值 */
-            element = json.get("code");
+            /* id多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト */
+            element = json.get("id");
             if (element != null && !element.isJsonNull()) {
-                result.code = element.getAsInt();
+                result.id = element.getAsInt();
             }
               
-            /* 数据长度 */
-            element = json.get("length");
+            /* name多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト */
+            element = json.get("name");
             if (element != null && !element.isJsonNull()) {
-                result.length = element.getAsInt();
-            }
-              
-            /* 返回信息 */
-            element = json.get("msg");
-            if (element != null && !element.isJsonNull()) {
-                result.msg = element.getAsString();
+                result.name = element.getAsString();
             }
               
             return result;
@@ -68,14 +65,15 @@ public class Api_CallState implements JsonSerializable {
     public JsonObject serialize() {
         JsonObject json = new JsonObject();
         
-        /* 返回值 */
-        json.addProperty("code", this.code);
+        /* id多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト */
+        json.addProperty("id", this.id);
           
-        /* 数据长度 */
-        json.addProperty("length", this.length);
-          
-        /* 返回信息 */
-        if (this.msg != null) { json.addProperty("msg", this.msg); }
+        /* name多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト */
+        if (this.name != null) { json.addProperty("name", this.name); }
           
         return json;
     }

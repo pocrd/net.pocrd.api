@@ -1,11 +1,10 @@
 // Auto Generated.  DO NOT EDIT!
 package net.pocrd.m.app.client.api.resp;
-    
-import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
-public class Api_StringResp {
+import com.google.gson.*;
+import net.pocrd.m.app.client.util.JsonSerializable;
+
+public class Api_StringResp implements JsonSerializable {
 
     /**
      * 字符串返回值
@@ -16,12 +15,12 @@ public class Api_StringResp {
      * 反序列化函数，用于从json字符串反序列化本类型实例
      */
     public static Api_StringResp deserialize(String json) {
-        if (json != null && !json.isEmpty()) {
+        if (json != null && json.length() != 0) {
             return deserialize(new JsonParser().parse(json).getAsJsonObject());
         }
         return null;
     }
-    
+
     /**
      * 反序列化函数，用于从json节点对象反序列化本类型实例
      */
@@ -35,12 +34,12 @@ public class Api_StringResp {
             if (element != null && !element.isJsonNull()) {
                 result.value = element.getAsString();
             }
-      
+              
             return result;
         }
         return null;
     }
-    
+
     /**
      * 序列化函数，用于从对象生成数据字典
      */
@@ -48,7 +47,7 @@ public class Api_StringResp {
         JsonObject json = new JsonObject();
         
         /* 字符串返回值 */
-        if(this.value != null) { json.addProperty("value", this.value); }
+        if (this.value != null) { json.addProperty("value", this.value); }
           
         return json;
     }

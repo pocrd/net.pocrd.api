@@ -1,6 +1,9 @@
 // Auto Generated.  DO NOT EDIT!
-    
+
 package net.pocrd.m.app.client.api.request;
+
+import com.google.gson.*;
+
 import net.pocrd.m.app.client.ApiContext;
 import net.pocrd.m.app.client.util.Base64Util;
 import net.pocrd.m.app.client.util.RsaHelper;
@@ -9,28 +12,22 @@ import net.pocrd.m.app.client.BaseRequest;
 import net.pocrd.m.app.client.SecurityType;
 import net.pocrd.m.app.client.api.resp.*;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import java.util.List;
-
 /**
- * Api文档RsaEncrypted或AesEncrypted字段展示测试
+ * Api文档RsaEncrypted字段展示测试
  * 
  * @author sunji180
  *
  */
-public class Apitest_TestApiParameterIsRsaEncryptedOrAesEncrypted extends BaseRequest<Api_StringResp> {
+public class Apitest_TestApiParameterRsaEncrypted extends BaseRequest<Api_StringResp> {
     
       private RsaHelper rsaHelper = null;
     /**
      * 当前请求的构造函数，以下参数为该请求的必填参数
      * @param rsaEncrypted 参数需用rsa方式加密
-     * @param aesEncrypted 参数需用aes方式加密
-     * @param rsaEncryptedAndAesEncrypted 参数需用rsa和aes方式加密(实际不会使用此种方式，仅为测试覆盖)
-     * @param noRsaEncryptedAndAesEncrypted 参数不用rsa且不用aes方式加密
+     * @param noRsaEncrypt 无加密
      */
-    public Apitest_TestApiParameterIsRsaEncryptedOrAesEncrypted(String rsaEncrypted, String aesEncrypted, String rsaEncryptedAndAesEncrypted, String noRsaEncryptedAndAesEncrypted) {
-        super("apitest.testApiParameterIsRsaEncryptedOrAesEncrypted", SecurityType.None);
+    public Apitest_TestApiParameterRsaEncrypted(String rsaEncrypted, String noRsaEncrypt) {
+        super("apitest.testApiParameterRsaEncrypted", SecurityType.None);
         
         try {
             if (rsaHelper == null) {
@@ -38,10 +35,7 @@ public class Apitest_TestApiParameterIsRsaEncryptedOrAesEncrypted extends BaseRe
             }
             params.put("rsaEncrypted", Base64Util.encodeToString(rsaHelper.encrypt(rsaEncrypted.getBytes("UTF-8"))));
         
-            params.put("aesEncrypted", aesEncrypted);
-            params.put("rsaEncryptedAndAesEncrypted", Base64Util.encodeToString(rsaHelper.encrypt(rsaEncryptedAndAesEncrypted.getBytes("UTF-8"))));
-        
-            params.put("noRsaEncryptedAndAesEncrypted", noRsaEncryptedAndAesEncrypted);
+            params.put("noRsaEncrypt", noRsaEncrypt);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
@@ -59,7 +53,7 @@ public class Apitest_TestApiParameterIsRsaEncryptedOrAesEncrypted extends BaseRe
         }
         return response.code;
     }
-    
+
     /**
      * 不要直接调用这个方法，API使用者应该访问基类的getResponse()获取接口的返回值
      */

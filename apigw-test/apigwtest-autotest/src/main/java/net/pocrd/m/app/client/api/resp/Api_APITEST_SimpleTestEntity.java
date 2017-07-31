@@ -1,12 +1,13 @@
 // Auto Generated.  DO NOT EDIT!
 package net.pocrd.m.app.client.api.resp;
-    
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
-public class Api_APITEST_SimpleTestEntity {
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.*;
+import net.pocrd.m.app.client.util.JsonSerializable;
+
+public class Api_APITEST_SimpleTestEntity implements JsonSerializable {
 
     /**
      * string value
@@ -21,12 +22,12 @@ public class Api_APITEST_SimpleTestEntity {
      * 反序列化函数，用于从json字符串反序列化本类型实例
      */
     public static Api_APITEST_SimpleTestEntity deserialize(String json) {
-        if (json != null && !json.isEmpty()) {
+        if (json != null && json.length() != 0) {
             return deserialize(new JsonParser().parse(json).getAsJsonObject());
         }
         return null;
     }
-    
+
     /**
      * 反序列化函数，用于从json节点对象反序列化本类型实例
      */
@@ -40,11 +41,11 @@ public class Api_APITEST_SimpleTestEntity {
             if (element != null && !element.isJsonNull()) {
                 result.strValue = element.getAsString();
             }
-      
+              
             /* int array */
             element = json.get("intArray");
-            JsonArray intArrayArray = element.getAsJsonArray();
             if (element != null) {
+                JsonArray intArrayArray = element.getAsJsonArray();
                 int len = intArrayArray.size();
                 result.intArray = new int[len];
                 for (int i = 0; i < len; i++) {
@@ -56,7 +57,7 @@ public class Api_APITEST_SimpleTestEntity {
         }
         return null;
     }
-    
+
     /**
      * 序列化函数，用于从对象生成数据字典
      */
@@ -64,13 +65,13 @@ public class Api_APITEST_SimpleTestEntity {
         JsonObject json = new JsonObject();
         
         /* string value */
-        if(this.strValue != null) { json.addProperty("strValue", this.strValue); }
+        if (this.strValue != null) { json.addProperty("strValue", this.strValue); }
           
         /* int array */
         if (this.intArray != null) {
             JsonArray intArrayArray = new JsonArray();
             for (int value : this.intArray) {
-                intArrayArray.add(value);
+                intArrayArray.add(new JsonPrimitive(value));
             }
             json.add("intArray", intArrayArray);
         }

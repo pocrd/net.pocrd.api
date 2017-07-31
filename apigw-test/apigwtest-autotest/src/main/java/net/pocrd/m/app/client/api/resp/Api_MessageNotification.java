@@ -1,11 +1,10 @@
 // Auto Generated.  DO NOT EDIT!
 package net.pocrd.m.app.client.api.resp;
-    
-import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
-public class Api_MessageNotification {
+import com.google.gson.*;
+import net.pocrd.m.app.client.util.JsonSerializable;
+
+public class Api_MessageNotification implements JsonSerializable {
 
     /**
      * 消息内容
@@ -41,12 +40,12 @@ public class Api_MessageNotification {
      * 反序列化函数，用于从json字符串反序列化本类型实例
      */
     public static Api_MessageNotification deserialize(String json) {
-        if (json != null && !json.isEmpty()) {
+        if (json != null && json.length() != 0) {
             return deserialize(new JsonParser().parse(json).getAsJsonObject());
         }
         return null;
     }
-    
+
     /**
      * 反序列化函数，用于从json节点对象反序列化本类型实例
      */
@@ -60,42 +59,42 @@ public class Api_MessageNotification {
             if (element != null && !element.isJsonNull()) {
                 result.content = element.getAsString();
             }
-      
+              
             /* 消息Id */
             element = json.get("msgId");
             if (element != null && !element.isJsonNull()) {
                 result.msgId = element.getAsString();
             }
-      
+              
             /* 消息类型0: 系统消息,1:通知消息,2: 聊天消息,3:群消息,4:留言消息,5:普通聊天 控制消息 */
             element = json.get("type");
             if (element != null && !element.isJsonNull()) {
                 result.type = element.getAsInt();
             }
-      
+              
             /* 消息内容类型 */
             element = json.get("subType");
             if (element != null && !element.isJsonNull()) {
                 result.subType = element.getAsInt();
             }
-      
+              
             /* 发送方Id */
             element = json.get("fromUserId");
             if (element != null && !element.isJsonNull()) {
                 result.fromUserId = element.getAsLong();
             }
-      
+              
             /* 接收方Id */
             element = json.get("toUserId");
             if (element != null && !element.isJsonNull()) {
                 result.toUserId = element.getAsLong();
             }
-      
+              
             return result;
         }
         return null;
     }
-    
+
     /**
      * 序列化函数，用于从对象生成数据字典
      */
@@ -103,10 +102,10 @@ public class Api_MessageNotification {
         JsonObject json = new JsonObject();
         
         /* 消息内容 */
-        if(this.content != null) { json.addProperty("content", this.content); }
+        if (this.content != null) { json.addProperty("content", this.content); }
           
         /* 消息Id */
-        if(this.msgId != null) { json.addProperty("msgId", this.msgId); }
+        if (this.msgId != null) { json.addProperty("msgId", this.msgId); }
           
         /* 消息类型0: 系统消息,1:通知消息,2: 聊天消息,3:群消息,4:留言消息,5:普通聊天 控制消息 */
         json.addProperty("type", this.type);

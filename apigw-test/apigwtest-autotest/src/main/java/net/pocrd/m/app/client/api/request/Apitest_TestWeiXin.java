@@ -1,15 +1,13 @@
 // Auto Generated.  DO NOT EDIT!
-    
+
 package net.pocrd.m.app.client.api.request;
+
+import com.google.gson.*;
 
 import net.pocrd.m.app.client.LocalException;
 import net.pocrd.m.app.client.BaseRequest;
 import net.pocrd.m.app.client.SecurityType;
 import net.pocrd.m.app.client.api.resp.*;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import java.util.List;
 
 /**
  * 微信接口测试
@@ -47,7 +45,7 @@ public class Apitest_TestWeiXin extends BaseRequest<String> {
         }
         return response.code;
     }
-    
+
     /**
      * 不要直接调用这个方法，API使用者应该访问基类的getResponse()获取接口的返回值
      */

@@ -10,22 +10,26 @@ import net.pocrd.m.app.client.SecurityType;
 import net.pocrd.m.app.client.api.resp.*;
 
 /**
- * 测试jsonString
+ * demo test多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト
  * 
- * @author guankaiqiang
+ * @author demo
  *
  */
-public class Apitest_TestJSONString extends BaseRequest<Api_JSONString> {
+public class Demo_SayHello extends BaseRequest<Api_DEMO_DemoEntity> {
     
     /**
      * 当前请求的构造函数，以下参数为该请求的必填参数
-     * @param param param
+     * @param name say hello多语言测试. 
+en-us:multi-language test 
+ja-jp:多言語テスト
      */
-    public Apitest_TestJSONString(String param) {
-        super("apitest.testJSONString", SecurityType.None);
+    public Demo_SayHello(String name) {
+        super("demo.sayHello", SecurityType.None);
         
         try {
-            params.put("param", param);
+            params.put("name", name);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
@@ -36,6 +40,12 @@ public class Apitest_TestJSONString extends BaseRequest<Api_JSONString> {
      */
     public int handleError() {
         switch (response.code) {
+            /* 用户找不到. 
+ en-us:multi-language test 
+ja-jp:多言語テスト */
+            case ApiCode.DEMO_USER_NOT_FOUND_1000001: {
+                break;
+            }
         }
         return response.code;
     }
@@ -44,11 +54,11 @@ public class Apitest_TestJSONString extends BaseRequest<Api_JSONString> {
      * 不要直接调用这个方法，API使用者应该访问基类的getResponse()获取接口的返回值
      */
     @Override
-    protected Api_JSONString getResult(JsonObject json) {
+    protected Api_DEMO_DemoEntity getResult(JsonObject json) {
         try {
-            return Api_JSONString.deserialize(json);
+            return Api_DEMO_DemoEntity.deserialize(json);
         } catch (Exception e) {
-            logger.error("Api_JSONString deserialize failed.", e);
+            logger.error("Api_DEMO_DemoEntity deserialize failed.", e);
         }
         return null;
         
