@@ -33,7 +33,7 @@ public class Api_KeyValueList implements JsonSerializable {
             
             /* 键值对列表 */
             element = json.get("keyValue");
-            if (element != null) {
+            if (element != null && !element.isJsonNull()) {
                 JsonArray keyValueArray = element.getAsJsonArray();
                 int len = keyValueArray.size();
                 result.keyValue = new ArrayList<Api_KeyValuePair>(len);

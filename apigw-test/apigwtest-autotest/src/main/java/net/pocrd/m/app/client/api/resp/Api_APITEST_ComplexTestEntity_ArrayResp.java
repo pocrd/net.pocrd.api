@@ -33,7 +33,7 @@ public class Api_APITEST_ComplexTestEntity_ArrayResp implements JsonSerializable
             
             /* ComplexTestEntity */
             element = json.get("value");
-            if (element != null) {
+            if (element != null && !element.isJsonNull()) {
                 JsonArray valueArray = element.getAsJsonArray();
                 int len = valueArray.size();
                 result.value = new ArrayList<Api_APITEST_ComplexTestEntity>(len);

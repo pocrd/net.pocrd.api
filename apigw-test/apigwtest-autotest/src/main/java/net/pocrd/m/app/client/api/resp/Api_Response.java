@@ -70,7 +70,7 @@ public class Api_Response implements JsonSerializable {
               
             /* API调用状态，code的信息请参考ApiCode定义文件 */
             element = json.get("stateList");
-            if (element != null) {
+            if (element != null && !element.isJsonNull()) {
                 JsonArray stateListArray = element.getAsJsonArray();
                 int len = stateListArray.size();
                 result.stateList = new ArrayList<Api_CallState>(len);
@@ -84,7 +84,7 @@ public class Api_Response implements JsonSerializable {
       
             /* 服务端返回的通知事件集合 */
             element = json.get("notificationList");
-            if (element != null) {
+            if (element != null && !element.isJsonNull()) {
                 JsonArray notificationListArray = element.getAsJsonArray();
                 int len = notificationListArray.size();
                 result.notificationList = new ArrayList<Api_KeyValuePair>(len);

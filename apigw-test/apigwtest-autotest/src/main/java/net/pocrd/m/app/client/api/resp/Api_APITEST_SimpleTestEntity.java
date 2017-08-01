@@ -44,7 +44,7 @@ public class Api_APITEST_SimpleTestEntity implements JsonSerializable {
               
             /* int array */
             element = json.get("intArray");
-            if (element != null) {
+            if (element != null && !element.isJsonNull()) {
                 JsonArray intArrayArray = element.getAsJsonArray();
                 int len = intArrayArray.size();
                 result.intArray = new int[len];

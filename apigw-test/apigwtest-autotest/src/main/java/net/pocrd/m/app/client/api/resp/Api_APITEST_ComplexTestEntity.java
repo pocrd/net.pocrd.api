@@ -146,7 +146,7 @@ public class Api_APITEST_ComplexTestEntity implements JsonSerializable {
               
             /* SimpleTestEntity List */
             element = json.get("simpleTestEntityList");
-            if (element != null) {
+            if (element != null && !element.isJsonNull()) {
                 JsonArray simpleTestEntityListArray = element.getAsJsonArray();
                 int len = simpleTestEntityListArray.size();
                 result.simpleTestEntityList = new ArrayList<Api_APITEST_SimpleTestEntity>(len);
@@ -180,7 +180,7 @@ public class Api_APITEST_ComplexTestEntity implements JsonSerializable {
               
             /* dynamic entity list 本字段为动态数据类型, 可能类型为以下种类:SimpleTestEntity, BadResponse, KeyValueList,  */
             element = json.get("dynamicEntityList");
-            if (element != null) {
+            if (element != null && !element.isJsonNull()) {
                 JsonArray dynamicEntityListArray = element.getAsJsonArray();
                 int len = dynamicEntityListArray.size();
                 result.dynamicEntityList = new ArrayList<Api_DynamicEntity>(len);
