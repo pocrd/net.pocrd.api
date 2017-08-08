@@ -73,6 +73,7 @@ public class LoadTestServiceImpl implements LoadTestService {
         DemoEntity de = demoService.sayHello(name);
         logger.info("say hello to " + name);
         ComplexTestEntity e = new ComplexTestEntity();
+        e.charValue = '\n';
         e.strValue = de.name + "..." + de.id;
         e.dynamicEntity = new DynamicEntity<SimpleTestEntity>();
         if ("dynamicError".equals(name)) {
