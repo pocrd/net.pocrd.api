@@ -13,7 +13,6 @@ import net.pocrd.core.InfoServlet;
 import net.pocrd.define.MockApiImplementation;
 import net.pocrd.entity.CommonConfig;
 import net.pocrd.entity.CompileConfig;
-import org.apache.catalina.loader.WebappClassLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,8 +23,11 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -75,7 +77,9 @@ public class StartupListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            WebappClassLoader loader = (WebappClassLoader)getClass().getClassLoader();
+            URLClassLoader loader = (URLClassLoader)getClass().getClassLoader();
+            Method urlClassLoader_addURL = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
+            urlClassLoader_addURL.setAccessible(true);
             File apiJarDirectory = new File(ApiConfig.getInstance().getApiJarPath());
             ApplicationConfig application = new ApplicationConfig();
             application.setName(ApiConfig.getInstance().getApplicationName());
@@ -122,7 +126,7 @@ public class StartupListener implements ServletContextListener {
                             if ("dubbo".equals(jf.getManifest().getMainAttributes().getValue("Api-Dependency-Type"))) {
                                 String ns = jf.getManifest().getMainAttributes().getValue("Api-Export");
                                 String[] names = ns.split(" ");
-                                loader.addRepository(f.toURI().toURL().toString());
+                                urlClassLoader_addURL.invoke(loader, f.toURI().toURL());
                                 for (String name : names) {
                                     if (name != null) {
                                         name = name.trim();
