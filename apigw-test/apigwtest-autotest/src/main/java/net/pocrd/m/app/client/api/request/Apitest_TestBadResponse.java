@@ -22,8 +22,8 @@ public class Apitest_TestBadResponse extends BaseRequest<Api_APITEST_BadResponse
      */
     public Apitest_TestBadResponse() {
         super("apitest.testBadResponse", SecurityType.None);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -44,7 +44,6 @@ public class Apitest_TestBadResponse extends BaseRequest<Api_APITEST_BadResponse
             logger.error("Api_APITEST_BadResponse deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

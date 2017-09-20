@@ -22,8 +22,8 @@ public class Apitest_TestDesignedErrorCode extends BaseRequest<Api_BoolResp> {
      */
     public Apitest_TestDesignedErrorCode() {
         super("apitest.testDesignedErrorCode", SecurityType.None);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -48,7 +48,6 @@ public class Apitest_TestDesignedErrorCode extends BaseRequest<Api_BoolResp> {
             logger.error("Api_BoolResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

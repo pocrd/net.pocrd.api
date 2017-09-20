@@ -22,7 +22,6 @@ public class Apitest_TestWeiXin extends BaseRequest<String> {
      */
     public Apitest_TestWeiXin() {
         super("apitest.testWeiXin", SecurityType.None);
-        
     }
     
     /**
@@ -37,6 +36,7 @@ public class Apitest_TestWeiXin extends BaseRequest<String> {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */

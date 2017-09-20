@@ -2,28 +2,26 @@
 
 package net.pocrd.m.app.client.api.request;
 
-import com.google.gson.*;
-
-import net.pocrd.m.app.client.LocalException;
+import com.google.gson.JsonObject;
 import net.pocrd.m.app.client.BaseRequest;
 import net.pocrd.m.app.client.SecurityType;
-import net.pocrd.m.app.client.api.resp.*;
+import net.pocrd.m.app.client.api.resp.Api_StringResp;
 
 /**
  * 服务端获取客户端IP测试
- * 
+ *
  * @author sunji180
  *
  */
 public class Apitest_TestAutowiredClientIP extends BaseRequest<Api_StringResp> {
-    
+
     /**
      * 当前请求的构造函数，以下参数为该请求的必填参数
      */
     public Apitest_TestAutowiredClientIP() {
         super("apitest.testAutowiredClientIP", SecurityType.None);
-        
     }
+
     /**
      * 当前请求有可能的异常返回值
      */
@@ -48,8 +46,7 @@ public class Apitest_TestAutowiredClientIP extends BaseRequest<Api_StringResp> {
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
-    
+
 }
   

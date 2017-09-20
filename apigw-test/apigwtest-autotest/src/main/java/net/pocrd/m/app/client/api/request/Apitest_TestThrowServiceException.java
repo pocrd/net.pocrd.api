@@ -22,8 +22,8 @@ public class Apitest_TestThrowServiceException extends BaseRequest<Api_StringRes
      */
     public Apitest_TestThrowServiceException() {
         super("apitest.testThrowServiceException", SecurityType.None);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -48,7 +48,6 @@ public class Apitest_TestThrowServiceException extends BaseRequest<Api_StringRes
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

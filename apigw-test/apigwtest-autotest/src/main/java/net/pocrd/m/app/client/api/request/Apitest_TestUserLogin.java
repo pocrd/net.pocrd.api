@@ -23,14 +23,21 @@ public class Apitest_TestUserLogin extends BaseRequest<Api_NumberResp> {
      */
     public Apitest_TestUserLogin(int intParam) {
         super("apitest.testUserLogin", SecurityType.UserLogin);
-        
+
         try {
             params.put("intParam", String.valueOf(intParam));
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestUserLogin() {
+        super("apitest.testUserLogin", SecurityType.UserLogin);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -51,7 +58,6 @@ public class Apitest_TestUserLogin extends BaseRequest<Api_NumberResp> {
             logger.error("Api_NumberResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

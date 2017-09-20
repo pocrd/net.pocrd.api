@@ -23,14 +23,21 @@ public class Apitest_TestJSONString extends BaseRequest<Api_JSONString> {
      */
     public Apitest_TestJSONString(String param) {
         super("apitest.testJSONString", SecurityType.None);
-        
+
         try {
             params.put("param", param);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestJSONString() {
+        super("apitest.testJSONString", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -51,7 +58,6 @@ public class Apitest_TestJSONString extends BaseRequest<Api_JSONString> {
             logger.error("Api_JSONString deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

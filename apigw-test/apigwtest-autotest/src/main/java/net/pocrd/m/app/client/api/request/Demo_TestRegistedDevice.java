@@ -24,8 +24,8 @@ public class Demo_TestRegistedDevice extends BaseRequest<Api_StringResp> {
      */
     public Demo_TestRegistedDevice() {
         super("demo.testRegistedDevice", SecurityType.RegisteredDevice);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -52,7 +52,6 @@ ja-jp:多言語テスト */
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

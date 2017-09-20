@@ -27,14 +27,21 @@ ja-jp:多言語テスト
      */
     public Demo_GetResByThirdPartyId(String in) {
         super("demo.getResByThirdPartyId", SecurityType.Integrated);
-        
+
         try {
             params.put("in", in);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Demo_GetResByThirdPartyId() {
+        super("demo.getResByThirdPartyId", SecurityType.Integrated);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -55,7 +62,6 @@ ja-jp:多言語テスト
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

@@ -23,14 +23,21 @@ public class Apitest_TestSimpleTestEntityReturn extends BaseRequest<Api_APITEST_
      */
     public Apitest_TestSimpleTestEntityReturn(String strParam) {
         super("apitest.testSimpleTestEntityReturn", SecurityType.None);
-        
+
         try {
             params.put("strParam", strParam);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestSimpleTestEntityReturn() {
+        super("apitest.testSimpleTestEntityReturn", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -51,7 +58,6 @@ public class Apitest_TestSimpleTestEntityReturn extends BaseRequest<Api_APITEST_
             logger.error("Api_APITEST_SimpleTestEntity deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

@@ -21,6 +21,7 @@ import net.pocrd.m.app.client.api.resp.*;
 public class Apitest_TestApiParameterRsaEncrypted extends BaseRequest<Api_StringResp> {
     
       private RsaHelper rsaHelper = null;
+      
     /**
      * 当前请求的构造函数，以下参数为该请求的必填参数
      * @param rsaEncrypted 参数需用rsa方式加密
@@ -28,7 +29,7 @@ public class Apitest_TestApiParameterRsaEncrypted extends BaseRequest<Api_String
      */
     public Apitest_TestApiParameterRsaEncrypted(String rsaEncrypted, String noRsaEncrypt) {
         super("apitest.testApiParameterRsaEncrypted", SecurityType.None);
-        
+
         try {
             if (rsaHelper == null) {
                 rsaHelper = new RsaHelper(ApiContext.getContentRsaPubKey());
@@ -39,8 +40,15 @@ public class Apitest_TestApiParameterRsaEncrypted extends BaseRequest<Api_String
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestApiParameterRsaEncrypted() {
+        super("apitest.testApiParameterRsaEncrypted", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -65,7 +73,6 @@ public class Apitest_TestApiParameterRsaEncrypted extends BaseRequest<Api_String
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

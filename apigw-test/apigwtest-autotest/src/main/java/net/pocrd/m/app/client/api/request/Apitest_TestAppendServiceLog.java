@@ -23,14 +23,21 @@ public class Apitest_TestAppendServiceLog extends BaseRequest<Api_StringResp> {
      */
     public Apitest_TestAppendServiceLog(String param) {
         super("apitest.testAppendServiceLog", SecurityType.None);
-        
+
         try {
             params.put("param", param);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestAppendServiceLog() {
+        super("apitest.testAppendServiceLog", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -51,7 +58,6 @@ public class Apitest_TestAppendServiceLog extends BaseRequest<Api_StringResp> {
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

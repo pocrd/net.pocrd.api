@@ -23,14 +23,21 @@ public class Apitest_TestStructInput extends BaseRequest<Api_APITEST_SimpleTestE
      */
     public Apitest_TestStructInput(Api_APITEST_SimpleTestEntity simpleTestEntity) {
         super("apitest.testStructInput", SecurityType.None);
-        
+
         try {
             params.put("simpleTestEntity", simpleTestEntity.serialize().toString());
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestStructInput() {
+        super("apitest.testStructInput", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -55,7 +62,6 @@ public class Apitest_TestStructInput extends BaseRequest<Api_APITEST_SimpleTestE
             logger.error("Api_APITEST_SimpleTestEntity deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

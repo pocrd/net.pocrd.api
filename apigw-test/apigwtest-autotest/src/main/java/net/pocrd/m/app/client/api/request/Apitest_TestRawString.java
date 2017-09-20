@@ -23,14 +23,21 @@ public class Apitest_TestRawString extends BaseRequest<String> {
      */
     public Apitest_TestRawString(String str) {
         super("apitest.testRawString", SecurityType.None);
-        
+
         try {
             params.put("str", str);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestRawString() {
+        super("apitest.testRawString", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */

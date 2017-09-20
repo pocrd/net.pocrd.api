@@ -27,14 +27,21 @@ ja-jp:多言語テスト
      */
     public Demo_TryError(String in) {
         super("demo.tryError", SecurityType.None);
-        
+
         try {
             params.put("in", in);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Demo_TryError() {
+        super("demo.tryError", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -55,7 +62,6 @@ ja-jp:多言語テスト
             logger.error("Api_DEMO_DemoEntity deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

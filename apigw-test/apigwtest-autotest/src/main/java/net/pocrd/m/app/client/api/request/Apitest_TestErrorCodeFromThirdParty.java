@@ -22,8 +22,8 @@ public class Apitest_TestErrorCodeFromThirdParty extends BaseRequest<Api_BoolRes
      */
     public Apitest_TestErrorCodeFromThirdParty() {
         super("apitest.testErrorCodeFromThirdParty", SecurityType.None);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -44,7 +44,6 @@ public class Apitest_TestErrorCodeFromThirdParty extends BaseRequest<Api_BoolRes
             logger.error("Api_BoolResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

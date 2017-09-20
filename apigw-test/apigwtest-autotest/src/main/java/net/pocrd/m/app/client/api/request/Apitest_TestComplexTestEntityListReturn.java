@@ -22,8 +22,8 @@ public class Apitest_TestComplexTestEntityListReturn extends BaseRequest<Api_API
      */
     public Apitest_TestComplexTestEntityListReturn() {
         super("apitest.testComplexTestEntityListReturn", SecurityType.None);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -44,7 +44,6 @@ public class Apitest_TestComplexTestEntityListReturn extends BaseRequest<Api_API
             logger.error("Api_APITEST_ComplexTestEntity_ArrayResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

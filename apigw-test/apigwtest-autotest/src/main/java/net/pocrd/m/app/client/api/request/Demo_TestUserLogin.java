@@ -24,8 +24,8 @@ public class Demo_TestUserLogin extends BaseRequest<Api_StringResp> {
      */
     public Demo_TestUserLogin() {
         super("demo.testUserLogin", SecurityType.UserLogin);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -46,7 +46,6 @@ public class Demo_TestUserLogin extends BaseRequest<Api_StringResp> {
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

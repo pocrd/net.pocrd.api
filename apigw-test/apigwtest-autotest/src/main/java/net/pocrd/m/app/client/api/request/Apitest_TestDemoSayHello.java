@@ -23,14 +23,21 @@ public class Apitest_TestDemoSayHello extends BaseRequest<Api_APITEST_ComplexTes
      */
     public Apitest_TestDemoSayHello(String name) {
         super("apitest.testDemoSayHello", SecurityType.None);
-        
+
         try {
             params.put("name", name);
         } catch(Exception e) {
             throw new LocalException("SERIALIZE_ERROR", LocalException.SERIALIZE_ERROR, e);
         }
-        
     }
+    
+    /**
+     * 私有的默认构造函数，请勿使用
+     */
+    private Apitest_TestDemoSayHello() {
+        super("apitest.testDemoSayHello", SecurityType.None);
+    }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -63,7 +70,6 @@ public class Apitest_TestDemoSayHello extends BaseRequest<Api_APITEST_ComplexTes
             logger.error("Api_APITEST_ComplexTestEntity deserialize failed.", e);
         }
         return null;
-        
     }
     
 }

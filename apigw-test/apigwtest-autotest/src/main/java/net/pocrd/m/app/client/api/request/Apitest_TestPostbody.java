@@ -22,8 +22,8 @@ public class Apitest_TestPostbody extends BaseRequest<Api_StringResp> {
      */
     public Apitest_TestPostbody() {
         super("apitest.testPostbody", SecurityType.Integrated);
-        
     }
+    
     /**
      * 当前请求有可能的异常返回值
      */
@@ -44,7 +44,6 @@ public class Apitest_TestPostbody extends BaseRequest<Api_StringResp> {
             logger.error("Api_StringResp deserialize failed.", e);
         }
         return null;
-        
     }
     
 }
