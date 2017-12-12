@@ -13,14 +13,14 @@ net.pocrd.apigwVersion=${net.pocrd.apigwVersion}
 #apiInfo.xsl资源路径,请配置全路径,generator执行会从此地址下载xslt
 net.pocrd.apiInfoXslSite=/xslt/apiInfo.xsl
 #跨域白名单
-net.pocrd.originWhiteList=www.sfht.com,api.sfht.com,m.sfht.com,www.fengqu.com,m.fengqu.com
+net.pocrd.originWhiteList=www.pocrd.com,api.pocrd.com,m.pocrd.com,www.pocrd.com,m.pocrd.com
 #是否开启dubbo异步调用
 net.pocrd.dubboAsync=true
 ##net.pocrd.dubboAsync=false
 #需要被托管的api jar包目录
 net.pocrd.apigw.jarPath=/home/admin/api
 #risk manager所用dubbo服务的
-net.pocrd.apigw.riskServiceName=com.sfht.riskmanagement.api.service.RiskService
+net.pocrd.apigw.riskServiceName=com.pocrd.riskmanagement.api.service.RiskService
 #日志输出目录
 net.pocrd.apigw.log.home=/home/admin/logs/apigw-deploy/
 #用于非对称加密消息的rsa公私钥对
@@ -32,7 +32,7 @@ net.pocrd.apigw.tokenAes=${net.pocrd.apigw.tokenAes}
 net.pocrd.apigw.riskServiceRedisKeySet=
 net.pocrd.apigw.riskServiceRedisConfig=
 #静态签名密钥
-net.pocrd.apigw.staticSignPwd=sfhaitao.xyz!
+net.pocrd.apigw.staticSignPwd=renshengjiushiyikebocai!@#
 net.pocrd.apigw.internalPort=${net.pocrd.apigw.internalPort}
 net.pocrd.apigw.sslPort=8443
 #oss config
@@ -43,5 +43,5 @@ oss.bucket.user.private=${oss.bucket.user.private}
 oss.bucket.order.info=${oss.bucket.order.info}
 oss.bucket.public=${oss.bucket.public}
 #zookeeper地址,dubbo.registry.url = zookeeper://zkserver1:2181
-dubbo.registry.url = zookeeper://zkserver1:2181
+dubbo.registry.url=zookeeper://zkserver1:2181
 dubbo.reference.version=${dubbo.reference.version}

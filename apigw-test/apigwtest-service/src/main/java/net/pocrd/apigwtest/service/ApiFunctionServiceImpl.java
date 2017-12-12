@@ -4,6 +4,7 @@ import net.pocrd.annotation.ApiParameter;
 import net.pocrd.apigwtest.api.ApiFunctionTestService;
 import net.pocrd.apigwtest.entity.ApigwTestReturnCode;
 import net.pocrd.apigwtest.entity.BadResponse;
+import net.pocrd.apigwtest.entity.ComplexTestEntity;
 import net.pocrd.apigwtest.entity.SimpleTestEntity;
 import net.pocrd.dubboext.DubboExtProperty;
 import net.pocrd.dubboext.TraceInfo;
@@ -174,13 +175,10 @@ public class ApiFunctionServiceImpl implements ApiFunctionTestService {
     @Override
     public String testRsaEncrypt(String param1, String param2, SimpleTestEntity param3, SimpleTestEntity param4, String param5, String param6,
             int[] param7, int[] param8) {
-        System.out.println(
-                param1 + " " + param2 + " " + param3.strValue + " " + param4 != null ?
-                        param4.strValue :
-                        "" + " " + param5 + " " + param6 + " " + param7 + " " + param8);
-        return param1 + " " + param2 + " " + param3.strValue + " " + param4 != null ?
-                param4.strValue :
-                "" + " " + param5 + " " + param6 + " " + param7 + " " + param8;
+        String log = param1 + " " + param2 + " " + param3.strValue + " " + param4 != null
+                ? param4.strValue : " " + param5 + " " + param6 + " " + param7 + " " + param8;
+        System.out.println(log);
+        return log;
     }
 
     @Override
@@ -218,5 +216,30 @@ public class ApiFunctionServiceImpl implements ApiFunctionTestService {
     @Override
     public BadResponse testBadResponse() {
         return new BadResponse("xx");
+    }
+
+    @Override
+    public ComplexTestEntity testParamExportA1(String param1, String param2, SimpleTestEntity param3, SimpleTestEntity param4) {
+        return null;
+    }
+
+    @Override
+    public ComplexTestEntity testParamExportA2(String param1, String param2, SimpleTestEntity param3, SimpleTestEntity param4) {
+        return null;
+    }
+
+    @Override
+    public ComplexTestEntity testParamExportA3(String param1, String param2, SimpleTestEntity param3, SimpleTestEntity param4) {
+        return null;
+    }
+
+    @Override
+    public ComplexTestEntity testParamExportA4(String param1, String param2, SimpleTestEntity param3, SimpleTestEntity param4) {
+        return null;
+    }
+
+    @Override
+    public ComplexTestEntity testParamExportA5(String param1, String param2, SimpleTestEntity param3, SimpleTestEntity param4) {
+        return null;
     }
 }
