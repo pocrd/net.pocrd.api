@@ -29,7 +29,7 @@ public class ApiGwRequestExecutor extends HttpRequestExecutor {
 
         //对标注了needVerify==true的Integrated接口进行访问权限的校验
         if (SecurityType.Integrated.check(authTarget)) {
-            if (!context.apiCallInfos.get(0).method.needVerfiy) {
+            if (!context.apiCalls.get(0).method.needVerfiy) {
                 //业务方自己负责验证权限
                 return ApiReturnCode.SUCCESS;
             }
@@ -39,7 +39,7 @@ public class ApiGwRequestExecutor extends HttpRequestExecutor {
                 if (thirdpartyInfo != null) {
                     Set<String> thirdpartyRes = thirdpartyInfo.getApiSet();
                     if (thirdpartyRes != null && thirdpartyRes.contains(
-                            context.apiCallInfos.get(0).method.methodName)
+                            context.apiCalls.get(0).method.methodName)
                             && thirdpartyInfo.getStatus() == ThirdpartyConfig.ThirdpartyInfo.Status.ACTIVATE) {//该第三方允许访问该接口，并且状态为激活状态
                         return ApiReturnCode.SUCCESS;
                     } else {
@@ -86,7 +86,7 @@ public class ApiGwRequestExecutor extends HttpRequestExecutor {
         //integrated级别接口只允许单接口调用,allowThirdPartyIds在接口注册时已进行校验
         Map<String, ThirdpartyConfig.ThirdpartyInfo> thirdpartyInfoMap = ThirdpartyConfig.getInstance().getThirdpartyInfoMap();
         if (thirdpartyInfoMap != null) {
-            boolean needVerify = context.apiCallInfos.get(0).method.needVerfiy;
+            boolean needVerify = context.apiCalls.get(0).method.needVerfiy;
             if (!needVerify) {
                 //业务方自己负责验证签名
                 return true;
