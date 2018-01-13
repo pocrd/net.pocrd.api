@@ -24,6 +24,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
@@ -173,7 +174,7 @@ public class StartupListener implements ServletContextListener {
                                                 // 判断接口是否有 mock 实现
                                                 ApiMockInterfaceImpl amii = clazz.getAnnotation(ApiMockInterfaceImpl.class);
                                                 if (amii != null) {
-                                                    MockApiImplementation impl = (MockApiImplementation<?>)amii.value().newInstance();
+                                                    MockApiImplementation impl = amii.value().newInstance();
                                                     if (!clazz.isInstance(impl)) {
                                                         throw new RuntimeException(
                                                                 amii.value().getName() + " is not an implementation of " + clazz.getName());
@@ -184,8 +185,7 @@ public class StartupListener implements ServletContextListener {
                                                     // service 实现当前服务的dubbo代理
                                                     for (java.lang.reflect.Type type : amii.value().getGenericInterfaces()) {
                                                         if (type != clazz) {
-                                                            if (((sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl)type)
-                                                                    .getActualTypeArguments()[0] != clazz) {
+                                                            if (((ParameterizedType)type).getActualTypeArguments()[0] != clazz) {
                                                                 throw new RuntimeException(
                                                                         "interface:" + clazz.getName() + " mock class:" + amii.value().getName()
                                                                                 + " not match.");
