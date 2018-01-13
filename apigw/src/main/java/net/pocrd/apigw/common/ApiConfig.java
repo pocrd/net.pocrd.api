@@ -45,7 +45,6 @@ public class ApiConfig {
                 prop = new Properties();
             }
 
-            instance.setApiTokenAes(prop.getProperty("net.pocrd.apigw.tokenAes"));
             instance.setApiJarPath(prop.getProperty("net.pocrd.apigw.jarPath"));
             instance.setServiceVersion(prop.getProperty("dubbo.reference.version"));
             instance.setOssAccessKey(prop.getProperty("oss.accessKey"));
@@ -71,24 +70,12 @@ public class ApiConfig {
         return applicationName;
     }
 
-    /**
-     * 用于加密服务端token
-     */
-    private String apiTokenAes = null;
-
-    private void setApiTokenAes(String apiTokenAes) {
-        this.apiTokenAes = apiTokenAes;
-        if (CompileConfig.isDebug) {
-            logger.info("[ApiConfig.init]net.pocrd.apigw.tokenAes:{}", apiTokenAes);
-        }
-    }
-
     private ThreadLocal<AESTokenHelper> apiTokenHelper = new ThreadLocal<AESTokenHelper>();
 
     public AESTokenHelper getApiTokenHelper() {
         AESTokenHelper helper = apiTokenHelper.get();
         if (helper == null) {
-            helper = new AESTokenHelper(new AesHelper(Base64Util.decode(apiTokenAes), null));
+            helper = new AESTokenHelper(new AesHelper(Base64Util.decode(CommonConfig.getInstance().getTokenAes()), null));
             apiTokenHelper.set(helper);
         }
         return helper;
