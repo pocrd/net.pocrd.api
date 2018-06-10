@@ -72,8 +72,14 @@ public class ApiGwRequestExecutor extends HttpRequestExecutor {
 
         if ((authTarget & caller.securityLevel) != authTarget) {
             logger.error("securityLevel missmatch. expact:" + authTarget + " actual:" + caller.securityLevel);
-            return ApiReturnCode.SECURITY_LEVEL_MISSMATCH;
+            return ApiReturnCode.SECURITY_LEVEL_MISMATCH;
         }
+        return ApiReturnCode.SUCCESS;
+    }
+
+    @Override
+    protected AbstractReturnCode checkSubSystemRole(ApiContext context, int authTarget, HttpServletRequest request) {
+        // FIXME: 2018/4/21
         return ApiReturnCode.SUCCESS;
     }
 

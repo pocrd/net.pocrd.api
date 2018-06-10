@@ -11,8 +11,10 @@ import net.pocrd.apigw.common.ThirdpartyConfig;
 import net.pocrd.core.ApiManager;
 import net.pocrd.core.InfoServlet;
 import net.pocrd.define.MockApiImplementation;
+import net.pocrd.entity.ApiMethodInfo;
 import net.pocrd.entity.CommonConfig;
 import net.pocrd.entity.CompileConfig;
+import net.pocrd.util.ClassUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,7 +126,8 @@ public class StartupListener implements ServletContextListener {
                         JarFile jf = null;
                         try {
                             jf = new JarFile(f);
-                            if ("dubbo".equals(jf.getManifest().getMainAttributes().getValue("Api-Dependency-Type"))) {
+                            String dependencyType = jf.getManifest().getMainAttributes().getValue("Api-Dependency-Type");
+                            if ("dubbo".equals(dependencyType)) {
                                 String ns = jf.getManifest().getMainAttributes().getValue("Api-Export");
                                 String[] names = ns.split(" ");
                                 urlClassLoader_addURL.invoke(loader, f.toURI().toURL());
@@ -210,10 +213,29 @@ public class StartupListener implements ServletContextListener {
                                             if (service == null) {
                                                 logger.error("cannot find dubbo service for " + clazz.getName());
                                             }
-                                            MainServlet.getApiManager().register(f.getName(), ApiManager.parseApi(clazz, service));
+                                            MainServlet.getApiManager().register(f.getName(), ApiManager.parseApi(clazz), service);
                                         }
                                     }
                                 }
+                            } else if ("mixer".equals(dependencyType)) {
+                                String ns = jf.getManifest().getMainAttributes().getValue("Api-Mixer-Namespace");
+                                String[] names = ns.split(" ");
+                                urlClassLoader_addURL.invoke(loader, f.toURI().toURL());
+                                List<ApiMethodInfo> mixers = new LinkedList<>();
+                                ApiManager mgr = MainServlet.getApiManager();
+                                for (String name : names) {
+                                    if (name != null) {
+                                        name = name.trim();
+                                        if (name.length() > 0) {
+                                            List<Class<?>> classes = ClassUtil.getAllMixerClasses(jf, name);
+                                            for (Class clazz : classes) {
+                                                mixers.add(mgr.parseMixer(clazz));
+                                            }
+                                        }
+                                    }
+                                }
+                                mgr.register(f.getName(), mixers, null);
+
                             }
                         } catch (Throwable t) {
                             logger.error("load api failed. " + f.getName(), t);
